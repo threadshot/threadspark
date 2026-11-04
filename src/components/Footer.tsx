@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Sparkles, ArrowRight, ShieldCheck, Cpu, Terminal, Compass, CheckCircle2, Building2, Search } from "lucide-react";
+import { Sparkles, ArrowRight, Cpu, Terminal, Compass, CheckCircle2, Building2, Search } from "lucide-react";
 import { sound } from "@/lib/sound";
 import { InvestorModal } from "@/components/InvestorModal";
 
@@ -55,9 +55,6 @@ export function Footer() {
 
               <div className="space-y-3">
                 <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 font-mono">
-                  <span className="flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Zero Model Training
-                  </span>
                   <span className="flex items-center gap-1.5">
                     <Cpu className="w-3.5 h-3.5 text-brand-violet" /> Local Vector Vault
                   </span>

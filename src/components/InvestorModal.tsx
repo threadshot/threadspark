@@ -200,7 +200,7 @@ export function InvestorModal({ isOpen, onClose }: InvestorModalProps) {
                 <span className="flex items-center gap-1.5 text-emerald-400">
                   <Lock className="w-3.5 h-3.5" /> Confidential Protocol
                 </span>
-                <span>Zero Third-Party Model Training</span>
+                <span>Private Encrypted Vault</span>
               </div>
 
               {/* Submit CTA */}
