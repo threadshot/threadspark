@@ -22,29 +22,117 @@ import {
   FileText,
   Activity,
   Zap,
+  Send,
+  Building2,
+  Sliders,
+  Check,
+  AlertTriangle,
+  RotateCcw,
+  Search,
 } from "lucide-react";
+import { sound } from "@/lib/sound";
 import { GLASS_MERIDIAN_DATA } from "@/data/glassMeridian";
+import { InvestorModal } from "@/components/InvestorModal";
 
 export default function HomePage() {
   const [activePillar, setActivePillar] = useState<"understand" | "remember" | "create">("understand");
   const [activePreviewTab, setActivePreviewTab] = useState<"overview" | "characters" | "continuity" | "style">("overview");
+  const [investorOpen, setInvestorOpen] = useState(false);
+
+  // Hero Interactive Simulation Terminal State
+  const [heroPrompt, setHeroPrompt] = useState("");
+  const [heroSimActive, setHeroSimActive] = useState<"tension" | "continuity" | "style" | "custom">("tension");
+  const [heroThinking, setHeroThinking] = useState(false);
+  const [heroOutput, setHeroOutput] = useState<{
+    title: string;
+    text: string;
+    metricLabel?: string;
+    metricVal?: string;
+    badge?: string;
+  }>({
+    title: "Marcus Thorne vs Elena Vance Dynamic Tension",
+    text: "Tension Index: 88 (High). Following Chapter 4's rendezvous at Iron Quay, Marcus's linguistic cadence displays a 42% increase in rhythmic curtness. He avoids invoking the Scholasticate keystone covenant in Elena's presence, indicating unconscious cognitive dissonance.",
+    metricLabel: "Cadence Shift",
+    metricVal: "+42% Staccato",
+    badge: "Chapter 4 • Relational Matrix",
+  });
+
+  const handleHeroPreset = (type: "tension" | "continuity" | "style") => {
+    sound.tick();
+    setHeroSimActive(type);
+    setHeroThinking(true);
+
+    setTimeout(() => {
+      sound.pulse();
+      setHeroThinking(false);
+      if (type === "tension") {
+        setHeroOutput({
+          title: "Marcus Thorne vs Elena Vance Dynamic Tension",
+          text: "Tension Index: 88 (High). Following Chapter 4's rendezvous at Iron Quay, Marcus's linguistic cadence displays a 42% increase in rhythmic curtness. He avoids invoking the Scholasticate keystone covenant in Elena's presence, indicating unconscious cognitive dissonance.",
+          metricLabel: "Cadence Shift",
+          metricVal: "+42% Staccato",
+          badge: "Chapter 4 • Relational Matrix",
+        });
+      } else if (type === "continuity") {
+        setHeroOutput({
+          title: "Continuity Radar: Ancestral Signet Seal Inconsistency",
+          text: "Critical Flag: Chapter 4 describes Marcus dropping his grandfather's bronze signet seal into the bay mud under enemy crossbow fire. In Chapter 7, paragraph 14, Marcus unlocks the Solarium portal using that same signet without explanation.",
+          metricLabel: "Discrepancy Severity",
+          metricVal: "Critical (Ch 4 vs Ch 7)",
+          badge: "Logic Collision Flagged",
+        });
+      } else if (type === "style") {
+        setHeroOutput({
+          title: "Stylometric Tone Profile & Lexical Richness",
+          text: "Lexical Diversity: 0.76 Type-Token Ratio. Average sentence length: 18.4 words with prominent trailing participial clauses. Dominant atmospheric mood: Atmospheric Dread (34%) balanced with Architectural Introspection (28%).",
+          metricLabel: "Lexical Variety",
+          metricVal: "0.76 TTR (92nd percentile)",
+          badge: "Voice Fingerprint Active",
+        });
+      }
+    }, 400);
+  };
+
+  const handleHeroSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!heroPrompt.trim()) return;
+
+    sound.tick();
+    const query = heroPrompt;
+    setHeroPrompt("");
+    setHeroSimActive("custom");
+    setHeroThinking(true);
+
+    setTimeout(() => {
+      sound.pulse();
+      setHeroThinking(false);
+      setHeroOutput({
+        title: `Custom Synthesis: "${query}"`,
+        text: `Cross-referencing all 36,420 words of The Glass Meridian: The narrative establishes that any violation of the Meridian's resonance frequency directly accelerates tectonic fissures beneath Oakhaven. Characters within the Scholasticate will react with immediate institutional suppression.`,
+        metricLabel: "Coverage",
+        metricVal: "8 Chapters Ingested",
+        badge: "Custom Neural Query",
+      });
+    }, 550);
+  };
 
   return (
     <div className="min-h-screen bg-brand-void text-slate-100 flex flex-col selection:bg-brand-violet/30 selection:text-white">
       <Navbar />
+      <InvestorModal isOpen={investorOpen} onClose={() => setInvestorOpen(false)} />
 
       {/* HERO SECTION */}
-      <section className="relative pt-36 pb-24 md:pt-48 md:pb-36 overflow-hidden">
+      <section className="relative pt-36 pb-20 md:pt-48 md:pb-32 overflow-hidden">
         {/* Ambient atmospheric lighting */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] md:w-[1000px] h-[500px] bg-brand-violet/15 blur-[140px] pointer-events-none rounded-full" />
-        <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-brand-champagne/5 blur-[120px] pointer-events-none rounded-full" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] md:w-[1100px] h-[550px] bg-brand-violet/15 blur-[150px] pointer-events-none rounded-full" />
+        <div className="absolute top-1/3 left-1/4 w-[450px] h-[450px] bg-brand-champagne/5 blur-[130px] pointer-events-none rounded-full" />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
           {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill border border-brand-border mb-8 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-brand-border mb-8 animate-fade-in">
             <span className="w-2 h-2 rounded-full bg-brand-violet animate-pulse" />
             <span className="text-xs font-mono tracking-wider uppercase text-brand-lavender">
-              Introducing Threadspark v2.4 • Contextual Personal Intelligence
+              THREADSPARK v2.4 • Persistent Contextual Intelligence
             </span>
           </div>
 
@@ -55,117 +143,166 @@ export default function HomePage() {
           </h1>
 
           {/* Supporting Copy */}
-          <p className="text-lg md:text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed mb-12">
-            THREADSPARK is a personal AI intelligence platform that learns from your ideas, documents, research, and creative projects. Giving everything you create the context, memory, and intelligence to evolve.
+          <p className="text-lg md:text-xl text-slate-300 font-light max-w-3xl mx-auto leading-relaxed mb-12">
+            THREADSPARK is a personal AI intelligence platform that develops an ongoing contextual understanding of your creative projects, fictional universes, research archives, and manuscripts.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto mb-16">
             <Link
               href="/studio"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-brand-violet to-purple-600 hover:from-purple-500 hover:to-brand-violet text-white font-medium text-sm transition-all duration-300 shadow-xl shadow-brand-violet/25 hover:shadow-brand-violet/40 hover:-translate-y-0.5 flex items-center justify-center gap-2"
+              onClick={() => sound.tick()}
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-brand-violet to-purple-600 hover:from-purple-500 hover:to-brand-violet text-white font-medium text-sm transition-all duration-300 shadow-xl shadow-brand-violet/25 hover:shadow-brand-violet/40 hover:-translate-y-0.5 flex items-center justify-center gap-2.5"
             >
               <Sparkles className="w-4 h-4 text-brand-champagne" />
-              <span>Experience the AI</span>
+              <span>Experience The AI Studio</span>
             </Link>
 
-            <Link
-              href="/platform"
+            <button
+              onClick={() => {
+                sound.tick();
+                setInvestorOpen(true);
+              }}
               className="w-full sm:w-auto px-8 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white font-medium text-sm transition-all duration-300 border border-white/10 hover:border-white/25 flex items-center justify-center gap-2"
             >
-              <span>Explore Platform</span>
-              <ArrowRight className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
+              <Building2 className="w-4 h-4 text-brand-champagne" />
+              <span>Investor Briefing</span>
+            </button>
           </div>
 
-          {/* Hero Feature Teaser Mockup */}
-          <div className="relative mx-auto max-w-5xl rounded-2xl glass-panel p-2 md:p-3 border border-white/10 shadow-2xl shadow-black/80">
-            <div className="rounded-xl overflow-hidden bg-brand-dark/90 border border-brand-border/60">
+          {/* INTERACTIVE HERO SIMULATION TERMINAL */}
+          <div className="relative mx-auto max-w-5xl rounded-3xl glass-panel p-2 md:p-3 border border-white/10 shadow-2xl shadow-black/90">
+            <div className="rounded-2xl overflow-hidden bg-brand-dark/95 border border-brand-border/70">
               {/* Studio Browser Header */}
-              <div className="flex items-center justify-between px-4 py-3 bg-brand-charcoal/80 border-b border-brand-border/50 text-xs text-slate-400">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/60" />
-                  <div className="w-3 h-3 rounded-full bg-amber-500/60" />
-                  <div className="w-3 h-3 rounded-full bg-emerald-500/60" />
-                  <span className="font-mono ml-2 text-slate-400 hidden sm:inline">threadspark-studio://the-glass-meridian</span>
+              <div className="flex items-center justify-between px-5 py-3.5 bg-brand-charcoal/90 border-b border-brand-border/60 text-xs text-slate-400">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-3 h-3 rounded-full bg-red-500/70" />
+                  <div className="w-3 h-3 rounded-full bg-amber-500/70" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-500/70" />
+                  <span className="font-mono ml-2 text-slate-400 hidden sm:inline">
+                    threadspark-terminal://the-glass-meridian.context
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 font-mono text-[11px]">
-                  <span className="text-emerald-400 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Neural Context Active
+                  <span className="text-emerald-400 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Spatial Graph Synchronized
                   </span>
                   <span className="text-slate-400 hidden md:inline">36,420 words indexed</span>
                 </div>
               </div>
 
-              {/* Preview Dashboard Content */}
-              <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 text-left">
-                {/* Left Mini Stats */}
-                <div className="md:col-span-4 space-y-4">
-                  <div className="p-4 rounded-xl bg-brand-surface/60 border border-brand-border">
-                    <div className="text-xs font-mono uppercase text-slate-400 mb-1">Demonstration Project</div>
-                    <div className="font-serif text-xl text-brand-champagne font-medium">The Glass Meridian</div>
-                    <div className="text-xs text-slate-400 mt-1">High Fantasy / Political Intrigue • 8 Chapters</div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3 font-mono text-xs">
-                    <div className="p-3 rounded-lg bg-brand-surface/40 border border-brand-border/60">
-                      <div className="text-slate-400 text-[10px]">CHARACTERS</div>
-                      <div className="text-lg font-semibold text-white">12 Identified</div>
-                    </div>
-                    <div className="p-3 rounded-lg bg-brand-surface/40 border border-brand-border/60">
-                      <div className="text-slate-400 text-[10px]">RELATIONSHIPS</div>
-                      <div className="text-lg font-semibold text-brand-lavender">28 Mapped</div>
-                    </div>
-                    <div className="p-3 rounded-lg bg-brand-surface/40 border border-brand-border/60">
-                      <div className="text-slate-400 text-[10px]">CHRONOLOGY</div>
-                      <div className="text-lg font-semibold text-emerald-300">24 Events</div>
-                    </div>
-                    <div className="p-3 rounded-lg bg-brand-surface/40 border border-brand-border/60">
-                      <div className="text-slate-400 text-[10px]">CONTINUITY RISKS</div>
-                      <div className="text-lg font-semibold text-amber-400">3 Flagged</div>
-                    </div>
-                  </div>
-
-                  <Link
-                    href="/studio"
-                    className="w-full py-2.5 px-4 rounded-lg bg-brand-violet/20 hover:bg-brand-violet text-brand-lavender hover:text-white border border-brand-violet/40 text-xs font-medium transition-all flex items-center justify-between"
+              {/* Terminal Quick Presets */}
+              <div className="px-5 py-3 bg-brand-void/60 border-b border-brand-border/40 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                  Select Live Telemetry Test:
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => handleHeroPreset("tension")}
+                    className={`px-3 py-1 rounded-lg font-mono text-[11px] transition-all ${
+                      heroSimActive === "tension"
+                        ? "bg-brand-violet text-white shadow-sm font-semibold"
+                        : "bg-brand-surface/60 text-slate-400 hover:text-white border border-white/5"
+                    }`}
                   >
-                    <span>Launch Full Interactive Studio</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                    1. Character Tension Arc
+                  </button>
+                  <button
+                    onClick={() => handleHeroPreset("continuity")}
+                    className={`px-3 py-1 rounded-lg font-mono text-[11px] transition-all ${
+                      heroSimActive === "continuity"
+                        ? "bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm font-semibold"
+                        : "bg-brand-surface/60 text-slate-400 hover:text-white border border-white/5"
+                    }`}
+                  >
+                    2. Continuity Discrepancy
+                  </button>
+                  <button
+                    onClick={() => handleHeroPreset("style")}
+                    className={`px-3 py-1 rounded-lg font-mono text-[11px] transition-all ${
+                      heroSimActive === "style"
+                        ? "bg-brand-champagne/20 text-brand-champagne border border-brand-champagne/40 shadow-sm font-semibold"
+                        : "bg-brand-surface/60 text-slate-400 hover:text-white border border-white/5"
+                    }`}
+                  >
+                    3. Stylometric Profile
+                  </button>
+                </div>
+              </div>
+
+              {/* Terminal Output Area */}
+              <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 text-left items-stretch">
+                {/* Left: Telemetry Panel */}
+                <div className="md:col-span-8 space-y-4">
+                  <div className="flex items-center justify-between pb-2 border-b border-brand-border/50">
+                    <span className="text-xs font-mono text-brand-champagne font-semibold flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5 text-brand-violet" />
+                      {heroOutput.title}
+                    </span>
+                    {heroOutput.badge && (
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-surface border border-white/10 text-brand-lavender">
+                        {heroOutput.badge}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="min-h-[110px] p-4 rounded-xl bg-brand-charcoal/80 border border-brand-border/80 flex items-center">
+                    {heroThinking ? (
+                      <div className="flex items-center gap-3 text-xs font-mono text-brand-lavender animate-pulse">
+                        <Activity className="w-4 h-4 animate-spin text-brand-champagne" />
+                        <span>Traversing 148 relational nodes &amp; 312 chapter vectors...</span>
+                      </div>
+                    ) : (
+                      <p className="text-xs sm:text-sm text-slate-200 font-sans leading-relaxed">
+                        {heroOutput.text}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Custom Prompt Input */}
+                  <form onSubmit={handleHeroSubmit} className="relative">
+                    <input
+                      type="text"
+                      value={heroPrompt}
+                      onChange={(e) => setHeroPrompt(e.target.value)}
+                      placeholder="Ask any question about The Glass Meridian (e.g. 'What happens if Marcus reveals the keystone fracture?')..."
+                      className="w-full bg-brand-charcoal border border-brand-border/80 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-violet font-sans"
+                    />
+                    <button
+                      type="submit"
+                      className="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-brand-violet hover:bg-purple-600 text-white rounded-lg text-xs font-mono transition-colors flex items-center gap-1"
+                    >
+                      <span>Query</span>
+                      <Send className="w-3 h-3" />
+                    </button>
+                  </form>
                 </div>
 
-                {/* Right Interactive Telemetry Snippet */}
-                <div className="md:col-span-8 p-5 rounded-xl bg-brand-surface/60 border border-brand-border flex flex-col justify-between">
+                {/* Right: Real-time Metric Indicators */}
+                <div className="md:col-span-4 p-5 rounded-xl bg-brand-surface/70 border border-brand-border flex flex-col justify-between space-y-4">
                   <div>
-                    <div className="flex items-center justify-between pb-3 border-b border-brand-border/60 mb-4">
-                      <div className="flex items-center gap-2">
-                        <Activity className="w-4 h-4 text-brand-violet" />
-                        <span className="text-xs font-mono uppercase tracking-wider text-slate-300">
-                          Active Neural Synthesis • Synthesis Snapshot
-                        </span>
-                      </div>
-                      <span className="text-[11px] font-mono text-brand-champagne">Lexical Coherence 92%</span>
+                    <div className="text-[10px] font-mono uppercase text-slate-400 mb-1">
+                      Context Coherence
                     </div>
-
-                    <div className="space-y-3 text-xs leading-relaxed text-slate-300">
-                      <div className="p-3 rounded-lg bg-brand-charcoal/80 border border-brand-border/80">
-                        <span className="font-semibold text-brand-lavender">Context Engine Observation: </span>
-                        Marcus Thorne&apos;s linguistic cadence shows a marked 42% increase in rhythmic curtness following Chapter 4&apos;s ambush at Iron Quay, reflecting psychological strain before his confrontation with Archon Malakar.
-                      </div>
-
-                      <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-200">
-                        <span className="font-semibold text-amber-300 flex items-center gap-1.5 mb-1">
-                          <ShieldAlert className="w-3.5 h-3.5" /> Continuity Alert Detected:
-                        </span>
-                        Chapter 4 reports Marcus dropping his grandfather&apos;s Scholasticate signet seal into the bay mud, but Chapter 7 describes him unlocking the east portico with that same seal.
-                      </div>
+                    <div className="font-serif text-2xl text-white font-medium">92% Health</div>
+                    <div className="text-[11px] text-slate-400 mt-1">
+                      {heroOutput.metricLabel || "Metric"}:{" "}
+                      <span className="text-brand-champagne font-mono font-semibold">
+                        {heroOutput.metricVal || "Active"}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-brand-border/60 flex items-center justify-between text-xs text-slate-400 font-mono">
-                    <span>Engine: ChronoVoxel 3.2</span>
-                    <span className="text-brand-champagne">Zero Token Degradation</span>
+                  <div className="pt-3 border-t border-brand-border/60">
+                    <Link
+                      href="/studio"
+                      onClick={() => sound.tick()}
+                      className="w-full py-2.5 px-4 rounded-lg bg-brand-violet/20 hover:bg-brand-violet text-brand-lavender hover:text-white border border-brand-violet/40 text-xs font-medium transition-all flex items-center justify-between"
+                    >
+                      <span>Open in Full Studio</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -174,7 +311,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* THE PROBLEM SECTION */}
+      {/* THE PROBLEM / ARCHITECTURAL DEFICIT */}
       <section className="py-24 border-t border-brand-border/40 relative bg-brand-dark/40">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -253,6 +390,64 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ARCHITECTURAL DEFICIT COMPARISON TABLE (INVESTOR & STRATEGIC APPEAL) */}
+      <section className="py-24 border-t border-brand-border/40 relative">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-mono uppercase tracking-widest text-brand-champagne mb-3 block">
+              Architectural Defensibility
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
+              Stateless Chatbots vs. THREADSPARK Context Engine
+            </h2>
+            <p className="text-slate-400 text-sm">
+              Why prompt engineering is fundamentally insufficient for complex, multi-chapter creation.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-brand-charcoal/60 overflow-hidden shadow-2xl">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs font-mono">
+                <thead>
+                  <tr className="border-b border-brand-border bg-brand-dark/90 text-slate-400 uppercase tracking-wider">
+                    <th className="p-4 sm:p-5">Capability Dimension</th>
+                    <th className="p-4 sm:p-5 text-red-400">Standard LLM Prompt Wrapper</th>
+                    <th className="p-4 sm:p-5 text-brand-champagne">THREADSPARK Engine</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5 text-slate-300 font-sans">
+                  <tr>
+                    <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Memory Retention</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Tokens degrade or truncate as session length expands</td>
+                    <td className="p-4 sm:p-5 text-emerald-300 font-medium">Persistent relational graph; Chapter 1 context remains 100% active in Chapter 8</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Continuity Verification</td>
+                    <td className="p-4 sm:p-5 text-slate-400">None; generates hallucinations without tracking physical state</td>
+                    <td className="p-4 sm:p-5 text-emerald-300 font-medium">Continuous logic radar flagging item losses, injuries, and timeline collisions</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Voice &amp; Stylometrics</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Homogenizes prose with repetitive corporate LLM idioms</td>
+                    <td className="p-4 sm:p-5 text-emerald-300 font-medium">Extracts authorial Type-Token Ratio, sentence cadence, and vocabulary tiers</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Compute Efficiency</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Re-injects massive context windows on every call, driving up costs</td>
+                    <td className="p-4 sm:p-5 text-emerald-300 font-medium">Sub-graph traversal extracts only causally relevant nodes (&lt;12ms latency)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Data Sovereignty</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Cloud-dependent; user intellectual property stored on public servers</td>
+                    <td className="p-4 sm:p-5 text-emerald-300 font-medium">Local-first vector indexing; zero third-party foundation model training</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* THREE CORE PILLARS SECTION */}
       <section className="py-28 border-t border-brand-border/40 relative">
         <div className="max-w-6xl mx-auto px-6">
@@ -280,7 +475,10 @@ export default function HomePage() {
               return (
                 <button
                   key={pillar.id}
-                  onClick={() => setActivePillar(pillar.id as any)}
+                  onClick={() => {
+                    sound.tick();
+                    setActivePillar(pillar.id as any);
+                  }}
                   className={`flex items-center gap-2.5 px-6 py-3 rounded-full text-xs font-mono tracking-wider transition-all duration-300 ${
                     isActive
                       ? "bg-brand-violet text-white shadow-lg shadow-brand-violet/30 border border-brand-violet"
@@ -297,7 +495,7 @@ export default function HomePage() {
           {/* Pillar Content Display */}
           <div className="glass-panel p-8 md:p-12 rounded-3xl border border-white/10 relative overflow-hidden">
             {activePillar === "understand" && (
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center animate-fade-in">
                 <div className="md:col-span-6 space-y-6">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-violet/20 border border-brand-violet/40 text-brand-lavender text-xs font-mono">
                     Cognitive Ingestion Engine
@@ -348,7 +546,7 @@ export default function HomePage() {
             )}
 
             {activePillar === "remember" && (
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center animate-fade-in">
                 <div className="md:col-span-6 space-y-6">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-mono">
                     Persistent Knowledge Fabric
@@ -383,7 +581,7 @@ export default function HomePage() {
                   <div className="p-4 rounded-xl bg-brand-charcoal/60 border border-brand-border/60 text-xs space-y-2">
                     <div className="flex items-center gap-2 text-brand-champagne font-semibold font-serif text-sm">
                       <History className="w-4 h-4 text-brand-violet" />
-                      Timeline Anchors & Dependencies
+                      Timeline Anchors &amp; Dependencies
                     </div>
                     <div className="text-slate-300 leading-relaxed font-sans text-xs">
                       Event #3 (Descent to Sunk Hollows) is causally dependent on Event #2 (Marcus stealing the silk blueprint). Any change to Event #2 automatically flags downstream impacts in Chapters 4, 6, and 8.
@@ -394,7 +592,7 @@ export default function HomePage() {
             )}
 
             {activePillar === "create" && (
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center animate-fade-in">
                 <div className="md:col-span-6 space-y-6">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-champagne/20 border border-brand-champagne/40 text-brand-champagne text-xs font-mono">
                     Symbiotic Synthesis Studio
@@ -462,7 +660,7 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-brand-violet/10 border border-brand-violet/30 text-brand-lavender flex items-center justify-center">
                     <BookOpen className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono text-slate-500">01 / FICTION</span>
+                  <span className="text-xs font-mono text-slate-400">01 / FICTION</span>
                 </div>
                 <h3 className="font-serif text-2xl text-white font-medium mb-3">Stories &amp; Novels</h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
@@ -471,7 +669,7 @@ export default function HomePage() {
               </div>
               <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-brand-lavender font-mono">
                 <span>Character dossiers • Plot trees • Voice tuning</span>
-                <Link href="/use-cases#fiction" className="hover:text-white flex items-center gap-1">
+                <Link href="/use-cases#novelists" className="hover:text-white flex items-center gap-1">
                   Read Case Study <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -484,7 +682,7 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-purple-900/20 border border-purple-500/30 text-purple-300 flex items-center justify-center">
                     <Layers className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono text-slate-500">02 / RESEARCH</span>
+                  <span className="text-xs font-mono text-slate-400">02 / RESEARCH</span>
                 </div>
                 <h3 className="font-serif text-2xl text-white font-medium mb-3">Research &amp; Knowledge</h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
@@ -493,7 +691,7 @@ export default function HomePage() {
               </div>
               <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-brand-lavender font-mono">
                 <span>Citation graphs • Cross-document synthesis</span>
-                <Link href="/use-cases#research" className="hover:text-white flex items-center gap-1">
+                <Link href="/use-cases#researchers" className="hover:text-white flex items-center gap-1">
                   Read Case Study <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -506,7 +704,7 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-amber-900/20 border border-amber-500/30 text-amber-300 flex items-center justify-center">
                     <Compass className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono text-slate-500">03 / WORLDBUILDING</span>
+                  <span className="text-xs font-mono text-slate-400">03 / WORLDBUILDING</span>
                 </div>
                 <h3 className="font-serif text-2xl text-white font-medium mb-3">Worldbuilding &amp; Lore</h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
@@ -515,7 +713,7 @@ export default function HomePage() {
               </div>
               <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-amber-300 font-mono">
                 <span>Magic system rules • Faction hierarchies • Map lore</span>
-                <Link href="/use-cases#worldbuilding" className="hover:text-white flex items-center gap-1">
+                <Link href="/use-cases#worldbuilders" className="hover:text-white flex items-center gap-1">
                   Read Case Study <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -528,7 +726,7 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-emerald-900/20 border border-emerald-500/30 text-emerald-300 flex items-center justify-center">
                     <FileText className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono text-slate-500">04 / SCREENPLAYS</span>
+                  <span className="text-xs font-mono text-slate-400">04 / SCREENPLAYS</span>
                 </div>
                 <h3 className="font-serif text-2xl text-white font-medium mb-3">Scripts &amp; Screenplays</h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
@@ -560,6 +758,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/studio"
+              onClick={() => sound.tick()}
               className="mt-4 md:mt-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-violet text-white text-xs font-medium hover:bg-purple-600 transition-colors shadow-lg shadow-brand-violet/25"
             >
               <span>Launch Studio Experience</span>
@@ -579,7 +778,10 @@ export default function HomePage() {
               ].map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActivePreviewTab(tab.id as any)}
+                  onClick={() => {
+                    sound.tick();
+                    setActivePreviewTab(tab.id as any);
+                  }}
                   className={`px-4 py-2 rounded-xl text-xs font-mono transition-all ${
                     activePreviewTab === tab.id
                       ? "bg-white/15 text-white border border-white/20 shadow-sm"
@@ -721,14 +923,28 @@ export default function HomePage() {
           <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
             Step inside the interactive demonstration of THREADSPARK Studio and explore how persistent contextual memory transforms the creative process.
           </p>
-          <Link
-            href="/studio"
-            className="inline-flex items-center gap-3 px-9 py-4 rounded-full bg-gradient-to-r from-brand-violet to-purple-600 hover:from-purple-500 hover:to-brand-violet text-white font-medium text-sm transition-all duration-300 shadow-2xl shadow-brand-violet/30 hover:shadow-brand-violet/50 hover:-translate-y-0.5"
-          >
-            <Sparkles className="w-4 h-4 text-brand-champagne" />
-            <span>Enter Threadspark Studio</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/studio"
+              onClick={() => sound.tick()}
+              className="inline-flex items-center gap-3 px-9 py-4 rounded-full bg-gradient-to-r from-brand-violet to-purple-600 hover:from-purple-500 hover:to-brand-violet text-white font-medium text-sm transition-all duration-300 shadow-2xl shadow-brand-violet/30 hover:shadow-brand-violet/50 hover:-translate-y-0.5"
+            >
+              <Sparkles className="w-4 h-4 text-brand-champagne" />
+              <span>Enter Threadspark Studio</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            <button
+              onClick={() => {
+                sound.tick();
+                setInvestorOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white font-medium text-sm transition-all border border-white/10"
+            >
+              <Building2 className="w-4 h-4 text-brand-champagne" />
+              <span>Schedule Institutional Walkthrough</span>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -736,4 +952,3 @@ export default function HomePage() {
     </div>
   );
 }
-

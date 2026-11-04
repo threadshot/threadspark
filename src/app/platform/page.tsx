@@ -22,12 +22,22 @@ import {
   Search,
   Eye,
   Zap,
+  Building2,
+  Lock,
+  HardDrive,
+  FileCode2,
+  Terminal,
+  Activity,
 } from "lucide-react";
+import { sound } from "@/lib/sound";
 import { GLASS_MERIDIAN_DATA } from "@/data/glassMeridian";
+import { InvestorModal } from "@/components/InvestorModal";
 
 export default function PlatformPage() {
   const [activeStyleMetric, setActiveStyleMetric] = useState<number>(0);
   const [selectedNode, setSelectedNode] = useState<string>("Marcus");
+  const [activeStackLayer, setActiveStackLayer] = useState<number>(0);
+  const [investorOpen, setInvestorOpen] = useState(false);
 
   const styleMetrics = [
     {
@@ -56,9 +66,95 @@ export default function PlatformPage() {
     },
   ];
 
+  const stackLayers = [
+    {
+      id: "ingest",
+      name: "1. Cognitive Ingestion Engine",
+      badge: "Parsing Layer",
+      headline: "Multi-Pass Tokenization & Entity Extraction",
+      description:
+        "Translates raw unstructured text into structured semantic tokens. Automatically disambiguates named entities, detects chapter breaks, and isolates descriptive passages from spoken dialogue.",
+      telemetry: "36,420 words segmented • 84 proper nouns • 12 characters indexed",
+      codeSample: `// Ingestion Pipeline Pass 2: Entity Disambiguation
+interface IngestedEntity {
+  id: "char-marcus-thorne";
+  name: "Marcus Thorne";
+  tier: "Primary Protagonist";
+  lexicalCadence: { ttr: 0.76, avgWordLen: 4.8 };
+  faction: "The Meridian Scholasticate";
+}`,
+    },
+    {
+      id: "spatial",
+      name: "2. Persistent Relational Graph",
+      badge: "Memory Layer",
+      headline: "Lossless Graph Topology & Vector Fabric",
+      description:
+        "Maintains an unbroken causal network across chapters. Relationships are stored as bidirectional weighted edges with dynamic tension ratings, ensuring long-term continuity without token degradation.",
+      telemetry: "148 Relational Nodes • 312 Vector Embeddings • Zero Drift Rate",
+      codeSample: `// Spatial Vector Relationship Schema
+{
+  "source": "Elena Vance",
+  "target": "Archon Malakar",
+  "relationType": "Vengeful Vendetta",
+  "tensionScore": 94, // Hostile
+  "causalAnchors": ["Ch 1: The First Tremblor", "Ch 4: Iron Quay Betrayal"]
+}`,
+    },
+    {
+      id: "style",
+      name: "3. Stylometric Profiler",
+      badge: "Voice Layer",
+      headline: "Type-Token Ratios & Structural Rhythm",
+      description:
+        "Builds a multidimensional mathematical model of authorial style. Measures sentence length variance, part-of-speech distributions, and figurative language habits to prevent LLM prose flattening.",
+      telemetry: "0.76 TTR • 18.4 wps mean • 4.2 sensory metaphors / 1k words",
+      codeSample: `// Stylometric Authorship Matrix
+const authorSignature = {
+  lexicalDiversity: 0.76, // High
+  dialogueProseRatio: 0.38,
+  preferredSensoryModality: "Tactile / Architectural",
+  syntaxConstraint: "Periodic trailing participial clauses"
+};`,
+    },
+    {
+      id: "verification",
+      name: "4. Logic & Continuity Radar",
+      badge: "Constraint Layer",
+      headline: "Real-Time Contradiction Resolution",
+      description:
+        "Tracks physical state invariants—character locations, physical injuries, carried items, and calendar timelines. Instantly flags contradictions across draft iterations with recommended fixes.",
+      telemetry: "3 Critical Flags Identified • 100% Causal Provenance Mapped",
+      codeSample: `// Continuity Discrepancy Alert #CNT-01
+{
+  "entity": "Ancestral Signet Bronze Seal",
+  "stateA": { "chapter": 4, "status": "Dropped in Iron Quay sludge" },
+  "stateB": { "chapter": 7, "status": "Used to open Solarium door" },
+  "verdict": "CRITICAL_LOGIC_COLLISION"
+}`,
+    },
+    {
+      id: "synthesis",
+      name: "5. Symbiotic Creative Studio",
+      badge: "Synthesis Layer",
+      headline: "Style-Preserved Rewriting & Counterfactuals",
+      description:
+        "Allows authors to adjust scene tension, brainstorm divergent plot branches, and rewrite dialogue while strictly honoring established lore constraints and personal literary voice.",
+      telemetry: "Unified & Side-by-Side Diff Engine • Multi-Octave Voice Tuning",
+      codeSample: `// Creative Studio Scene Transform
+applyStylisticRewrite({
+  sourceScene: "Chapter 4: Iron Quay meeting",
+  instruction: "Elevate restrained emotional subtext",
+  voiceProfile: authorSignature,
+  preserveLoreConstraints: ["Elena's forearm fracture", "Malakar's patrol"]
+});`,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-brand-void text-slate-100 flex flex-col selection:bg-brand-violet/30 selection:text-white">
       <Navbar />
+      <InvestorModal isOpen={investorOpen} onClose={() => setInvestorOpen(false)} />
 
       {/* Hero Header */}
       <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 overflow-hidden border-b border-brand-border/40">
@@ -76,18 +172,124 @@ export default function PlatformPage() {
             A persistent cognitive engine for long-form creative ambition.
           </h1>
 
-          <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-10">
+          <p className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed mb-10">
             THREADSPARK combines deep neural document parsing, persistent graph memory, stylometric profiling, and real-time narrative verification into a unified intelligence ecosystem.
           </p>
 
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/studio"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-medium transition-all shadow-xl shadow-brand-violet/25"
+              onClick={() => sound.tick()}
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-medium transition-all shadow-xl shadow-brand-violet/25"
             >
               <Sparkles className="w-4 h-4 text-brand-champagne" />
               <span>Launch Studio Simulator</span>
             </Link>
+
+            <button
+              onClick={() => {
+                sound.tick();
+                setInvestorOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-medium transition-all border border-white/10"
+            >
+              <Building2 className="w-4 h-4 text-brand-champagne" />
+              <span>Institutional Architecture Briefing</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* INTERACTIVE ARCHITECTURE STACK INSPECTOR */}
+      <section className="py-24 border-b border-brand-border/40 relative bg-brand-dark/30">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-mono uppercase tracking-widest text-brand-violet mb-3 block">
+              Interactive Stack Inspector
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
+              Explore The 5-Layer Cognitive Pipeline
+            </h2>
+            <p className="text-slate-400 text-sm">
+              Click each layer to inspect its algorithmic mechanics, internal schemas, and live telemetry outputs.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Layer Selector */}
+            <div className="lg:col-span-5 space-y-2.5">
+              {stackLayers.map((layer, idx) => {
+                const isActive = activeStackLayer === idx;
+                return (
+                  <button
+                    key={layer.id}
+                    onClick={() => {
+                      sound.tick();
+                      setActiveStackLayer(idx);
+                    }}
+                    className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 ${
+                      isActive
+                        ? "bg-brand-surface border-brand-violet text-white shadow-lg shadow-brand-violet/15"
+                        : "bg-brand-dark/70 border-brand-border/70 text-slate-400 hover:text-white hover:bg-brand-surface/40"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-serif text-sm font-medium">{layer.name}</span>
+                      <span
+                        className={`text-[10px] font-mono px-2 py-0.5 rounded ${
+                          isActive
+                            ? "bg-brand-violet text-white"
+                            : "bg-brand-dark text-slate-400 border border-white/5"
+                        }`}
+                      >
+                        {layer.badge}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-400 line-clamp-1">{layer.headline}</p>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Layer Deep-Dive Display */}
+            <div className="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 shadow-2xl space-y-6">
+              <div className="flex items-center justify-between pb-4 border-b border-brand-border/60">
+                <div>
+                  <span className="text-xs font-mono text-brand-champagne uppercase">
+                    {stackLayers[activeStackLayer].badge}
+                  </span>
+                  <h3 className="font-serif text-2xl text-white font-medium mt-0.5">
+                    {stackLayers[activeStackLayer].headline}
+                  </h3>
+                </div>
+                <span className="text-[11px] font-mono text-emerald-400 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 hidden sm:inline">
+                  Active in Studio
+                </span>
+              </div>
+
+              <p className="text-sm text-slate-300 leading-relaxed">
+                {stackLayers[activeStackLayer].description}
+              </p>
+
+              {/* Code / Data Schema Box */}
+              <div className="rounded-2xl bg-brand-void/90 border border-brand-border/80 overflow-hidden font-mono text-xs">
+                <div className="px-4 py-2.5 bg-brand-charcoal/80 border-b border-brand-border/60 text-slate-400 text-[11px] flex items-center justify-between">
+                  <span className="flex items-center gap-2">
+                    <FileCode2 className="w-3.5 h-3.5 text-brand-violet" />
+                    Internal Schema / Dispatch Pipeline
+                  </span>
+                  <span className="text-slate-400">Layer {activeStackLayer + 1} of 5</span>
+                </div>
+                <pre className="p-4 text-brand-lavender overflow-x-auto text-[11px] leading-relaxed">
+                  <code>{stackLayers[activeStackLayer].codeSample}</code>
+                </pre>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-brand-dark/80 border border-brand-border flex items-center justify-between text-xs font-mono text-slate-400">
+                <span>Telemetry: <strong>{stackLayers[activeStackLayer].telemetry}</strong></span>
+                <span className="text-brand-champagne">Zero Drift</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -219,7 +421,10 @@ export default function PlatformPage() {
               {styleMetrics.map((metric, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setActiveStyleMetric(idx)}
+                  onClick={() => {
+                    sound.tick();
+                    setActiveStyleMetric(idx);
+                  }}
                   className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                     activeStyleMetric === idx
                       ? "bg-brand-surface border-brand-violet text-white shadow-lg shadow-brand-violet/10"
@@ -300,7 +505,10 @@ export default function PlatformPage() {
                 {["Marcus", "Elena", "Malakar", "Silas"].map((node) => (
                   <button
                     key={node}
-                    onClick={() => setSelectedNode(node)}
+                    onClick={() => {
+                      sound.tick();
+                      setSelectedNode(node);
+                    }}
                     className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-colors ${
                       selectedNode === node
                         ? "bg-brand-violet text-white"
@@ -406,7 +614,9 @@ export default function PlatformPage() {
                   </div>
                   <div className="pt-3 border-t border-red-500/20 flex items-center justify-between text-xs text-amber-300 font-mono">
                     <span>Suggested Fix: Have Elena pick the lock with her tuning pin.</span>
-                    <span className="text-emerald-400 cursor-pointer hover:underline">1-Click Apply</span>
+                    <Link href="/studio?tab=continuity" className="text-emerald-400 hover:underline">
+                      Inspect in Studio &rarr;
+                    </Link>
                   </div>
                 </div>
 
@@ -472,7 +682,7 @@ export default function PlatformPage() {
 
             <div className="flex items-center justify-between text-xs text-slate-400 pt-2 font-mono">
               <span>Estimated Tone Impact: +28% Kinetic Urgency</span>
-              <Link href="/studio" className="text-brand-champagne hover:underline flex items-center gap-1">
+              <Link href="/studio?tab=creative-studio" className="text-brand-champagne hover:underline flex items-center gap-1">
                 Try in Threadspark Studio <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -480,7 +690,59 @@ export default function PlatformPage() {
         </div>
       </section>
 
-      {/* CTA Footer */}
+      {/* ENTERPRISE & TECHNICAL SPECIFICATIONS */}
+      <section className="py-24 border-b border-brand-border/40 relative">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-mono uppercase tracking-widest text-brand-champagne mb-3 block">
+              Enterprise Specifications
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
+              Hardware, Latency &amp; Privacy Protocol
+            </h2>
+            <p className="text-slate-400 text-sm">
+              Grounded, verifiable technical specifications for publishers, game studios, and research institutions.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="glass-panel p-6 rounded-2xl border border-white/10 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <Lock className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif text-lg font-medium text-white">Local-First Vault</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Project indexes are stored locally with AES-256 GCM encryption. Intellectual property never trains third-party public foundation models.
+              </p>
+              <div className="pt-2 text-[11px] font-mono text-emerald-400">Zero Cloud Data Retention</div>
+            </div>
+
+            <div className="glass-panel p-6 rounded-2xl border border-white/10 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-brand-violet/10 border border-brand-violet/20 text-brand-lavender flex items-center justify-center">
+                <Zap className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif text-lg font-medium text-white">Sub-15ms Spatial Search</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Relational graph queries execute via lightweight C-accelerated spatial vector matrices, returning cross-chapter causal paths in milliseconds.
+              </p>
+              <div className="pt-2 text-[11px] font-mono text-brand-champagne">&lt;12ms Average Sub-Graph Traversal</div>
+            </div>
+
+            <div className="glass-panel p-6 rounded-2xl border border-white/10 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-900/10 border border-purple-500/20 text-purple-300 flex items-center justify-center">
+                <HardDrive className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif text-lg font-medium text-white">Lossless Portability</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Complete project states—character dossiers, causal timelines, stylometrics, and knowledge graphs—export into open JSON, SQLite, and Markdown bundles.
+              </p>
+              <div className="pt-2 text-[11px] font-mono text-purple-300">Zero Vendor Lock-In</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
       <section className="py-24 text-center">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="font-serif text-3xl md:text-4xl text-white font-normal mb-6">
@@ -489,13 +751,27 @@ export default function PlatformPage() {
           <p className="text-slate-400 text-sm mb-8 leading-relaxed">
             THREADSPARK Studio is fully interactive and preloaded with the complete fictional manuscript of <em>The Glass Meridian</em>.
           </p>
-          <Link
-            href="/studio"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-medium transition-all shadow-xl shadow-brand-violet/25"
-          >
-            <Sparkles className="w-4 h-4 text-brand-champagne" />
-            <span>Enter Threadspark Studio</span>
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/studio"
+              onClick={() => sound.tick()}
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-medium transition-all shadow-xl shadow-brand-violet/25"
+            >
+              <Sparkles className="w-4 h-4 text-brand-champagne" />
+              <span>Enter Threadspark Studio</span>
+            </Link>
+
+            <button
+              onClick={() => {
+                sound.tick();
+                setInvestorOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-medium transition-all border border-white/10"
+            >
+              <Building2 className="w-4 h-4 text-brand-champagne" />
+              <span>Request Strategic Walkthrough</span>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -503,4 +779,3 @@ export default function PlatformPage() {
     </div>
   );
 }
-

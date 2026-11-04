@@ -11,6 +11,7 @@ import {
   BookOpen,
   PieChart,
 } from "lucide-react";
+import { sound } from "@/lib/sound";
 import { GLASS_MERIDIAN_DATA } from "@/data/glassMeridian";
 
 export function StyleIntelligenceView() {
@@ -49,6 +50,11 @@ export function StyleIntelligenceView() {
       commentary: "Maps the city's failing architecture directly onto human psychological vulnerability.",
     },
   ];
+
+  const handleSelectPassage = (idx: number) => {
+    sound.tick();
+    setSelectedPassage(idx);
+  };
 
   return (
     <div className="space-y-8 p-6 max-w-7xl mx-auto animate-fade-in">
@@ -186,14 +192,14 @@ export function StyleIntelligenceView() {
             <span className="text-xs font-mono uppercase text-slate-400">
               Passage Stylistic Parsing Demonstration
             </span>
-            <div className="flex gap-1">
+            <div className="flex gap-1.5">
               {samplePassages.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setSelectedPassage(idx)}
-                  className={`w-6 h-6 rounded text-xs font-mono transition-colors ${
+                  onClick={() => handleSelectPassage(idx)}
+                  className={`w-7 h-7 rounded-lg text-xs font-mono transition-colors ${
                     selectedPassage === idx
-                      ? "bg-brand-violet text-white font-bold"
+                      ? "bg-brand-violet text-white font-bold shadow-sm"
                       : "bg-brand-surface text-slate-400 hover:text-white"
                   }`}
                 >
@@ -238,4 +244,3 @@ export function StyleIntelligenceView() {
     </div>
   );
 }
-

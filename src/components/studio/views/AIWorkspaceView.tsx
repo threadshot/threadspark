@@ -13,7 +13,11 @@ import {
   Compass,
   Layers,
   CheckCircle2,
+  Copy,
+  Check,
+  Tag,
 } from "lucide-react";
+import { sound } from "@/lib/sound";
 import { GLASS_MERIDIAN_DATA, AIResponsePreset } from "@/data/glassMeridian";
 
 interface ChatMessage {
@@ -36,6 +40,8 @@ export function AIWorkspaceView() {
 
   const [inputVal, setInputVal] = useState("");
   const [isThinking, setIsThinking] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,6 +51,7 @@ export function AIWorkspaceView() {
   const handleSend = (text: string) => {
     if (!text.trim()) return;
 
+    sound.tick();
     const userMsg: ChatMessage = {
       id: `usr-${Date.now()}`,
       sender: "user",
@@ -57,11 +64,12 @@ export function AIWorkspaceView() {
     setIsThinking(true);
 
     setTimeout(() => {
+      sound.pulse();
       // Find matching preset or formulate contextual answer
       const normalized = text.toLowerCase();
       const presetMatch = GLASS_MERIDIAN_DATA.aiPresets.find((p) =>
-        normalized.includes(p.question.toLowerCase().slice(0, 20)) ||
-        p.question.toLowerCase().includes(normalized.slice(0, 20))
+        normalized.includes(p.question.toLowerCase().slice(0, 15)) ||
+        p.question.toLowerCase().includes(normalized.slice(0, 15))
       );
 
       let replyText = "";
@@ -99,10 +107,18 @@ export function AIWorkspaceView() {
 
       setMessages((prev) => [...prev, aiMsg]);
       setIsThinking(false);
-    }, 700);
+    }, 650);
+  };
+
+  const handleCopyMessage = (msgId: string, text: string) => {
+    sound.tick();
+    navigator.clipboard.writeText(text);
+    setCopiedId(msgId);
+    setTimeout(() => setCopiedId(null), 2000);
   };
 
   const handleResetChat = () => {
+    sound.tick();
     setMessages([
       {
         id: "initial-reset",
@@ -112,6 +128,11 @@ export function AIWorkspaceView() {
       },
     ]);
   };
+
+  const filteredPresets = GLASS_MERIDIAN_DATA.aiPresets.filter((p) => {
+    if (activeCategory === "all") return true;
+    return p.category.toLowerCase().includes(activeCategory.toLowerCase());
+  });
 
   return (
     <div className="space-y-6 p-6 max-w-7xl mx-auto animate-fade-in">
@@ -136,13 +157,40 @@ export function AIWorkspaceView() {
         </button>
       </div>
 
-      {/* Suggested Prompt Pills */}
-      <div className="space-y-2">
-        <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
-          Curated Manuscript Queries (Click to Run):
-        </span>
+      {/* Suggested Prompt Category Selector */}
+      <div className="space-y-2.5">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+            Curated Manuscript Queries (Click to Run):
+          </span>
+          <div className="flex gap-1 text-[11px] font-mono">
+            {[
+              { id: "all", label: "All" },
+              { id: "character", label: "Character Arc" },
+              { id: "world", label: "World Lore" },
+              { id: "continuity", label: "Continuity" },
+              { id: "narrative", label: "Craft" },
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  sound.tick();
+                  setActiveCategory(cat.id);
+                }}
+                className={`px-2.5 py-0.5 rounded-lg transition-colors ${
+                  activeCategory === cat.id
+                    ? "bg-brand-violet text-white font-semibold"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="flex flex-wrap gap-2">
-          {GLASS_MERIDIAN_DATA.aiPresets.map((preset) => (
+          {filteredPresets.map((preset) => (
             <button
               key={preset.id}
               onClick={() => handleSend(preset.question)}
@@ -200,8 +248,17 @@ export function AIWorkspaceView() {
                 </div>
               )}
 
-              <div className="text-[10px] opacity-50 font-mono text-right">
-                {msg.timestamp}
+              <div className="flex items-center justify-between pt-1 text-[10px] opacity-60 font-mono">
+                <span>{msg.timestamp}</span>
+                {msg.sender === "ai" && (
+                  <button
+                    onClick={() => handleCopyMessage(msg.id, msg.text)}
+                    className="hover:opacity-100 flex items-center gap-1 transition-opacity text-slate-400 hover:text-white"
+                  >
+                    {copiedId === msg.id ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                    <span>{copiedId === msg.id ? "Copied" : "Copy"}</span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -242,7 +299,7 @@ export function AIWorkspaceView() {
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           placeholder="Ask a question about characters, plot, worldbuilding rules, or scene arcs..."
-          className="w-full bg-brand-dark/95 border border-brand-border/80 text-slate-100 text-sm pl-4 pr-12 py-3.5 rounded-2xl focus:outline-none focus:border-brand-violet shadow-2xl placeholder:text-slate-500"
+          className="w-full bg-brand-dark/95 border border-brand-border/80 text-slate-100 text-sm pl-4 pr-12 py-3.5 rounded-2xl focus:outline-none focus:border-brand-violet shadow-2xl placeholder:text-slate-500 font-sans"
         />
         <button
           type="submit"
@@ -255,4 +312,3 @@ export function AIWorkspaceView() {
     </div>
   );
 }
-
