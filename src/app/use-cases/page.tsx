@@ -32,7 +32,7 @@ export default function UseCasesPage() {
       title: "Writers & Novelists",
       subtitle: "Never lose the thread of a 400-page manuscript or multi-book saga.",
       description:
-        "When writing complex fiction, the cognitive burden of tracking dozens of characters, timeline constraints, emotional arcs, and subtextual motifs can derail creative momentum. CHRONICLE acts as your personal script supervisor and developmental editor.",
+        "When writing complex fiction, the cognitive burden of tracking dozens of characters, timeline constraints, emotional arcs, and subtextual motifs can derail creative momentum. THREADSPARK acts as your personal script supervisor and developmental editor.",
       keyFeatures: [
         "Dynamic character dossiers that update with every chapter",
         "Chronological plot-dependency graph detecting logic traps",
@@ -43,7 +43,7 @@ export default function UseCasesPage() {
       sampleScenario: {
         headline: "Tracking a Subplot Across 7 Chapters",
         detail:
-          "In Chapter 2, Marcus steals an encrypted silk blueprint. When he is interrogated in Chapter 5, CHRONICLE reminds you where the blueprint was hidden, who knows he possesses it, and how his dialogue should reflect fear of discovery.",
+          "In Chapter 2, Marcus steals an encrypted silk blueprint. When he is interrogated in Chapter 5, THREADSPARK reminds you where the blueprint was hidden, who knows he possesses it, and how his dialogue should reflect fear of discovery.",
       },
     },
     {
@@ -53,7 +53,7 @@ export default function UseCasesPage() {
       title: "Worldbuilders & RPG Creators",
       subtitle: "Build consistent magic systems, fictional histories, and political maps.",
       description:
-        "Worldbuilding requires rigorous internal coherence. If your magic system has strict gravitational rules in one kingdom, those rules cannot be casually broken in another without explanation. CHRONICLE turns your world bible into a living, queryable cosmos.",
+        "Worldbuilding requires rigorous internal coherence. If your magic system has strict gravitational rules in one kingdom, those rules cannot be casually broken in another without explanation. THREADSPARK turns your world bible into a living, queryable cosmos.",
       keyFeatures: [
         "Canon rule-enforcement engine for magic and technology constraints",
         "Faction relationship matrix tracking diplomatic treaties and feuds",
@@ -64,7 +64,7 @@ export default function UseCasesPage() {
       sampleScenario: {
         headline: "Validating Magic System Constraints",
         detail:
-          "If ether resonance requires ambient silicate glass to transmit, CHRONICLE warns you if an underground dungeon scene in Chapter 6 uses wireless communication without mentioning crystal relays.",
+          "If ether resonance requires ambient silicate glass to transmit, THREADSPARK warns you if an underground dungeon scene in Chapter 6 uses wireless communication without mentioning crystal relays.",
       },
     },
     {
@@ -74,7 +74,7 @@ export default function UseCasesPage() {
       title: "Screenwriters & Dramatists",
       subtitle: "Hone scene beats, character subtext, and dialogue cadences.",
       description:
-        "Screenplays demand economy of language, ruthless scene pacing, and unmistakable character voices. CHRONICLE examines your scenes for subtextual depth, rhythmic variety, and structural beat alignment.",
+        "Screenplays demand economy of language, ruthless scene pacing, and unmistakable character voices. THREADSPARK examines your scenes for subtextual depth, rhythmic variety, and structural beat alignment.",
       keyFeatures: [
         "Dialogue cadence radar comparing speech patterns across cast members",
         "Scene objective vs. obstacle audit for every sequence",
@@ -95,7 +95,7 @@ export default function UseCasesPage() {
       title: "Researchers & Academics",
       subtitle: "Connect disparate papers, interview transcripts, and archival fragments.",
       description:
-        "Academic and investigative research often involves synthesizing hundreds of papers, source interviews, and archival notes. CHRONICLE discovers invisible bridges between findings across diverse disciplines.",
+        "Academic and investigative research often involves synthesizing hundreds of papers, source interviews, and archival notes. THREADSPARK discovers invisible bridges between findings across diverse disciplines.",
       keyFeatures: [
         "Multi-document thematic clustering across PDFs, notes, and citations",
         "Contradiction detection across experimental findings and literature reviews",
@@ -106,7 +106,7 @@ export default function UseCasesPage() {
       sampleScenario: {
         headline: "Cross-Synthesizing 100+ Field Notes",
         detail:
-          "Ask: 'Where do the economic records from 1922 directly contradict the personal journals of the municipal commissioner?' CHRONICLE highlights exact excerpts in seconds.",
+          "Ask: 'Where do the economic records from 1922 directly contradict the personal journals of the municipal commissioner?' THREADSPARK highlights exact excerpts in seconds.",
       },
     },
     {
@@ -116,7 +116,7 @@ export default function UseCasesPage() {
       title: "Personal Knowledge Management",
       subtitle: "A second brain that truly understands the evolution of your ideas.",
       description:
-        "Instead of maintaining a graveyard of static markdown notes and forgotten bookmark folders, CHRONICLE creates an active, evolving neural library that surfaces relevant past thinking right when you need it.",
+        "Instead of maintaining a graveyard of static markdown notes and forgotten bookmark folders, THREADSPARK creates an active, evolving neural library that surfaces relevant past thinking right when you need it.",
       keyFeatures: [
         "Effortless ingestion of daily notes, bookmarks, journal entries, and drafts",
         "Automated bidirectional linking without tedious manual tagging",
@@ -127,7 +127,7 @@ export default function UseCasesPage() {
       sampleScenario: {
         headline: "Resurfacing Forgotten Insights",
         detail:
-          "While writing a new essay on decentralization, CHRONICLE automatically pulls in a half-written thesis from two years ago that solved the exact philosophical dilemma you are wrestling with today.",
+          "While writing a new essay on decentralization, THREADSPARK automatically pulls in a half-written thesis from two years ago that solved the exact philosophical dilemma you are wrestling with today.",
       },
     },
   ];
@@ -156,7 +156,7 @@ export default function UseCasesPage() {
           </h1>
 
           <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-10">
-            From epic novel series and intricate fictional universes to investigative research and screenwriting, discover how CHRONICLE adapts to your discipline.
+            From epic novel series and intricate fictional universes to investigative research and screenwriting, discover how THREADSPARK adapts to your discipline.
           </p>
 
           {/* Navigation Pill Tabs */}
@@ -242,7 +242,7 @@ export default function UseCasesPage() {
 
                   <div className="p-4 rounded-xl bg-brand-charcoal/80 border border-brand-border/80 flex items-center justify-between text-xs font-mono">
                     <span className="text-slate-400">Simulation Status:</span>
-                    <span className="text-emerald-400 font-semibold">Active in Chronicle Studio</span>
+                    <span className="text-emerald-400 font-semibold">Active in Threadspark Studio</span>
                   </div>
                 </div>
 

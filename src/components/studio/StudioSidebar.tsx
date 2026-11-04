@@ -64,7 +64,7 @@ export function StudioSidebar({ activeTab, onSelectTab, isPresentationMode }: St
               className="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
-              <span>Back to Chronicle</span>
+              <span>Back to Threadspark</span>
             </Link>
             <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-brand-violet/20 text-brand-lavender border border-brand-violet/30">
               Demo Studio

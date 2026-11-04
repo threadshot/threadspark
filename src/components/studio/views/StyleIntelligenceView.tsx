@@ -64,7 +64,7 @@ export function StyleIntelligenceView() {
               Writing Style Intelligence
             </h1>
             <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
-              CHRONICLE analyzes your vocabulary tiering, sentence rhythms, and descriptive hallmarks so generated or revised text preserves your authentic voice.
+              THREADSPARK analyzes your vocabulary tiering, sentence rhythms, and descriptive hallmarks so generated or revised text preserves your authentic voice.
             </p>
           </div>
 

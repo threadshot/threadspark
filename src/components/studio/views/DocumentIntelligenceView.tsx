@@ -65,7 +65,7 @@ export function DocumentIntelligenceView() {
               Manuscript Ingestion &amp; Processing
             </h1>
             <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
-              Watch how CHRONICLE ingests raw manuscripts, breaks down syntax and narrative causality, and builds a persistent cognitive graph.
+              Watch how THREADSPARK ingests raw manuscripts, breaks down syntax and narrative causality, and builds a persistent cognitive graph.
             </p>
           </div>
 

@@ -61,7 +61,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-slate-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-10">
-            CHRONICLE was founded on a simple conviction: artificial intelligence should not be a disposable vending machine for quick answers, but an enduring personal memory for everything you create.
+            THREADSPARK was founded on a simple conviction: artificial intelligence should not be a disposable vending machine for quick answers, but an enduring personal memory for everything you create.
           </p>
         </div>
       </section>
@@ -82,7 +82,7 @@ export default function AboutPage() {
                 &ldquo;To give people an AI that understands the things they create, not just the individual questions they ask.&rdquo;
               </p>
               <p className="text-sm">
-                For years, software forced creators to conform to the machine: filing documents in rigid directories, tagging notes manually, and constantly re-explaining context to forgetful chatbots. CHRONICLE turns this dynamic inside out. We build systems that adapt to the creator, holding the full mental model of your work in persistent focus.
+                For years, software forced creators to conform to the machine: filing documents in rigid directories, tagging notes manually, and constantly re-explaining context to forgetful chatbots. THREADSPARK turns this dynamic inside out. We build systems that adapt to the creator, holding the full mental model of your work in persistent focus.
               </p>
             </div>
           </div>
@@ -100,7 +100,7 @@ export default function AboutPage() {
                 &ldquo;Creative work, research, and personal knowledge should not exist as disconnected fragments. They should form an interconnected body of knowledge that can grow and evolve.&rdquo;
               </p>
               <p className="text-sm">
-                Human creativity is associative. When you write a pivotal scene in a novel, your subconscious recalls an offhand observation from three years ago, a piece of architectural research from last winter, and the subtle emotional temperature of a childhood memory. CHRONICLE provides a computational substrate for that exact associative leap.
+                Human creativity is associative. When you write a pivotal scene in a novel, your subconscious recalls an offhand observation from three years ago, a piece of architectural research from last winter, and the subtle emotional temperature of a childhood memory. THREADSPARK provides a computational substrate for that exact associative leap.
               </p>
             </div>
           </div>
@@ -159,14 +159,14 @@ export default function AboutPage() {
             &ldquo;We don&apos;t just remember what you write. We remember why you wrote it.&rdquo;
           </h2>
           <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-10 max-w-xl mx-auto">
-            Experience the future of personal intelligence today with our interactive demonstration of <em>The Glass Meridian</em> in Chronicle Studio.
+            Experience the future of personal intelligence today with our interactive demonstration of <em>The Glass Meridian</em> in Threadspark Studio.
           </p>
           <Link
             href="/studio"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-medium transition-all shadow-xl shadow-brand-violet/25"
           >
             <Sparkles className="w-4 h-4 text-brand-champagne" />
-            <span>Enter Chronicle Studio</span>
+            <span>Enter Threadspark Studio</span>
           </Link>
         </div>
       </section>

@@ -1,4 +1,4 @@
-# CHRONICLE — Personal Intelligence for Everything You Create
+# THREADSPARK — Personal Intelligence for Everything You Create
 
 > **"Personal Intelligence for Everything You Create."**  
 > An AI platform that develops an ongoing contextual understanding of your creative projects, fictional universes, research archives, and manuscripts.
@@ -7,7 +7,7 @@
 
 ## Overview
 
-CHRONICLE is a multi-page web platform and interactive software demonstration for an AI personal intelligence platform designed for novelists, worldbuilders, screenwriters, and researchers.
+THREADSPARK is a multi-page web platform and interactive software demonstration for an AI personal intelligence platform designed for novelists, worldbuilders, screenwriters, and researchers.
 
 ### Key Capabilities
 - **Understand**: Cognitive ingestion engine that extracts entities, geographic systems, timelines, and stylometrics.
@@ -60,3 +60,4 @@ This project is configured with `output: "export"` in `next.config.mjs` for seam
 3. **Build command**: `npm run build`
 4. **Build output directory**: `out`
 5. Connect your custom domain in the **Custom domains** tab of Cloudflare Pages.
+

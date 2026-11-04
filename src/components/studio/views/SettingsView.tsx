@@ -27,7 +27,7 @@ export function SettingsView() {
       encodeURIComponent(JSON.stringify(GLASS_MERIDIAN_DATA, null, 2));
     const downloadAnchor = document.createElement("a");
     downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", "the_glass_meridian_chronicle_lore.json");
+    downloadAnchor.setAttribute("download", "the_glass_meridian_threadspark_lore.json");
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();

@@ -44,7 +44,7 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill border border-brand-border mb-8 animate-fade-in">
             <span className="w-2 h-2 rounded-full bg-brand-violet animate-pulse" />
             <span className="text-xs font-mono tracking-wider uppercase text-brand-lavender">
-              Introducing Chronicle v2.4 • Contextual Personal Intelligence
+              Introducing Threadspark v2.4 • Contextual Personal Intelligence
             </span>
           </div>
 
@@ -56,7 +56,7 @@ export default function HomePage() {
 
           {/* Supporting Copy */}
           <p className="text-lg md:text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed mb-12">
-            CHRONICLE is a personal AI intelligence platform that learns from your ideas, documents, research, and creative projects. Giving everything you create the context, memory, and intelligence to evolve.
+            THREADSPARK is a personal AI intelligence platform that learns from your ideas, documents, research, and creative projects. Giving everything you create the context, memory, and intelligence to evolve.
           </p>
 
           {/* CTA Buttons */}
@@ -87,7 +87,7 @@ export default function HomePage() {
                   <div className="w-3 h-3 rounded-full bg-red-500/60" />
                   <div className="w-3 h-3 rounded-full bg-amber-500/60" />
                   <div className="w-3 h-3 rounded-full bg-emerald-500/60" />
-                  <span className="font-mono ml-2 text-slate-400 hidden sm:inline">chronicle-studio://the-glass-meridian</span>
+                  <span className="font-mono ml-2 text-slate-400 hidden sm:inline">threadspark-studio://the-glass-meridian</span>
                 </div>
                 <div className="flex items-center gap-3 font-mono text-[11px]">
                   <span className="text-emerald-400 flex items-center gap-1">
@@ -258,7 +258,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-brand-champagne mb-3 block">
-              The Architecture of CHRONICLE
+              The Architecture of THREADSPARK
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
               Three pillars of persistent intelligence.
@@ -306,7 +306,7 @@ export default function HomePage() {
                     Learn the meaning, structure, and underlying patterns of your work.
                   </h3>
                   <p className="text-slate-300 text-sm leading-relaxed">
-                    CHRONICLE reads your manuscripts, notes, and world lore not as dead strings of tokens, but as an interconnected ecosystem. It automatically extracts characters, factions, geographic boundaries, emotional dynamics, and narrative tension arcs.
+                    THREADSPARK reads your manuscripts, notes, and world lore not as dead strings of tokens, but as an interconnected ecosystem. It automatically extracts characters, factions, geographic boundaries, emotional dynamics, and narrative tension arcs.
                   </p>
                   <ul className="space-y-3 text-xs text-slate-300 font-mono">
                     <li className="flex items-center gap-2">
@@ -357,7 +357,7 @@ export default function HomePage() {
                     Maintain an unbroken, evolving memory across chapters and years.
                   </h3>
                   <p className="text-slate-300 text-sm leading-relaxed">
-                    Forget arbitrary context limits. CHRONICLE stores every fact, family tree, geographic rule, and plot decision in a persistent vector and graph network. When you begin writing Chapter 8, the system remembers the offhand remark your protagonist made in Chapter 1.
+                    Forget arbitrary context limits. THREADSPARK stores every fact, family tree, geographic rule, and plot decision in a persistent vector and graph network. When you begin writing Chapter 8, the system remembers the offhand remark your protagonist made in Chapter 1.
                   </p>
                   <ul className="space-y-3 text-xs text-slate-300 font-mono">
                     <li className="flex items-center gap-2">
@@ -439,7 +439,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WHAT CAN YOU CREATE WITH CHRONICLE? */}
+      {/* WHAT CAN YOU CREATE WITH THREADSPARK? */}
       <section className="py-24 border-t border-brand-border/40 relative bg-brand-dark/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -447,7 +447,7 @@ export default function HomePage() {
               Diverse Applications
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
-              What can you build with CHRONICLE?
+              What can you build with THREADSPARK?
             </h2>
             <p className="text-slate-400 text-sm">
               Designed for creators managing expansive, interconnected bodies of work.
@@ -555,7 +555,7 @@ export default function HomePage() {
                 Flagship Experience
               </span>
               <h2 className="font-serif text-3xl md:text-5xl font-normal text-white">
-                Inside Chronicle Studio
+                Inside Threadspark Studio
               </h2>
             </div>
             <Link
@@ -719,14 +719,14 @@ export default function HomePage() {
             <span className="italic font-light text-brand-champagne">Give them an intelligence that remembers.</span>
           </h2>
           <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
-            Step inside the interactive demonstration of CHRONICLE Studio and explore how persistent contextual memory transforms the creative process.
+            Step inside the interactive demonstration of THREADSPARK Studio and explore how persistent contextual memory transforms the creative process.
           </p>
           <Link
             href="/studio"
             className="inline-flex items-center gap-3 px-9 py-4 rounded-full bg-gradient-to-r from-brand-violet to-purple-600 hover:from-purple-500 hover:to-brand-violet text-white font-medium text-sm transition-all duration-300 shadow-2xl shadow-brand-violet/30 hover:shadow-brand-violet/50 hover:-translate-y-0.5"
           >
             <Sparkles className="w-4 h-4 text-brand-champagne" />
-            <span>Enter Chronicle Studio</span>
+            <span>Enter Threadspark Studio</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

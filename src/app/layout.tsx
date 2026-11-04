@@ -22,9 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CHRONICLE — Personal Intelligence for Everything You Create",
+  title: "THREADSPARK — Personal Intelligence for Everything You Create",
   description: "An AI platform that develops an ongoing contextual understanding of your creative projects, fictional universes, research archives, and documents.",
-  keywords: ["AI", "Creative Intelligence", "Personal Knowledge", "Worldbuilding", "Writing Assistant", "Chronicle"],
+  keywords: ["AI", "Creative Intelligence", "Personal Knowledge", "Worldbuilding", "Writing Assistant", "Threadspark"],
 };
 
 export default function RootLayout({

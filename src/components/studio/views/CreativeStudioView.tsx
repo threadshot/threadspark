@@ -46,7 +46,7 @@ export function CreativeStudioView() {
               Creative Studio &amp; Scene Synthesis
             </h1>
             <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
-              Experiment with style-conditioned scene rewriting. Watch how CHRONICLE adjusts emotional restraint, sensory pacing, and subtext while preserving your authentic authorial lexicon.
+              Experiment with style-conditioned scene rewriting. Watch how THREADSPARK adjusts emotional restraint, sensory pacing, and subtext while preserving your authentic authorial lexicon.
             </p>
           </div>
 

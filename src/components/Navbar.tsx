@@ -38,13 +38,13 @@ export function Navbar() {
           <div className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-brand-violet to-purple-900/60 p-[1px] shadow-lg shadow-brand-violet/20 group-hover:shadow-brand-violet/40 transition-all duration-300">
             <div className="w-full h-full bg-brand-void/90 rounded-[7px] flex items-center justify-center">
               <span className="font-serif text-lg font-bold text-brand-champagne group-hover:text-white transition-colors">
-                C
+                T
               </span>
             </div>
           </div>
           <div className="flex flex-col">
             <span className="font-serif text-xl font-medium tracking-widest text-slate-100 group-hover:text-brand-champagne transition-colors">
-              CHRONICLE
+              THREADSPARK
             </span>
             <span className="text-[10px] uppercase tracking-wider text-slate-400 font-mono -mt-1 hidden sm:block">
               Personal Intelligence
@@ -137,7 +137,7 @@ export function Navbar() {
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-brand-violet text-white shadow-lg shadow-brand-violet/25"
               >
                 <Sparkles className="w-4 h-4" />
-                Enter Chronicle Studio
+                Enter Threadspark Studio
               </Link>
             </div>
           </div>

@@ -77,7 +77,7 @@ export default function PlatformPage() {
           </h1>
 
           <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-10">
-            CHRONICLE combines deep neural document parsing, persistent graph memory, stylometric profiling, and real-time narrative verification into a unified intelligence ecosystem.
+            THREADSPARK combines deep neural document parsing, persistent graph memory, stylometric profiling, and real-time narrative verification into a unified intelligence ecosystem.
           </p>
 
           <div className="flex justify-center gap-4">
@@ -104,7 +104,7 @@ export default function PlatformPage() {
                 Contextual Intelligence
               </h2>
               <p className="text-slate-300 text-sm leading-relaxed">
-                When you upload a manuscript, pitch deck, world atlas, or notebook, CHRONICLE does not merely store raw tokens. It parses semantic hierarchies, entity registries, geographic systems, and thematic motifs.
+                When you upload a manuscript, pitch deck, world atlas, or notebook, THREADSPARK does not merely store raw tokens. It parses semantic hierarchies, entity registries, geographic systems, and thematic motifs.
               </p>
               <div className="space-y-3 text-xs text-slate-300 font-mono">
                 <div className="p-3 rounded-lg bg-brand-surface/60 border border-brand-border flex items-start gap-3">
@@ -166,7 +166,7 @@ export default function PlatformPage() {
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 space-y-2">
-                    <span className="text-emerald-400 font-semibold block">CHRONICLE Graph Topology</span>
+                    <span className="text-emerald-400 font-semibold block">THREADSPARK Graph Topology</span>
                     <p className="text-slate-400 leading-relaxed font-sans">
                       Information is stored in persistent relational nodes. Chapter 8 query automatically traverses edges back to Chapter 1 with 100% precision.
                     </p>
@@ -188,7 +188,7 @@ export default function PlatformPage() {
                 Persistent Project Memory
               </h2>
               <p className="text-slate-300 text-sm leading-relaxed">
-                Most creative projects take months or years to complete. CHRONICLE maintains an unbroken, evolving memory across revisions, brainstorming sessions, and new chapters.
+                Most creative projects take months or years to complete. THREADSPARK maintains an unbroken, evolving memory across revisions, brainstorming sessions, and new chapters.
               </p>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Even if you pause a novel for six months and return, the platform preserves your established rules, character motivations, and ongoing plot covenants without retraining.
@@ -209,7 +209,7 @@ export default function PlatformPage() {
               Writing Style Intelligence
             </h2>
             <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-              Every author has an unmistakable stylistic fingerprint. CHRONICLE decodes yours, so any assistance feels like an extension of your mind, not a generic robot.
+              Every author has an unmistakable stylistic fingerprint. THREADSPARK decodes yours, so any assistance feels like an extension of your mind, not a generic robot.
             </p>
           </div>
 
@@ -294,7 +294,7 @@ export default function PlatformPage() {
                 Nothing in a great story exists in a vacuum. Characters belong to factions, wield ancient artifacts, inhabit physical geography, and harbor historical grudges.
               </p>
               <p className="text-slate-400 text-xs leading-relaxed">
-                CHRONICLE traces multidirectional links between characters, locations, artifacts, and political decrees. Clicking any node instantly surfaces its dependencies throughout the timeline.
+                THREADSPARK traces multidirectional links between characters, locations, artifacts, and political decrees. Clicking any node instantly surfaces its dependencies throughout the timeline.
               </p>
               <div className="flex gap-2">
                 {["Marcus", "Elena", "Malakar", "Silas"].map((node) => (
@@ -434,7 +434,7 @@ export default function PlatformPage() {
                 Continuity Intelligence
               </h2>
               <p className="text-slate-300 text-sm leading-relaxed">
-                Even great authors make continuity mistakes when managing complex world states. CHRONICLE operates like an indefatigable fact-checker and script supervisor.
+                Even great authors make continuity mistakes when managing complex world states. THREADSPARK operates like an indefatigable fact-checker and script supervisor.
               </p>
               <p className="text-slate-400 text-xs leading-relaxed">
                 The scanner flags item transfers, character eye colors, injury timelines, travel distances, and calendar counts across tens of thousands of words in seconds.
@@ -473,7 +473,7 @@ export default function PlatformPage() {
             <div className="flex items-center justify-between text-xs text-slate-400 pt-2 font-mono">
               <span>Estimated Tone Impact: +28% Kinetic Urgency</span>
               <Link href="/studio" className="text-brand-champagne hover:underline flex items-center gap-1">
-                Try in Chronicle Studio <ArrowRight className="w-3.5 h-3.5" />
+                Try in Threadspark Studio <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>
@@ -487,14 +487,14 @@ export default function PlatformPage() {
             Ready to experience these capabilities in real time?
           </h2>
           <p className="text-slate-400 text-sm mb-8 leading-relaxed">
-            CHRONICLE Studio is fully interactive and preloaded with the complete fictional manuscript of <em>The Glass Meridian</em>.
+            THREADSPARK Studio is fully interactive and preloaded with the complete fictional manuscript of <em>The Glass Meridian</em>.
           </p>
           <Link
             href="/studio"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-medium transition-all shadow-xl shadow-brand-violet/25"
           >
             <Sparkles className="w-4 h-4 text-brand-champagne" />
-            <span>Enter Chronicle Studio</span>
+            <span>Enter Threadspark Studio</span>
           </Link>
         </div>
       </section>

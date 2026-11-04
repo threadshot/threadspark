@@ -29,10 +29,10 @@ export function Footer() {
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-violet to-purple-900/60 p-[1px] shadow-md shadow-brand-violet/20">
                   <div className="w-full h-full bg-brand-void rounded-[7px] flex items-center justify-center">
-                    <span className="font-serif text-base font-bold text-brand-champagne">C</span>
+                    <span className="font-serif text-base font-bold text-brand-champagne">T</span>
                   </div>
                 </div>
-                <span className="font-serif text-xl tracking-widest text-slate-100 font-medium">CHRONICLE</span>
+                <span className="font-serif text-xl tracking-widest text-slate-100 font-medium">THREADSPARK</span>
               </div>
               <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
                 Personal intelligence for everything you create. An ongoing contextual mind that understands the nuances, characters, histories, and stylistic cadence of your work.
@@ -151,7 +151,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-mono gap-4">
           <div>
-            &copy; {new Date().getFullYear()} CHRONICLE Intelligence Systems Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} THREADSPARK Intelligence Systems Inc. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
             <span className="hover:text-slate-300 transition-colors cursor-pointer">Protocol Privacy</span>

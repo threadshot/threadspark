@@ -29,7 +29,7 @@ export function AIWorkspaceView() {
     {
       id: "initial-1",
       sender: "ai",
-      text: "Welcome to the Chronicle AI Workspace. I have complete persistent understanding of the 36,420 words of *The Glass Meridian*, including all 12 character dossiers, political covenants, and 8 narrative chapters. How can I assist your writing today?",
+      text: "Welcome to the Threadspark AI Workspace. I have complete persistent understanding of the 36,420 words of *The Glass Meridian*, including all 12 character dossiers, political covenants, and 8 narrative chapters. How can I assist your writing today?",
       timestamp: "Just now",
     },
   ]);

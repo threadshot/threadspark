@@ -70,7 +70,7 @@ export function ContinuityView() {
               Continuity Intelligence Scanner
             </h1>
             <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
-              CHRONICLE continuously cross-references physical objects, character bodily injuries, timeline schedules, and geography across all 8 chapters to flag discrepancies before publication.
+              THREADSPARK continuously cross-references physical objects, character bodily injuries, timeline schedules, and geography across all 8 chapters to flag discrepancies before publication.
             </p>
           </div>
 
