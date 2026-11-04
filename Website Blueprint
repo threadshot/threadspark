@@ -1,0 +1,702 @@
+# PROJECT BRIEF: CHRONICLE
+## Complete Multi-Page AI Startup Website & Interactive Product Demonstration
+
+### 1. PROJECT OBJECTIVE
+
+Design and develop a complete, premium-quality, multi-page website for a fictional AI technology startup named **CHRONICLE**.
+
+**Company tagline:**
+"Personal Intelligence for Everything You Create."
+
+CHRONICLE is an AI-powered personal intelligence platform designed to understand, organize, remember, and help users develop the things they create.
+
+The platform is built around a central concept:
+
+An AI that doesn't simply process individual prompts or documents. It develops an ongoing understanding of a user's projects, creative work, ideas, documents, preferences, and the relationships between them.
+
+The website should present CHRONICLE as a sophisticated, credible, innovative technology company with a compelling product and a clearly defined identity.
+
+This is both a company website and an interactive product showcase.
+
+**IMPORTANT:** This is a fictional startup demonstration. The product experience should be convincingly interactive, but its AI processing, document analysis, and generated insights may use carefully prepared demonstration data and predetermined responses. A fully operational AI backend is not required.
+
+The finished website should look and feel like a real technology startup preparing to introduce an innovative product to the market.
+
+---
+
+# 2. BRAND IDENTITY
+
+### Company
+CHRONICLE
+
+### Industry
+Artificial Intelligence / Personal Intelligence / Creative Technology
+
+### Positioning
+A personal AI intelligence platform that develops contextual understanding of everything its users create.
+
+### Brand Philosophy
+
+Most AI tools are designed around individual interactions. A user asks a question, receives an answer, and starts again.
+
+CHRONICLE takes a different approach.
+
+It builds an evolving understanding of the user's work, preserving context, identifying relationships, recognizing patterns, and helping develop ideas over time.
+
+The platform should communicate three central capabilities:
+
+**UNDERSTAND**
+Learn the context, meaning, structure, patterns, and relationships within a user's material.
+
+**REMEMBER**
+Maintain an organized, persistent understanding of projects, documents, ideas, preferences, and creative history.
+
+**CREATE**
+Use that accumulated understanding to help users develop, refine, expand, and improve their work.
+
+### Brand Personality
+
+- Intelligent and sophisticated.
+- Creative but professional.
+- Innovative without appearing gimmicky.
+- Confident without being arrogant.
+- Approachable without looking generic.
+- Technologically advanced without relying on stereotypical science-fiction aesthetics.
+
+### Target Audience
+
+CHRONICLE should appeal to a broad consumer audience, including:
+
+- Fiction writers and novelists.
+- Screenwriters and storytellers.
+- Worldbuilders and tabletop RPG creators.
+- Researchers and students.
+- Writers and journalists.
+- People managing extensive personal knowledge libraries.
+- Creative professionals managing long-term projects.
+- Anyone who works with large amounts of interconnected information.
+
+---
+
+# 3. WEBSITE ARCHITECTURE
+
+Create a complete multi-page website with distinct navigation destinations and dedicated page layouts.
+
+Do not compress everything into one long landing page.
+
+The website should include the following primary pages:
+
+### PAGE 1: HOMEPAGE
+
+Purpose: Introduce CHRONICLE, establish its identity, communicate its value proposition, and encourage visitors to explore the platform.
+
+Required sections:
+
+**A. Hero Section**
+
+Headline:
+
+"Everything you create deserves an intelligence that understands it."
+
+Supporting copy:
+
+"CHRONICLE is a personal AI intelligence platform that learns from your ideas, documents, research, and creative projects. Giving everything you create the context, memory, and intelligence to evolve."
+
+Primary CTA: "Explore Chronicle"
+
+Secondary CTA: "Experience the AI"
+
+Use an atmospheric, visually striking hero composition with sophisticated typography and subtle animated elements.
+
+**B. The Problem**
+
+Explain the limitations of conventional AI tools:
+
+- They often lack long-term project context.
+- They struggle to maintain consistency across large collections of information.
+- They frequently lose track of previous discussions and decisions.
+- They generate content without fully understanding the creator's broader intentions.
+
+Introduce CHRONICLE as an alternative approach centered around persistent contextual intelligence.
+
+**C. Three Core Pillars**
+
+Present Understand, Remember, and Create as three visually distinctive feature blocks.
+
+**D. What Can You Create With CHRONICLE?**
+
+Showcase the platform's different applications:
+
+1. Stories & Fiction: Characters, plot development, worldbuilding, and narrative continuity.
+2. Research & Knowledge: Document libraries, notes, discoveries, and connections.
+3. Scripts & Screenplays: Dialogue, scenes, characters, and narrative development.
+4. Personal Projects: Ideas, documentation, planning, and long-term project management.
+
+**E. Product Preview**
+
+Showcase a realistic preview of the CHRONICLE Studio interface, including dashboard elements and project intelligence visualizations.
+
+**F. Closing CTA**
+
+Headline:
+
+"Your ideas have a history. Your projects have a story. Give them an intelligence that remembers."
+
+CTA: "Enter Chronicle Studio"
+
+---
+
+### PAGE 2: PLATFORM
+
+Purpose: Explain the technology, capabilities, and major features of the CHRONICLE platform.
+
+Create a dedicated product page with substantial content and individual feature explanations.
+
+Required feature sections:
+
+**1. Contextual Intelligence**
+
+Explain how CHRONICLE develops an understanding of uploaded documents, notes, ideas, and project materials.
+
+**2. Persistent Project Memory**
+
+Explain how the platform maintains project-specific context and remembers established information.
+
+**3. Writing Style Intelligence**
+
+Show how CHRONICLE analyzes:
+
+- Vocabulary preferences.
+- Sentence structure.
+- Writing rhythm and pacing.
+- Descriptive tendencies.
+- Dialogue characteristics.
+- Emotional tone.
+- Stylistic consistency.
+
+**4. Knowledge Relationships**
+
+Explain how the platform identifies connections between characters, concepts, events, locations, and documents.
+
+**5. Continuity Intelligence**
+
+Demonstrate how CHRONICLE can identify contradictions, conflicting information, and continuity issues across large collections of material.
+
+**6. Creative Collaboration**
+
+Explain how users can brainstorm, rewrite, develop ideas, simulate hypothetical scenarios, and generate new material using their accumulated project context.
+
+Use varied section layouts, diagrams, interface previews, and visual demonstrations rather than repeating the same card layout throughout the page.
+
+---
+
+### PAGE 3: USE CASES
+
+Purpose: Show the different ways people can use CHRONICLE.
+
+Create separate, visually rich sections for:
+
+**Writers & Novelists**
+- Maintain character profiles.
+- Track plot development.
+- Preserve narrative consistency.
+- Analyze writing style.
+- Develop scenes and dialogue.
+
+**Worldbuilders**
+- Maintain fictional histories.
+- Organize locations, cultures, and civilizations.
+- Track world rules.
+- Explore character and event relationships.
+
+**Researchers & Students**
+- Organize research documents.
+- Connect related findings.
+- Search accumulated notes.
+- Generate structured summaries and insights.
+
+**Screenwriters**
+- Maintain screenplay continuity.
+- Develop character arcs.
+- Analyze dialogue.
+- Explore alternative scenes.
+
+**Personal Knowledge Management**
+- Organize documents and ideas.
+- Build searchable knowledge libraries.
+- Identify recurring topics and connections.
+- Retrieve information through contextual questions.
+
+Each use case should have its own visual treatment and meaningful example of the platform in action.
+
+---
+
+### PAGE 4: CHRONICLE STUDIO (MAIN INTERACTIVE DEMONSTRATION)
+
+This is the most important part of the project.
+
+Create a fully developed, interactive product demonstration that allows visitors to experience CHRONICLE as though they are using the actual application.
+
+Do not make this another marketing page.
+
+It should feel like a real premium SaaS application with its own layout, navigation, dashboard, controls, and workspace.
+
+#### A. Overall Application Layout
+
+Use a three-part interface:
+
+**Left Sidebar:**
+- Overview
+- Project Library
+- Intelligence
+- Knowledge Graph
+- AI Workspace
+- Creative Studio
+- Settings
+
+**Central Workspace:**
+
+Displays the selected section and its contents.
+
+**Contextual AI Panel:**
+
+A persistent AI assistant that understands the currently selected project and provides contextual suggestions, answers, and insights.
+
+The interface should be information-rich but not cluttered.
+
+#### B. Demonstration Project: THE GLASS MERIDIAN
+
+Create a fictional fantasy novel as the central demonstration project.
+
+Use this project consistently throughout all the product demonstrations.
+
+Project information:
+
+- Title: The Glass Meridian
+- Genre: Fantasy / Political Intrigue
+- Chapters: 8
+- Word Count: Approximately 36,000
+- Characters: 12
+- Locations: 8
+- Major Story Events: 24
+
+The fictional story should contain enough interconnected characters, relationships, locations, historical events, and plot details to support convincing demonstrations of the platform's capabilities.
+
+Create a consistent underlying sample dataset. Every dashboard, character profile, relationship, timeline, analysis, and AI response must draw from that same fictional universe.
+
+#### C. Project Dashboard
+
+Display:
+
+- Project title and description.
+- Analysis completion indicator.
+- Document statistics.
+- Character count.
+- Location count.
+- Story events.
+- Recent insights.
+- Recent activity.
+- AI-generated recommendations.
+
+Use sophisticated visualizations and meaningful information rather than arbitrary numbers.
+
+#### D. Document Intelligence
+
+Create a realistic manuscript upload experience.
+
+Demonstration sequence:
+
+1. User opens the project.
+2. User selects an upload option.
+3. A realistic file-upload interaction appears.
+4. A staged AI processing animation begins.
+5. The interface displays individual analysis stages.
+6. The process completes.
+7. Prepared analysis results populate the workspace.
+
+Processing stages could include:
+
+- Document recognition.
+- Text structure analysis.
+- Entity extraction.
+- Character identification.
+- Relationship mapping.
+- Narrative analysis.
+- Writing style analysis.
+- Knowledge integration.
+
+Use predetermined sample data to generate consistent results.
+
+Include realistic progress indicators and polished transitions.
+
+#### E. Writing Style Intelligence
+
+Create a dedicated interface displaying the author's writing profile.
+
+Include:
+
+- Vocabulary complexity.
+- Sentence length distribution.
+- Dialogue-to-narration ratio.
+- Descriptive writing tendencies.
+- Emotional tone.
+- Narrative pacing.
+- Stylistic characteristics.
+
+Use charts, visual indicators, and written explanations.
+
+Provide sample passages demonstrating how the AI identifies the author's writing characteristics.
+
+#### F. Character Intelligence
+
+Create a character database with individual profiles.
+
+Each profile should display:
+
+- Name.
+- Description.
+- Personality traits.
+- Motivations.
+- Relationships.
+- Character development.
+- Important appearances.
+- Relevant story events.
+
+Include an interactive character relationship visualization.
+
+Selecting a character should update the interface with their associated information.
+
+#### G. Knowledge Graph
+
+Create an interactive visual network showing relationships between:
+
+- Characters.
+- Locations.
+- Events.
+- Organizations.
+- Important objects.
+- Historical information.
+
+Use distinguishable node types and visual connections.
+
+Selecting a node should display relevant information.
+
+The graph should feel sophisticated and polished, rather than resembling a generic static diagram.
+
+#### H. Continuity Intelligence
+
+Demonstrate CHRONICLE identifying inconsistencies across the manuscript.
+
+Example:
+
+A character is described as having lost access to a particular ability in Chapter 3, but appears to use that ability without explanation in Chapter 7.
+
+The AI should:
+
+1. Identify the inconsistency.
+2. Reference the relevant chapters.
+3. Explain why it may be a continuity issue.
+4. Offer possible explanations or corrections.
+
+Create several prepared examples with different levels of severity.
+
+Include an interface for reviewing and dismissing findings.
+
+#### I. AI Workspace
+
+Create an interactive conversational interface.
+
+The user should be able to ask questions about The Glass Meridian.
+
+Example prompts:
+
+- "Would Marcus realistically forgive Elena at this point in the story?"
+- "What are the unresolved mysteries in this manuscript?"
+- "Which characters have the most complicated relationships?"
+- "What happened before the events of Chapter 5?"
+- "Identify potential weaknesses in the current narrative."
+- "What would happen if Elena discovered the truth about the Meridian?"
+
+The AI should respond using the prepared fictional manuscript context.
+
+Implement a collection of carefully written responses and sensible response selection logic.
+
+The experience should feel conversational, not like a collection of unrelated static popups.
+
+Allow the user to select suggested questions as well as submit their own questions.
+
+For unsupported or unfamiliar questions, provide a graceful contextual response rather than pretending the demonstration has analyzed information it does not contain.
+
+#### J. Creative Studio
+
+Create a dedicated writing and creative development environment.
+
+Include:
+
+- A text editor area.
+- AI instructions and controls.
+- Tone and style preferences.
+- Context selection.
+- Rewrite options.
+- Expansion options.
+- Brainstorming functionality.
+- Original versus revised text comparison.
+
+Example interaction:
+
+User instruction:
+
+"Rewrite this scene in my established writing style, but make the emotional tension more restrained and subtle."
+
+Show:
+
+- Original passage.
+- AI-generated revision.
+- Explanation of the stylistic changes.
+
+Use carefully prepared examples.
+
+Allow visitors to select different creative instructions and see corresponding results.
+
+---
+
+### PAGE 5: ABOUT
+
+Purpose: Establish the company's identity and vision.
+
+Include:
+
+**Our Mission**
+
+Give people an AI that understands the things they create, not just the individual questions they ask.
+
+**Our Philosophy**
+
+Creative work, research, and personal knowledge should not exist as disconnected fragments. They should form an interconnected body of knowledge that can grow and evolve.
+
+**Our Vision**
+
+A future where individuals have access to personal intelligence systems that understand their work, preserve their context, and help them explore ideas more deeply.
+
+Include a company overview, guiding principles, and a polished closing statement.
+
+Do not invent real founders, employees, partnerships, customer testimonials, or verified company achievements. This is a fictional startup presentation.
+
+---
+
+# 4. VISUAL DESIGN DIRECTION
+
+The visual direction should feel like a sophisticated combination of:
+
+- Premium creative software.
+- Advanced AI research technology.
+- Luxury editorial design.
+- Modern knowledge-management platforms.
+
+Avoid generic AI website aesthetics.
+
+### Color Palette
+
+Primary backgrounds:
+- Deep charcoal.
+- Near-black.
+- Subtle dark slate.
+
+Accent colors:
+- Muted violet.
+- Lavender.
+- Soft purple gradients.
+
+Secondary accents:
+- Champagne.
+- Warm neutral tones.
+- Subtle silver.
+
+Avoid excessive neon colors.
+
+### Typography
+
+Use a combination of:
+
+- Elegant editorial serif typography for major headlines.
+- Modern, highly legible sans-serif typography for body content.
+- Monospaced typography for small technical labels and metadata where appropriate.
+
+Typography should play a major role in establishing the brand's identity.
+
+### Interface Design
+
+Use:
+
+- Generous whitespace.
+- Deliberate visual hierarchy.
+- Subtle borders.
+- Refined shadows.
+- Restrained glass effects.
+- Smooth transitions.
+- Carefully designed interactive states.
+- Sophisticated charts and data visualizations.
+
+### Animation
+
+Use tasteful motion throughout the experience:
+
+- Subtle background movement.
+- Animated gradient treatments.
+- Smooth page transitions.
+- Interactive hover states.
+- Data visualization animations.
+- AI processing sequences.
+- Knowledge graph movement.
+- Contextual panel transitions.
+
+Animations should reinforce the experience rather than distract from it.
+
+---
+
+# 5. PRESENTATION MODE
+
+Because this website will be demonstrated on a large projected screen, presentation quality is extremely important.
+
+Create a dedicated Presentation Mode within CHRONICLE Studio.
+
+It should:
+
+- Hide unnecessary interface elements.
+- Increase the visibility of important content.
+- Use larger, presentation-friendly typography.
+- Provide a clean visual layout.
+- Preserve interactive functionality.
+- Allow the demonstration to be reset easily.
+
+The main demonstration should be designed around a presenter guiding an audience through the platform.
+
+Prioritize visually impressive moments, especially:
+
+1. Manuscript processing animation.
+2. Writing style analysis visualization.
+3. Character relationship graph.
+4. Continuity detection.
+5. Contextual AI conversation.
+6. Before-and-after creative rewriting.
+
+Make these features easy to access without navigating through complicated menus.
+
+---
+
+# 6. FUNCTIONAL AND TECHNICAL REQUIREMENTS
+
+Build the actual website, not simply a design proposal or static mockup.
+
+Requirements:
+
+- Fully responsive design.
+- Dedicated page routes.
+- Functional navigation.
+- Consistent shared design system.
+- Reusable components.
+- Working interactive controls.
+- Functional forms and input fields where applicable.
+- Smooth page transitions.
+- Polished loading and empty states.
+- Appropriate error handling.
+- Accessible contrast and keyboard navigation.
+- No broken links or dead buttons.
+- No obvious placeholder sections.
+- No lorem ipsum.
+
+Use prepared demonstration data wherever live backend functionality would otherwise be required.
+
+Maintain consistency across all demonstration features by using a unified fictional manuscript dataset.
+
+Do not present simulated analysis as genuine live document processing.
+
+The website should remain usable and visually convincing even without external API connections.
+
+Use appropriate frontend technologies and architecture for the available development environment. Do not introduce unnecessary infrastructure or backend dependencies.
+
+---
+
+# 7. CONTENT AND COPYWRITING
+
+All website copy should feel like it belongs to a real, established technology startup.
+
+Writing style:
+
+- Intelligent.
+- Clear.
+- Confident.
+- Sophisticated.
+- Approachable.
+- Concise without being vague.
+
+Avoid:
+
+- Generic AI marketing clichés.
+- Repetitive claims about revolutionizing everything.
+- Excessive buzzwords.
+- Overly exaggerated AI capabilities.
+- Unnecessary technical jargon.
+- Repetitive section structures.
+- Generic placeholder copy.
+
+Every page should have a clear purpose and distinct messaging.
+
+Use consistent terminology throughout the website.
+
+---
+
+# 8. FINAL QUALITY EXPECTATIONS
+
+The finished project should satisfy these objectives:
+
+**Brand Quality:** CHRONICLE should feel like a believable, premium AI startup.
+
+**Visual Quality:** The website should look professionally art-directed, with deliberate layouts, excellent typography, and cohesive styling.
+
+**Product Quality:** CHRONICLE Studio should feel like a real software product rather than a decorative dashboard.
+
+**Demonstration Quality:** The interactive experience should showcase several distinct and impressive AI capabilities.
+
+**Content Quality:** The company's messaging, product descriptions, and sample data should be internally consistent.
+
+**Presentation Quality:** The entire experience should be optimized for demonstrating on a large screen.
+
+**Website Completeness:** Every specified page should exist, have meaningful content, and be accessible through functional navigation.
+
+---
+
+# 9. DEVELOPMENT PRIORITIES
+
+Prioritize implementation in this order:
+
+1. Establish the brand identity and global design system.
+2. Build the complete multi-page public website.
+3. Develop the CHRONICLE Studio application interface.
+4. Create the Glass Meridian demonstration dataset.
+5. Implement the document processing demonstration.
+6. Build writing style analysis and character intelligence.
+7. Develop the interactive knowledge graph.
+8. Implement continuity detection.
+9. Create the contextual AI workspace.
+10. Implement the Creative Studio.
+11. Add Presentation Mode.
+12. Polish animations, responsive layouts, and interactions.
+
+Do not sacrifice the quality of the interactive product experience just to add more marketing pages.
+
+The product demonstration is the centerpiece.
+
+---
+
+# FINAL CREATIVE DIRECTION
+
+Think of CHRONICLE as a company that could plausibly launch a premium AI product in the near future.
+
+Its website should immediately communicate that this is not another generic chatbot or AI writing generator.
+
+It is an entirely different approach to working with AI: an evolving intelligence that understands the context behind everything a person creates.
+
+Create a distinctive visual identity, make thoughtful design decisions independently, and pay particular attention to the details that make the product feel authentic.
+
+**Build the complete experience. Do not stop at the homepage, a wireframe, or a design concept.**
