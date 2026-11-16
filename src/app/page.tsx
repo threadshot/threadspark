@@ -142,6 +142,11 @@ export default function HomePage() {
         <div className="absolute top-1/3 left-1/4 w-[450px] h-[450px] bg-brand-champagne/5 blur-[130px] pointer-events-none rounded-full" />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
+          {/* Temporary sanity check banner */}
+          <div className="mb-8 inline-block px-10 py-4 rounded-2xl bg-emerald-500/25 border-2 border-emerald-400 text-emerald-300 font-mono text-3xl sm:text-5xl md:text-6xl font-black tracking-widest uppercase shadow-2xl shadow-emerald-500/40 animate-pulse">
+            UPDATED
+          </div>
+
           {/* Eyebrow badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-brand-border mb-8 animate-fade-in">
             <span className="w-2 h-2 rounded-full bg-brand-violet animate-pulse" />
