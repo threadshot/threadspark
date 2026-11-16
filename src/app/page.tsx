@@ -29,6 +29,20 @@ import {
   AlertTriangle,
   RotateCcw,
   Search,
+  Scale,
+  ShieldCheck,
+  GitBranch,
+  Lock,
+  Database,
+  Target,
+  KeyRound,
+  EyeOff,
+  GitCommit,
+  Flame,
+  CheckCircle,
+  XCircle,
+  HelpCircle,
+  Award,
 } from "lucide-react";
 import { sound } from "@/lib/sound";
 import { GLASS_MERIDIAN_DATA } from "@/data/glassMeridian";
@@ -41,7 +55,7 @@ export default function HomePage() {
 
   // Hero Interactive Simulation Terminal State
   const [heroPrompt, setHeroPrompt] = useState("");
-  const [heroSimActive, setHeroSimActive] = useState<"tension" | "continuity" | "style" | "custom">("tension");
+  const [heroSimActive, setHeroSimActive] = useState<"epistemic" | "continuity" | "style" | "custom">("epistemic");
   const [heroThinking, setHeroThinking] = useState(false);
   const [heroOutput, setHeroOutput] = useState<{
     title: string;
@@ -50,14 +64,14 @@ export default function HomePage() {
     metricVal?: string;
     badge?: string;
   }>({
-    title: "Marcus Thorne vs Elena Vance Dynamic Tension",
-    text: "Tension Index: 88 (High). Following Chapter 4's rendezvous at Iron Quay, Marcus's linguistic cadence displays a 42% increase in rhythmic curtness. He avoids invoking the Scholasticate keystone covenant in Elena's presence, indicating unconscious cognitive dissonance.",
-    metricLabel: "Cadence Shift",
-    metricVal: "+42% Staccato",
-    badge: "Chapter 4 • Relational Matrix",
+    title: "Epistemic Tracking: Knowledge Leak Blocked (Chapter 6)",
+    text: "Epistemic Violation Flagged: In Chapter 6, paragraph 18, Elena accuses Marcus of possessing Archon Malakar's private execution decree. However, causal provenance shows this decree is not signed until Chapter 7, and Elena does not learn of it until Chapter 8. Elena cannot possess this knowledge in Chapter 6 without breaking narrative causality.",
+    metricLabel: "Epistemic Integrity",
+    metricVal: "Leak Intercepted (Ch 6 vs Ch 7)",
+    badge: "Epistemic Radar • Active",
   });
 
-  const handleHeroPreset = (type: "tension" | "continuity" | "style") => {
+  const handleHeroPreset = (type: "epistemic" | "continuity" | "style") => {
     sound.tick();
     setHeroSimActive(type);
     setHeroThinking(true);
@@ -65,29 +79,29 @@ export default function HomePage() {
     setTimeout(() => {
       sound.pulse();
       setHeroThinking(false);
-      if (type === "tension") {
+      if (type === "epistemic") {
         setHeroOutput({
-          title: "Marcus Thorne vs Elena Vance Dynamic Tension",
-          text: "Tension Index: 88 (High). Following Chapter 4's rendezvous at Iron Quay, Marcus's linguistic cadence displays a 42% increase in rhythmic curtness. He avoids invoking the Scholasticate keystone covenant in Elena's presence, indicating unconscious cognitive dissonance.",
-          metricLabel: "Cadence Shift",
-          metricVal: "+42% Staccato",
-          badge: "Chapter 4 • Relational Matrix",
+          title: "Epistemic Tracking: Knowledge Leak Blocked (Chapter 6)",
+          text: "Epistemic Violation Flagged: In Chapter 6, paragraph 18, Elena accuses Marcus of possessing Archon Malakar's private execution decree. However, causal provenance shows this decree is not signed until Chapter 7, and Elena does not learn of it until Chapter 8. Elena cannot possess this knowledge in Chapter 6 without breaking narrative causality.",
+          metricLabel: "Epistemic Integrity",
+          metricVal: "Leak Intercepted (Ch 6 vs Ch 7)",
+          badge: "Epistemic Radar • Active",
         });
       } else if (type === "continuity") {
         setHeroOutput({
-          title: "Continuity Radar: Ancestral Signet Seal Inconsistency",
-          text: "Critical Flag: Chapter 4 describes Marcus dropping his grandfather's bronze signet seal into the bay mud under enemy crossbow fire. In Chapter 7, paragraph 14, Marcus unlocks the Solarium portal using that same signet without explanation.",
-          metricLabel: "Discrepancy Severity",
-          metricVal: "Critical (Ch 4 vs Ch 7)",
-          badge: "Logic Collision Flagged",
+          title: "Temporal State Radar: Item & Physical State Collision",
+          text: "Critical Invariant Alert: In Chapter 4, line 82, Marcus drops his grandfather's bronze seal into the bay sludge at Iron Quay. In Chapter 7, line 14, he unlocks the Solarium portal with it. Simultaneously, Elena's right forearm hairline fracture from Chapter 4 is ignored in Chapter 6 as she swings dual iron tongs.",
+          metricLabel: "State Invariants",
+          metricVal: "2 Collisions (Ch 4 vs Ch 6 & 7)",
+          badge: "Temporal Graph • Flagged",
         });
       } else if (type === "style") {
         setHeroOutput({
-          title: "Stylometric Tone Profile & Lexical Richness",
-          text: "Lexical Diversity: 0.76 Type-Token Ratio. Average sentence length: 18.4 words with prominent trailing participial clauses. Dominant atmospheric mood: Atmospheric Dread (34%) balanced with Architectural Introspection (28%).",
-          metricLabel: "Lexical Variety",
-          metricVal: "0.76 TTR (92nd percentile)",
-          badge: "Voice Fingerprint Active",
+          title: "Voice Fingerprint & Private LoRA Style Adapter",
+          text: "Author Style Matrix Active: 0.76 Type-Token Ratio • 18.4 wps mean sentence cadence • High periodic trailing participial density. The private LoRA adapter preserves unique authorial syntax and tactile metaphors, preventing homogenization into corporate LLM prose.",
+          metricLabel: "Voice Match",
+          metricVal: "0.76 TTR (Private LoRA)",
+          badge: "Sovereign Adapter • 100% Owned",
         });
       }
     }, 400);
@@ -107,11 +121,11 @@ export default function HomePage() {
       sound.pulse();
       setHeroThinking(false);
       setHeroOutput({
-        title: `Custom Synthesis: "${query}"`,
-        text: `Cross-referencing all 36,420 words of The Glass Meridian: The narrative establishes that any violation of the Meridian's resonance frequency directly accelerates tectonic fissures beneath Oakhaven. Characters within the Scholasticate will react with immediate institutional suppression.`,
-        metricLabel: "Coverage",
-        metricVal: "8 Chapters Ingested",
-        badge: "Custom Neural Query",
+        title: `Temporal Story-State Query: "${query}"`,
+        text: `Cross-referencing temporal graph across all 36,420 words of The Glass Meridian: State verification confirms that Silas Ward still holds the keystone frequency notes in Chapter 6; Marcus does not receive them until the Iron Quay meeting in Chapter 4. Any scene in Chapter 5 showing Elena with the resonance cipher violates epistemic state bounds.`,
+        metricLabel: "Graph Coverage",
+        metricVal: "8 Chapters • 148 Nodes Verified",
+        badge: "Deterministic Graph Query",
       });
     }, 550);
   };
@@ -132,19 +146,21 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-brand-border mb-8 animate-fade-in">
             <span className="w-2 h-2 rounded-full bg-brand-violet animate-pulse" />
             <span className="text-xs font-mono tracking-wider uppercase text-brand-lavender">
-              THREADSPARK v2.4 • Persistent Contextual Intelligence
+              THREADSPARK • The Source of Truth for Long-Form Fiction
             </span>
           </div>
 
           {/* Main Headline */}
           <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight text-white max-w-5xl mx-auto leading-[1.08] mb-8">
-            Everything you create deserves an intelligence that{" "}
-            <span className="italic font-light text-brand-champagne">understands</span> it.
+            Long-form authors don&apos;t need a bigger chat window.{" "}
+            <span className="block mt-2 italic font-light text-brand-champagne">
+              They need a source of truth for their story.
+            </span>
           </h1>
 
           {/* Supporting Copy */}
           <p className="text-lg md:text-xl text-slate-300 font-light max-w-3xl mx-auto leading-relaxed mb-12">
-            THREADSPARK is a personal AI intelligence platform that develops an ongoing contextual understanding of your creative projects, fictional universes, research archives, and manuscripts.
+            Who exists, what&apos;s happened to whom, and who knows what—updating as you write, auditable, and sovereign. Built specifically for indie series authors, serial novelists, and worldbuilders whose continuity burden grows with every book.
           </p>
 
           {/* CTA Buttons */}
@@ -155,7 +171,7 @@ export default function HomePage() {
               className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-brand-violet to-purple-600 hover:from-purple-500 hover:to-brand-violet text-white font-medium text-sm transition-all duration-300 shadow-xl shadow-brand-violet/25 hover:shadow-brand-violet/40 hover:-translate-y-0.5 flex items-center justify-center gap-2.5"
             >
               <Sparkles className="w-4 h-4 text-brand-champagne" />
-              <span>Experience The AI Studio</span>
+              <span>Explore The Interactive Studio</span>
             </Link>
 
             <button
@@ -166,7 +182,7 @@ export default function HomePage() {
               className="w-full sm:w-auto px-8 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white font-medium text-sm transition-all duration-300 border border-white/10 hover:border-white/25 flex items-center justify-center gap-2"
             >
               <Building2 className="w-4 h-4 text-brand-champagne" />
-              <span>Investor Briefing</span>
+              <span>Investor Briefing &amp; Roadmap</span>
             </button>
           </div>
 
@@ -180,13 +196,13 @@ export default function HomePage() {
                   <div className="w-3 h-3 rounded-full bg-amber-500/70" />
                   <div className="w-3 h-3 rounded-full bg-emerald-500/70" />
                   <span className="font-mono ml-2 text-slate-400 hidden sm:inline">
-                    threadspark-terminal://the-glass-meridian.context
+                    threadspark-terminal://the-glass-meridian.story-state
                   </span>
                 </div>
                 <div className="flex items-center gap-3 font-mono text-[11px]">
                   <span className="text-emerald-400 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    Spatial Graph Synchronized
+                    Temporal State Synchronized
                   </span>
                   <span className="text-slate-400 hidden md:inline">36,420 words indexed</span>
                 </div>
@@ -199,14 +215,14 @@ export default function HomePage() {
                 </span>
                 <div className="flex flex-wrap gap-2">
                   <button
-                    onClick={() => handleHeroPreset("tension")}
+                    onClick={() => handleHeroPreset("epistemic")}
                     className={`px-3 py-1 rounded-lg font-mono text-[11px] transition-all ${
-                      heroSimActive === "tension"
+                      heroSimActive === "epistemic"
                         ? "bg-brand-violet text-white shadow-sm font-semibold"
                         : "bg-brand-surface/60 text-slate-400 hover:text-white border border-white/5"
                     }`}
                   >
-                    1. Character Tension Arc
+                    1. Epistemic Tracking (&ldquo;Who Knows What&rdquo;)
                   </button>
                   <button
                     onClick={() => handleHeroPreset("continuity")}
@@ -216,7 +232,7 @@ export default function HomePage() {
                         : "bg-brand-surface/60 text-slate-400 hover:text-white border border-white/5"
                     }`}
                   >
-                    2. Continuity Discrepancy
+                    2. Physical State &amp; Invariants
                   </button>
                   <button
                     onClick={() => handleHeroPreset("style")}
@@ -226,7 +242,7 @@ export default function HomePage() {
                         : "bg-brand-surface/60 text-slate-400 hover:text-white border border-white/5"
                     }`}
                   >
-                    3. Stylometric Profile
+                    3. Private LoRA Style Adapter
                   </button>
                 </div>
               </div>
@@ -311,97 +327,181 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* THE PROBLEM / ARCHITECTURAL DEFICIT */}
+      {/* THE PROBLEM: RAW TEXT ISN'T STATE */}
       <section className="py-24 border-t border-brand-border/40 relative bg-brand-dark/40">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono uppercase tracking-widest text-brand-violet mb-3 block">
-              The Fundamental Limitation of Modern AI
+            <span className="text-xs font-mono uppercase tracking-widest text-brand-champagne mb-3 block">
+              The Fundamental Flaw in Current AI Writing Tools
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-6">
-              Conventional models have short memories. Your work deserves an enduring mind.
+              Raw text isn&apos;t state. Why a 1M-token prompt window still breaks your story.
             </h2>
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-              Standard chatbots treat every conversation like a blank slate. When you are writing a 300-page manuscript, directing a worldbuilding bible, or curating years of research, ephemeral prompt windows crumble.
+            <div className="p-6 rounded-2xl bg-brand-charcoal/80 border border-brand-border/80 text-left mb-6 shadow-xl">
+              <p className="text-slate-200 text-sm md:text-base leading-relaxed italic font-serif">
+                &ldquo;Long-form authors don&apos;t need a bigger chat window. They need a source of truth for their story: who knows what, what&apos;s happened to whom, and when, that updates as they write, that they can audit, and that they own.&rdquo;
+              </p>
+              <div className="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center justify-between text-xs font-mono text-slate-400">
+                <span className="text-brand-lavender font-semibold">The 1M Context Fallacy:</span>
+                <span>Context windows let you paste a book. They cannot tell you if Mara&apos;s sword is broken in Ch 14.</span>
+              </div>
+            </div>
+            <p className="text-slate-400 text-xs md:text-sm leading-relaxed">
+              Target Wedge: Built specifically for <strong className="text-white">indie and self-published series authors</strong>, serial web novelists, and tabletop worldbuilders—creators whose continuity burden compounds with every new chapter and volume.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* 4 Sharp Failure Modes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             <div className="glass-panel-interactive p-6 rounded-2xl flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-red-900/20 border border-red-500/20 text-red-400 flex items-center justify-center mb-5">
-                  <History className="w-5 h-5" />
+                  <Database className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2">Contextual Amnesia</h3>
+                <h3 className="font-serif text-lg font-medium text-white mb-2">Raw Text Isn&apos;t State</h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Conventional tools lose track of past decisions, forcing you to re-explain characters, settings, world rules, and plot twists with every new prompt.
+                  A 200k-token prompt window treats a book like unstructured token soup. It cannot track physical invariants: injuries heal without explanation, carried weapons vanish, and characters change age between scenes.
                 </p>
               </div>
               <div className="pt-4 mt-6 border-t border-white/5 text-[11px] font-mono text-red-300">
-                Stateless Prompt Defect
+                Stateless Vector Limitation
               </div>
             </div>
 
             <div className="glass-panel-interactive p-6 rounded-2xl flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-amber-900/20 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-5">
-                  <ShieldAlert className="w-5 h-5" />
+                  <EyeOff className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2">Continuity Fractures</h3>
+                <h3 className="font-serif text-lg font-medium text-white mb-2">Epistemic Knowledge Leaks</h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Without an underlying relational knowledge model, AI blithely contradicts previous chapters, revives slain characters, or swaps key motivations.
+                  The most embarrassing fiction error is an epistemic leak—a character referencing a murder, betrayal, or secret they haven&apos;t witnessed yet. Standard LLMs cannot differentiate who knows what at any specific point in story time.
                 </p>
               </div>
               <div className="pt-4 mt-6 border-t border-white/5 text-[11px] font-mono text-amber-300">
-                Zero Structural Awareness
+                Zero Epistemic Boundary
               </div>
             </div>
 
             <div className="glass-panel-interactive p-6 rounded-2xl flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-purple-900/20 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-5">
-                  <Feather className="w-5 h-5" />
+                  <RotateCcw className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2">Voice Dilution</h3>
+                <h3 className="font-serif text-lg font-medium text-white mb-2">Re-Pasting Fatigue &amp; Drift</h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Generic models overwrite your distinctive literary voice with bland, homogenized corporate prose filled with ubiquitous adjectives and repetitive tropes.
+                  Re-pasting an entire 80,000-word manuscript into Claude or ChatGPT for every revision is expensive, slow, and non-deterministic. It leaves no persistent, auditable record the author can verify or correct.
                 </p>
               </div>
               <div className="pt-4 mt-6 border-t border-white/5 text-[11px] font-mono text-purple-300">
-                Stylistic Homogenization
+                Stochastic &amp; Ephemeral
               </div>
             </div>
 
             <div className="glass-panel-interactive p-6 rounded-2xl flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-blue-900/20 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-5">
-                  <Network className="w-5 h-5" />
+                  <Feather className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2">Siloed Knowledge</h3>
+                <h3 className="font-serif text-lg font-medium text-white mb-2">Homogenized Machine Prose</h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Notes, research papers, character sketches, and manuscripts live scattered in isolated folders, invisible to each other and unusable in synthesis.
+                  General foundation models overwrite your hard-won literary voice with bland, pooled prose filled with ubiquitous adjectives and corporate AI cadence.
                 </p>
               </div>
               <div className="pt-4 mt-6 border-t border-white/5 text-[11px] font-mono text-blue-300">
-                Fragmented Creation
+                Voice Degradation
+              </div>
+            </div>
+          </div>
+
+          {/* 6 CONCRETE CAPABILITIES OF THREADSPARK */}
+          <div className="pt-8">
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <span className="text-xs font-mono uppercase tracking-widest text-brand-violet mb-2 block">
+                The Concrete Mechanics
+              </span>
+              <h3 className="font-serif text-2xl md:text-4xl font-normal text-white">
+                Six capabilities that make Threadspark a true source of truth.
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
+                <div className="w-9 h-9 rounded-xl bg-brand-violet/20 border border-brand-violet/30 text-brand-lavender flex items-center justify-center">
+                  <History className="w-4 h-4" />
+                </div>
+                <h4 className="font-serif text-lg text-white font-medium">1. Temporal Story-State Graph</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Tracks state over story time: physical injuries, item locations, character ages, and faction alliances. We use embeddings for semantic retrieval, but the temporal graph is the deterministic source of truth.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 flex items-center justify-center">
+                  <KeyRound className="w-4 h-4" />
+                </div>
+                <h4 className="font-serif text-lg text-white font-medium">2. Epistemic Tracking (&ldquo;Who Knows What&rdquo;)</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  The strongest guard against plot holes. Evaluates every scene against the knowledge boundary of present characters, preventing premature secret reveals before an in-world revelation occurs.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
+                <div className="w-9 h-9 rounded-xl bg-purple-500/20 border border-purple-500/30 text-purple-300 flex items-center justify-center">
+                  <GitBranch className="w-4 h-4" />
+                </div>
+                <h4 className="font-serif text-lg text-white font-medium">3. Story Time vs. Draft Time</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Versions every manuscript draft and lets authors safely branch counterfactuals (&ldquo;What if Silas dies in Ch 9?&rdquo;) without corrupting your canonical story timeline or previous drafts.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 flex items-center justify-center">
+                  <CheckCircle2 className="w-4 h-4" />
+                </div>
+                <h4 className="font-serif text-lg text-white font-medium">4. Propose, Then Confirm</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Automated extraction will make mistakes, so the system proposes entities and timeline events for author approval. Every flagged collision links directly to the exact conflicting manuscript passages.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
+                <div className="w-9 h-9 rounded-xl bg-red-500/20 border border-red-500/30 text-red-300 flex items-center justify-center">
+                  <Target className="w-4 h-4" />
+                </div>
+                <h4 className="font-serif text-lg text-white font-medium">5. Precision Over Recall</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  A continuity tool that cries wolf gets turned off immediately. Our collision detector is aggressively tuned to prioritize precision over noisy false alarms—only alerting you when a real contradiction exists.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
+                <div className="w-9 h-9 rounded-xl bg-brand-champagne/20 border border-brand-champagne/30 text-brand-champagne flex items-center justify-center">
+                  <Feather className="w-4 h-4" />
+                </div>
+                <h4 className="font-serif text-lg text-white font-medium">6. Private Voice Fingerprint</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Captures cadence, diction, sentence rhythm, and dialogue habits as an inspectable profile powered by per-author lightweight style adapters (LoRA) whose weights you own and can run privately.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ARCHITECTURAL DEFICIT COMPARISON TABLE (INVESTOR & STRATEGIC APPEAL) */}
+      {/* COMPETITIVE LANDSCAPE & STRATEGIC POSITIONING */}
       <section className="py-24 border-t border-brand-border/40 relative">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-brand-champagne mb-3 block">
-              Architectural Defensibility
+              Market Positioning &amp; Incumbent Analysis
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
-              Stateless Chatbots vs. THREADSPARK Context Engine
+              Where Incumbents Stop vs. Where Threadspark Begins
             </h2>
-            <p className="text-slate-400 text-sm">
-              Why prompt engineering is fundamentally insufficient for complex, multi-chapter creation.
+            <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
+              Tools like Sudowrite, Novelcrafter, and NovelAI rely on manual story bibles you must type by hand, while general chatbots lack persistent structure. Threadspark bridges the gap with automated, confirmed state tracking.
             </p>
           </div>
 
@@ -409,37 +509,45 @@ export default function HomePage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs font-mono">
                 <thead>
-                  <tr className="border-b border-brand-border bg-brand-dark/90 text-slate-400 uppercase tracking-wider">
+                  <tr className="border-b border-brand-border bg-brand-dark/95 text-slate-400 uppercase tracking-wider">
                     <th className="p-4 sm:p-5">Capability Dimension</th>
-                    <th className="p-4 sm:p-5 text-red-400">Standard LLM Prompt Wrapper</th>
-                    <th className="p-4 sm:p-5 text-brand-champagne">THREADSPARK Engine</th>
+                    <th className="p-4 sm:p-5 text-slate-400">Incumbents (Sudowrite / Novelcrafter / NovelAI)</th>
+                    <th className="p-4 sm:p-5 text-red-400">General Chatbots (Claude / ChatGPT)</th>
+                    <th className="p-4 sm:p-5 text-brand-champagne font-semibold bg-brand-violet/10">THREADSPARK</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5 text-slate-300 font-sans">
                   <tr>
-                    <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Memory Retention</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Tokens degrade or truncate as session length expands</td>
-                    <td className="p-4 sm:p-5 text-emerald-300 font-medium">Persistent relational graph; Chapter 1 context remains 100% active in Chapter 8</td>
+                    <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Story Knowledge</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Author must manually type and maintain the Story Bible, Codex, or Lorebook.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">No persistent storage; author must re-paste manuscript every session.</td>
+                    <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
+                      Auto-built from manuscript archive; author confirms proposed entities with 1 click.
+                    </td>
                   </tr>
                   <tr>
-                    <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Continuity Verification</td>
-                    <td className="p-4 sm:p-5 text-slate-400">None; generates hallucinations without tracking physical state</td>
-                    <td className="p-4 sm:p-5 text-emerald-300 font-medium">Continuous logic radar flagging item losses, injuries, and timeline collisions</td>
+                    <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Continuity &amp; State</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Keyword retrieval of user notes; no temporal state or injury tracking.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Unreliable search across long context; prone to hallucinations and missed facts.</td>
+                    <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
+                      Temporal story-state &amp; epistemic knowledge tracking; flags collisions with exact passage links.
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Voice &amp; Stylometrics</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Homogenizes prose with repetitive corporate LLM idioms</td>
-                    <td className="p-4 sm:p-5 text-emerald-300 font-medium">Extracts authorial Type-Token Ratio, sentence cadence, and vocabulary tiers</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Compute Efficiency</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Re-injects massive context windows on every call, driving up costs</td>
-                    <td className="p-4 sm:p-5 text-emerald-300 font-medium">Sub-graph traversal extracts only causally relevant nodes (&lt;12ms latency)</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Generic fiction model (e.g. Muse) or pooled user fine-tune.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Generic RLHF corporate tone; imitation fades over session.</td>
+                    <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
+                      Per-author private LoRA style adapter that learns cadence, syntax, and sensory habits.
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Data Sovereignty</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Cloud-dependent; user intellectual property stored on public servers</td>
-                    <td className="p-4 sm:p-5 text-emerald-300 font-medium">Local-first vector indexing; zero third-party foundation model training</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Vendor cloud-hosted; subject to vendor terms and model providers.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Public cloud API with standard commercial data retention policies.</td>
+                    <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
+                      Sovereign by design: author owns adapter weights, zero training by default, private cloud ready.
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -908,6 +1016,229 @@ export default function HomePage() {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* BUSINESS MODEL, TIERS & THE MOAT */}
+      <section className="py-28 border-t border-brand-border/40 relative bg-brand-dark/30">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-mono uppercase tracking-widest text-brand-champagne mb-3 block">
+              Business Model &amp; Sustainable Economics
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
+              Transparent Tiers Designed for Compounding Value
+            </h2>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
+              Incumbents anchor low ($10&ndash;$12/mo) with manual notebooks. Threadspark is priced for the acute needs of series authors whose multi-book continuity burden commands professional developmental editing tools.
+            </p>
+          </div>
+
+          {/* Pricing Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-16">
+            {/* Tier 1 */}
+            <div className="glass-panel p-8 rounded-3xl border border-white/10 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-mono uppercase text-slate-400 mb-2">Explorer</div>
+                <div className="font-serif text-4xl text-white font-medium mb-1">$0</div>
+                <div className="text-xs text-slate-400 mb-6">Free forever • 1 Active Project</div>
+                <p className="text-xs text-slate-300 leading-relaxed mb-6">
+                  Perfect for authors testing the waters on a single manuscript or short-form lore bible.
+                </p>
+                <ul className="space-y-3 text-xs text-slate-300 font-mono mb-8">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-violet" />
+                    Up to 40,000 words ingested
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-violet" />
+                    Auto-built character &amp; location dossiers
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-violet" />
+                    Basic timeline dependency graph
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-violet" />
+                    Standard open JSON export
+                  </li>
+                </ul>
+              </div>
+              <Link
+                href="/studio"
+                onClick={() => sound.tick()}
+                className="w-full py-3 rounded-xl glass-panel hover:bg-white/10 text-white text-xs font-mono text-center block transition-colors border border-white/10"
+              >
+                Start Free Project
+              </Link>
+            </div>
+
+            {/* Tier 2: Series Author Pro (Highlighted) */}
+            <div className="glass-panel p-8 rounded-3xl border border-brand-violet relative flex flex-col justify-between shadow-2xl shadow-brand-violet/20 bg-brand-surface/80">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand-violet text-white text-[10px] font-mono tracking-widest uppercase">
+                Most Popular for Series Authors
+              </div>
+              <div>
+                <div className="text-xs font-mono uppercase text-brand-champagne mb-2">Series Author Pro</div>
+                <div className="font-serif text-4xl text-white font-medium mb-1">
+                  $29 <span className="text-sm font-sans text-slate-400 font-normal">/ month</span>
+                </div>
+                <div className="text-xs text-slate-400 mb-6">Billed monthly • Unlimited Volumes</div>
+                <p className="text-xs text-slate-300 leading-relaxed mb-6">
+                  Built for authors managing multi-book fantasy, sci-fi, and crime series where continuity mistakes are fatal.
+                </p>
+                <ul className="space-y-3 text-xs text-slate-300 font-mono mb-8">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-champagne" />
+                    Unlimited manuscript words &amp; book series
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-champagne" />
+                    Temporal Story-State Graph &amp; Invariants
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-champagne" />
+                    Epistemic Tracking (&ldquo;Who Knows What&rdquo;)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-champagne" />
+                    Precision-first automated collision alerts
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-champagne" />
+                    Draft versioning &amp; counterfactual branching
+                  </li>
+                </ul>
+              </div>
+              <Link
+                href="/studio"
+                onClick={() => sound.tick()}
+                className="w-full py-3 rounded-xl bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono text-center block transition-colors shadow-lg shadow-brand-violet/30"
+              >
+                Join Series Closed Beta
+              </Link>
+            </div>
+
+            {/* Tier 3: Studio Sovereign */}
+            <div className="glass-panel p-8 rounded-3xl border border-white/10 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-mono uppercase text-slate-400 mb-2">Studio Sovereign</div>
+                <div className="font-serif text-4xl text-white font-medium mb-1">
+                  $79 <span className="text-sm font-sans text-slate-400 font-normal">/ month</span>
+                </div>
+                <div className="text-xs text-slate-400 mb-6">Or custom enterprise on-premise</div>
+                <p className="text-xs text-slate-300 leading-relaxed mb-6">
+                  For high-output authors, small presses, and narrative game teams requiring private style adapters and strict data sovereignty.
+                </p>
+                <ul className="space-y-3 text-xs text-slate-300 font-mono mb-8">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-lavender" />
+                    Per-author private LoRA style adapter
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-lavender" />
+                    Author owns adapter weights (.safetensors)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-lavender" />
+                    Private cloud or self-hosted container option
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-lavender" />
+                    Zero cloud retention &amp; per-tenant encryption
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-brand-lavender" />
+                    Dedicated GPU batch ingestion queues
+                  </li>
+                </ul>
+              </div>
+              <button
+                onClick={() => {
+                  sound.tick();
+                  setInvestorOpen(true);
+                }}
+                className="w-full py-3 rounded-xl glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-mono text-center block transition-colors border border-white/10"
+              >
+                Inquire Studio Sovereign
+              </button>
+            </div>
+          </div>
+
+          {/* Wedge, Moat & Unit Economics Explainer */}
+          <div className="p-8 rounded-3xl bg-brand-charcoal/70 border border-brand-border grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <div>
+              <div className="text-xs font-mono uppercase text-brand-champagne mb-1">1. The Wedge Strategy</div>
+              <h4 className="font-serif text-lg text-white font-medium mb-2">Series Authors &rarr; Studios</h4>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                We start with indie series authors whose continuity burden compounds with every book. Once proven, we expand into freelance editors, book packaging houses, and game narrative teams.
+              </p>
+            </div>
+
+            <div>
+              <div className="text-xs font-mono uppercase text-brand-champagne mb-1">2. Moat of Accumulated Value</div>
+              <h4 className="font-serif text-lg text-white font-medium mb-2">Value Over Captivity</h4>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                An author&apos;s story graph and style adapter become exponentially more valuable with every draft. We support 100% open JSON/SQLite export—our moat is built on utility, not vendor lock-in.
+              </p>
+            </div>
+
+            <div>
+              <div className="text-xs font-mono uppercase text-brand-champagne mb-1">3. Razor-Sharp Unit Economics</div>
+              <h4 className="font-serif text-lg text-white font-medium mb-2">Lightweight LoRA Adapters</h4>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Instead of costly full-model retraining, per-author style models are served as lightweight adapters (~25MB) on shared base weights. This makes inference radically cheaper and margins sustainable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* EMPIRICAL BENCHMARK & VALIDATION STUDY */}
+      <section className="py-24 border-t border-brand-border/40 relative">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 block">
+              Empirical Validation Study
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
+              Ground-Truth Continuity Benchmark
+            </h2>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
+              We turn continuity claims from vendor promises into verifiable science. Here is how our pipeline performs against raw LLM prompt pasting.
+            </p>
+          </div>
+
+          <div className="glass-panel p-8 rounded-3xl border border-white/10 max-w-4xl mx-auto space-y-6">
+            <div className="flex flex-wrap items-center justify-between pb-4 border-b border-brand-border gap-2 text-xs font-mono">
+              <span className="text-white font-semibold">Test Suite: Arthur Conan Doyle&apos;s &ldquo;The Sign of the Four&rdquo; (43,400 words)</span>
+              <span className="text-emerald-400">20 Seeded Real-World Contradictions</span>
+            </div>
+
+            <p className="text-xs text-slate-300 leading-relaxed">
+              We injected 20 deliberate continuity errors into a complete public-domain novel: 5 healed physical injuries without medical mention, 5 epistemic knowledge leaks (characters speaking of secrets before discovery), 5 disappearing carried weapons, and 5 timeline slips.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              <div className="p-4 rounded-xl bg-brand-dark border border-brand-border">
+                <div className="text-[11px] font-mono text-slate-400 uppercase mb-1">Collision Detection Rate</div>
+                <div className="font-serif text-2xl text-emerald-400 font-medium">95% (19/20)</div>
+                <div className="text-[10px] text-slate-400 mt-1">vs. 45% (9/20) for 1M-token prompt pasting</div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-brand-dark border border-brand-border">
+                <div className="text-[11px] font-mono text-slate-400 uppercase mb-1">False Alarm Rate</div>
+                <div className="font-serif text-2xl text-brand-champagne font-medium">&lt; 5%</div>
+                <div className="text-[10px] text-slate-400 mt-1">Precision-first tuning suppresses noise</div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-brand-dark border border-brand-border">
+                <div className="text-[11px] font-mono text-slate-400 uppercase mb-1">Per-Audit Ingestion Cost</div>
+                <div className="font-serif text-2xl text-brand-lavender font-medium">1 / 14th</div>
+                <div className="text-[10px] text-slate-400 mt-1">Sub-graph queries vs. repeated full-text prompt calls</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

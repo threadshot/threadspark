@@ -43,7 +43,7 @@ Preloaded with a fictional political fantasy manuscript:
 
 ```bash
 # Install dependencies
-npm install
+npm install 
 
 # Run development server
 npm run dev

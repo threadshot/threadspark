@@ -53,32 +53,53 @@ export default function AboutPage() {
 
   const milestones = [
     {
-      version: "v1.0",
+      version: "Phase 1",
       year: "2024",
       status: "Completed",
-      title: "Bedrock Ingestion Engine",
-      summary: "First-generation neural entity parser, lexical tokenization, and chapter segmentation for fiction manuscripts.",
+      title: "Core Graph & Ingestion Engine",
+      summary: "Validated on open-weight models: manuscript chunking, entity extraction, temporal story-state mapping, and epistemic boundary enforcement.",
     },
     {
-      version: "v2.0",
-      year: "2025",
-      status: "Completed",
-      title: "Stylometrics & Continuity Radar",
-      summary: "Type-Token Ratio mathematical profiler, physical state collision detection, and automated 1-click authorial fixes.",
-    },
-    {
-      version: "v2.4",
+      version: "Phase 2",
       year: "Current Release",
       status: "Active",
-      title: "Spatial Vector Graph & Creative Studio",
-      summary: "SVG topological spatial graph, unified diff writing studio, and zero-degradation local vector storage.",
+      title: "Per-Author LoRA Style Adapters",
+      summary: "Lightweight (~25MB) style adapters trained solely on an author's prose. Authors own their adapter weights (.safetensors) with 100% portable sovereignty.",
     },
     {
-      version: "v3.0",
-      year: "2027 Roadmap",
+      version: "Phase 3",
+      year: "2026-2027",
       status: "In Development",
-      title: "Multi-Agent World Rooms & Counterfactual Sandbox",
-      summary: "Simulated table-reads where autonomous character agents spar in real time under strict canon constraints.",
+      title: "Consensual Genre Bases & Studio Sandbox",
+      summary: "Genre- and theme-tuned base models built strictly on public-domain or explicitly compensated, opt-in author datasets with verified provenance.",
+    },
+  ];
+
+  const strategicRisks = [
+    {
+      risk: "Authors' Distrust of AI",
+      detail: "Many serious fiction writers view AI as generic ghostwriting that undermines creative integrity.",
+      mitigation: "Positioned strictly as a memory assistant, temporal fact-checker, and developmental editor. Text generation is strictly optional; our primary value is state tracking.",
+    },
+    {
+      risk: "Extraction Errors & Hallucinations",
+      detail: "Automated NLP pipelines can misidentify aliases, misattribute dialogue, or flag false continuity bugs.",
+      mitigation: "Propose-then-confirm workflow gives authors final veto on every entity. Collision radar is tuned for precision over recall to eliminate annoying false alarms.",
+    },
+    {
+      risk: "Incumbents Adding Auto-Extraction",
+      detail: "Competitors with existing distribution (Sudowrite, Novelcrafter) could try to automate their story bibles.",
+      mitigation: "We compete on temporal story-state & epistemic boundaries, author-owned LoRA weights, and private-cloud data sovereignty—not just note summaries.",
+    },
+    {
+      risk: "Inference & Training Unit Economics",
+      detail: "High-VRAM GPU compute can quickly drain runway if fine-tuning full foundation models per author.",
+      mitigation: "Staged architecture: lightweight PEFT/LoRA adapters (~25MB) served over shared base weights on AWS EC2 GPU instances with smart caching, keeping unit economics sustainable.",
+    },
+    {
+      risk: "Data-Rights & Copyright Concerns",
+      detail: "Scrutiny over scraped training data is intensifying across literary communities.",
+      mitigation: "Strict zero-training policy on user manuscripts. Any future shared base models are trained strictly on verified public domain or compensated opt-in works.",
     },
   ];
 
@@ -144,10 +165,10 @@ export default function AboutPage() {
             </div>
             <div className="md:col-span-8 space-y-4 text-slate-300 text-base leading-relaxed">
               <p className="text-lg text-white font-serif italic">
-                &ldquo;To give people an AI that understands the things they create, not just the individual questions they ask.&rdquo;
+                &ldquo;Threadspark is the source of truth for long-form fiction. It reads an author&apos;s entire archive and builds a living, versioned model of their story: who exists, what&apos;s happened to them, and who knows what.&rdquo;
               </p>
               <p className="text-sm">
-                For years, software forced creators to conform to the machine: filing documents in rigid directories, tagging notes manually, and constantly re-explaining context to forgetful chatbots. THREADSPARK turns this dynamic inside out. We build systems that adapt to the creator, holding the full mental model of your work in persistent focus.
+                Authors don&apos;t need a bigger chat window; they need a persistent, auditable state machine. By automating story-state extraction, confirming entities with authors, and flagging continuity collisions with exact line links, Threadspark preserves the canon of long-form universes.
               </p>
             </div>
           </div>
@@ -156,17 +177,28 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start pt-12 border-t border-brand-border/40">
             <div className="md:col-span-4">
               <span className="text-xs font-mono uppercase tracking-widest text-brand-champagne block mb-2">
-                02 / THE PHILOSOPHY
+                02 / THE WEDGE
               </span>
-              <h2 className="font-serif text-3xl font-normal text-white">Our Philosophy</h2>
+              <h2 className="font-serif text-3xl font-normal text-white">Wedge to Expansion</h2>
             </div>
             <div className="md:col-span-8 space-y-4 text-slate-300 text-base leading-relaxed">
               <p className="text-lg text-white font-serif italic">
-                &ldquo;Creative work, research, and personal knowledge should not exist as disconnected fragments. They should form an interconnected body of knowledge that can grow and evolve.&rdquo;
+                &ldquo;Start where the continuity burden is acute: indie series authors managing multi-book universes.&rdquo;
               </p>
-              <p className="text-sm">
-                Human creativity is associative. When you write a pivotal scene in a novel, your subconscious recalls an offhand observation from three years ago, a piece of architectural research from last winter, and the subtle emotional temperature of a childhood memory. THREADSPARK provides a computational substrate for that exact associative leap.
-              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs font-mono">
+                <div className="p-4 rounded-xl bg-brand-charcoal/70 border border-brand-border">
+                  <div className="text-brand-champagne font-semibold mb-1">Wedge: Series Authors</div>
+                  <div className="text-slate-400">Indie and self-published novelists whose lore and character arcs compound across 3&ndash;10 books.</div>
+                </div>
+                <div className="p-4 rounded-xl bg-brand-charcoal/70 border border-brand-border">
+                  <div className="text-brand-lavender font-semibold mb-1">Stage 2: Small Presses</div>
+                  <div className="text-slate-400">Freelance developmental editors and book packaging houses auditing client manuscripts.</div>
+                </div>
+                <div className="p-4 rounded-xl bg-brand-charcoal/70 border border-brand-border">
+                  <div className="text-emerald-400 font-semibold mb-1">Stage 3: Narrative Studios</div>
+                  <div className="text-slate-400">Game narrative designers and screenwriters managing episodic lore bibles.</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -176,14 +208,14 @@ export default function AboutPage() {
               <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 block mb-2">
                 03 / THE VISION
               </span>
-              <h2 className="font-serif text-3xl font-normal text-white">Our Vision</h2>
+              <h2 className="font-serif text-3xl font-normal text-white">Sovereignty &amp; Moat</h2>
             </div>
             <div className="md:col-span-8 space-y-4 text-slate-300 text-base leading-relaxed">
               <p className="text-lg text-white font-serif italic">
-                &ldquo;A future where individuals have access to personal intelligence systems that understand their work, preserve their context, and help them explore ideas more deeply.&rdquo;
+                &ldquo;Lock-in comes from compounding value, never from held-hostage data.&rdquo;
               </p>
               <p className="text-sm">
-                We envision a world where every novelist, worldbuilder, scholar, and thinker has a persistent intellectual companion—an assistant that has read everything you have ever written, understands your ethical principles, honors your aesthetic voice, and stands ready to help you navigate the labyrinth of long-term creation.
+                We believe in 100% open export (SQLite, JSON, and Markdown) and author-owned style adapter weights (.safetensors). The more an author writes, the more valuable their private story graph and voice fingerprint become. You stay because Threadspark makes you a better author, not because you can&apos;t leave.
               </p>
             </div>
           </div>
@@ -237,6 +269,46 @@ export default function AboutPage() {
                 </div>
                 <div className="pt-3 border-t border-white/5 text-[11px] font-mono text-slate-400">
                   Target: {m.year}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* STRATEGIC RISKS & CONCRETE MITIGATIONS */}
+      <section className="py-24 border-b border-brand-border/40 relative bg-brand-dark/40">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-mono uppercase tracking-widest text-amber-400 mb-2 block">
+              Transparent Risk Architecture
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
+              Risks We Name &amp; How We Mitigate Them
+            </h2>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
+              Credibility means confronting hard platform realities openly. Here are the five existential risks in creative AI software and our exact engineering answers.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {strategicRisks.map((item, idx) => (
+              <div key={idx} className="glass-panel p-6 rounded-2xl border border-white/10 space-y-3 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-mono text-amber-300 uppercase font-semibold">
+                      Risk #{idx + 1}
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-amber-400" />
+                  </div>
+                  <h3 className="font-serif text-lg text-white font-medium mb-2">{item.risk}</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed mb-4">{item.detail}</p>
+                </div>
+                <div className="pt-3 border-t border-white/10">
+                  <div className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-1 font-semibold">
+                    Engineered Mitigation:
+                  </div>
+                  <p className="text-xs text-slate-200 leading-relaxed">{item.mitigation}</p>
                 </div>
               </div>
             ))}

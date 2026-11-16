@@ -32,3 +32,8 @@ next-env.d.ts
 .agents/
 .gemini/
 
+# AI Review exports
+/ai-review/
+/ai-review.zip
+
+

@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "threadsparks",
+  "name": "threadspark",
+  "account_id": "03983e9e9666d55440dec86e2a3c20aa",
   "compatibility_date": "2026-11-03",
   "assets": {
     "directory": "out",

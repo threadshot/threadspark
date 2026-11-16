@@ -27,39 +27,70 @@ import { sound } from "@/lib/sound";
 import { InvestorModal } from "@/components/InvestorModal";
 
 export default function UseCasesPage() {
-  const [selectedCase, setSelectedCase] = useState<string>("novelists");
+  const [selectedCase, setSelectedCase] = useState<string>("series-authors");
   const [activeScenarioIdx, setActiveScenarioIdx] = useState<number>(0);
   const [investorOpen, setInvestorOpen] = useState(false);
 
   const useCases = [
     {
-      id: "novelists",
+      id: "series-authors",
       icon: BookOpen,
-      badge: "Fiction & Long-form Narrative",
-      title: "Writers & Novelists",
-      subtitle: "Never lose the thread of a 400-page manuscript or multi-book saga.",
+      badge: "Primary Wedge • Multi-Book Sagas",
+      title: "Indie Series Authors",
+      subtitle: "Where continuity burden compounds across Books 1 through 10.",
       description:
-        "When writing complex fiction, the cognitive burden of tracking dozens of characters, timeline constraints, emotional arcs, and subtextual motifs can derail creative momentum. THREADSPARK acts as your personal script supervisor and developmental editor.",
+        "Series authors are our sharpest customer wedge because continuity burden grows exponentially with each release. By Book 4, an author must remember dozens of character wounds, broken oaths, carried relics, and secret revelations made three years ago. Threadspark reads your previous volumes and maintains an automatic, confirmed living state machine.",
       keyFeatures: [
-        "Dynamic character dossiers that update with every chapter",
-        "Chronological plot-dependency graph detecting logic traps",
-        "Stylometric voice analyzer checking for tone consistency",
-        "Automated continuity radar flagging item losses and physical injuries",
-        "Dialogue sparring engine to test conversations before drafting",
+        "Cross-book character dossiers and physical invariant tracking",
+        "Epistemic boundaries preventing characters from leaking secrets early",
+        "Chronological timeline graph linking plot dependencies across books",
+        "1-click passage links to conflicting lines in previous volumes",
+        "Per-author LoRA style adapter preserving voice across volumes",
       ],
       studioDeepLink: "/studio?tab=continuity",
       scenarios: [
         {
-          title: "Tracking a Subplot Across 7 Chapters",
-          challenge: "In Chapter 2, Marcus steals an encrypted silk blueprint. In Chapter 5, he is interrogated by Malakar.",
-          resolution: "THREADSPARK reminds you where the blueprint was hidden, who knows he possesses it, and suggests how his dialogue should reflect fear of discovery without overt confession.",
-          metric: "4 Causal Edges Mapped",
+          title: "Tracking Secrets Across a 3-Book Arc",
+          challenge: "In Book 1, Mara secretly poisons the imperial regent. In Book 3, an allied commander references the poison during a war council before Mara confesses.",
+          resolution: "Threadspark flags an Epistemic Knowledge Collision, showing that the allied commander was never present during the poisoning or privy to the discovery.",
+          metric: "Epistemic Boundary Enforced",
         },
         {
-          title: "Character Motivation Drift Detection",
-          challenge: "In Draft 1, Elena acts purely out of spite. In Draft 3, you introduce survivor's guilt over Silas.",
-          resolution: "The engine flags 3 scenes in Chapters 3, 5, and 7 where her harsh dialogue reflects old spite rather than the newly established protective guilt.",
-          metric: "3 Tone Inconsistencies Resolved",
+          title: "Physical State & Carried Weapon Invariant",
+          challenge: "In Book 2 Chapter 14, Marcus shatters his grandfather's bronze rapier. In Book 3 Chapter 2, a rough scene mentions him drawing that same rapier.",
+          resolution: "The engine highlights the exact Chapter 14 passage where the blade was destroyed, recommending he draw his iron cutlass instead.",
+          metric: "Physical Invariant Restored",
+        },
+      ],
+    },
+    {
+      id: "serial-novelists",
+      icon: Feather,
+      badge: "High Velocity • Serialization",
+      title: "Serial & Web Novelists",
+      subtitle: "Weekly release pressure where reader-facing retcons are fatal.",
+      description:
+        "Serialized writers on Royal Road, Substack, and Patreon produce 5,000 to 15,000 words a week under fierce public review. Retconning in public ruins reader trust. Threadspark gives serialized authors immediate pre-flight continuity audits before each chapter drops.",
+      keyFeatures: [
+        "Rapid chapter ingestion checking against the canon graph in seconds",
+        "Power scaling and magic rule invariants verification",
+        "Character relationship tension matrix that tracks public reader knowledge",
+        "Draft branching to test Patreon-exclusive alternative timelines",
+        "Zero vendor lock-in with 100% open JSON/Markdown chapter export",
+      ],
+      studioDeepLink: "/studio?tab=knowledge-graph",
+      scenarios: [
+        {
+          title: "Pre-Publishing Continuity Sanity Check",
+          challenge: "Drafting Chapter 142 of an ongoing web serial at 2:00 AM before a weekly release deadline.",
+          resolution: "A 10-second audit catches that an antagonist was banished to the Northern Reach 40 chapters earlier and cannot casually appear at a tavern in the Capital.",
+          metric: "Zero Public Retcon Needed",
+        },
+        {
+          title: "Magic Cost System Verification",
+          challenge: "A protagonist casts high-tier gravity inversion without burning ether stones.",
+          resolution: "The radar flags a rule invariant established in Chapter 12: gravity manipulation requires active mineral consumption.",
+          metric: "Hard Magic Rule Maintained",
         },
       ],
     },
