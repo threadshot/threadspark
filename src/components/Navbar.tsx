@@ -105,7 +105,7 @@ export function Navbar() {
               onClick={() => setBetaModalOpen(true)}
               className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-semibold bg-brand-violet hover:bg-purple-600 text-white shadow-lg shadow-brand-violet/25 hover:shadow-brand-violet/40 transition-all"
             >
-              <span>Join Closed Beta</span>
+              <span>Design Partner Program</span>
             </button>
           </div>
 
@@ -115,7 +115,7 @@ export function Navbar() {
               onClick={() => setBetaModalOpen(true)}
               className="px-3 py-1 rounded-full text-xs font-semibold bg-brand-violet text-white"
             >
-              Beta
+              Design Partners
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -171,7 +171,7 @@ export function Navbar() {
                   }}
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-brand-violet text-white shadow-lg shadow-brand-violet/25"
                 >
-                  Join Series Author Closed Beta
+                  Join Design Partner Program
                 </button>
               </div>
             </div>

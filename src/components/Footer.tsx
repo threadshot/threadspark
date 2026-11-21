@@ -26,22 +26,33 @@ export function Footer() {
               <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-4">
                 The source of truth for long-form fiction. Automatically tracking temporal state invariants, physical details, and epistemic boundaries across multi-book sagas.
               </p>
-              <p className="text-xs text-slate-400 leading-relaxed font-mono">
-                Founded by <strong className="text-white">{SITE_CONFIG.founder.name}</strong>. Built with care for novelists and lore architects.
-              </p>
+              <div className="text-xs text-slate-400 leading-relaxed font-mono space-y-1">
+                <div>Founded in {SITE_CONFIG.foundedYear} by solo founder &amp; engineer <strong className="text-white">{SITE_CONFIG.founder.name}</strong>.</div>
+                <div className="text-emerald-400 font-semibold">{SITE_CONFIG.companyType}</div>
+              </div>
             </div>
 
             <div className="pt-6 space-y-2">
-              <a
-                href={`mailto:${SITE_CONFIG.contactEmail}`}
-                className="inline-flex items-center gap-2 text-xs font-mono text-brand-champagne hover:underline"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>{SITE_CONFIG.contactEmail}</span>
-              </a>
+              <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
+                <a
+                  href={`mailto:${SITE_CONFIG.contactEmail}`}
+                  className="inline-flex items-center gap-1.5 text-brand-champagne hover:underline"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>{SITE_CONFIG.contactEmail}</span>
+                </a>
+                <a
+                  href={SITE_CONFIG.founder.linkedIn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-brand-lavender hover:underline"
+                >
+                  <span>Founder LinkedIn</span>
+                </a>
+              </div>
               <div className="flex items-center gap-2 text-[11px] font-mono text-slate-400">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Zero training on author manuscripts</span>
+                <span>Design commitments: Zero training on author manuscripts</span>
               </div>
             </div>
           </div>

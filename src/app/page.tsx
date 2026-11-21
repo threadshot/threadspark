@@ -37,12 +37,11 @@ import {
   EyeOff,
   Mail,
   UserCheck,
+  ExternalLink,
 } from "lucide-react";
 import { GLASS_MERIDIAN_DATA } from "@/data/glassMeridian";
 
 export default function HomePage() {
-  const [activePillar, setActivePillar] = useState<"understand" | "remember" | "create">("understand");
-  const [activePreviewTab, setActivePreviewTab] = useState<"overview" | "characters" | "continuity" | "style">("overview");
   const [betaModalOpen, setBetaModalOpen] = useState(false);
 
   // Hero Interactive Simulation Terminal State
@@ -52,24 +51,27 @@ export default function HomePage() {
     text: string;
     metricLabel?: string;
     metricVal?: string;
-    badge?: string;
+    badgeText: string;
+    badgeStatus: "prototype" | "in-development" | "vision";
   }>({
-    title: "Epistemic Tracking: Knowledge Leak Blocked (Chapter 6)",
+    title: "Epistemic Tracking: Knowledge Leak Intercepted (Chapter 6)",
     text: "Epistemic Violation Flagged: In Chapter 6, paragraph 18, Elena confronts Marcus about Archon Malakar's private execution decree. However, the story-state graph shows this decree is not signed until Chapter 7, and Elena does not learn of it until Chapter 8. Elena cannot know this in Chapter 6 without breaking narrative causality.",
-    metricLabel: "Epistemic Integrity",
+    metricLabel: "Epistemic Boundary",
     metricVal: "Leak Intercepted (Ch 6 vs Ch 7)",
-    badge: "Epistemic Radar • Active",
+    badgeText: "Prototype (working)",
+    badgeStatus: "prototype",
   });
 
   const handleHeroPreset = (type: "epistemic" | "continuity" | "style") => {
     setHeroSimActive(type);
     if (type === "epistemic") {
       setHeroOutput({
-        title: "Epistemic Tracking: Knowledge Leak Blocked (Chapter 6)",
+        title: "Epistemic Tracking: Knowledge Leak Intercepted (Chapter 6)",
         text: "Epistemic Violation Flagged: In Chapter 6, paragraph 18, Elena confronts Marcus about Archon Malakar's private execution decree. However, the story-state graph shows this decree is not signed until Chapter 7, and Elena does not learn of it until Chapter 8. Elena cannot know this in Chapter 6 without breaking narrative causality.",
-        metricLabel: "Epistemic Integrity",
+        metricLabel: "Epistemic Boundary",
         metricVal: "Leak Intercepted (Ch 6 vs Ch 7)",
-        badge: "Epistemic Radar • Active",
+        badgeText: "Prototype (working)",
+        badgeStatus: "prototype",
       });
     } else if (type === "continuity") {
       setHeroOutput({
@@ -77,15 +79,17 @@ export default function HomePage() {
         text: "Physical Invariant Alert: In Chapter 4, line 82, Marcus drops his grandfather's bronze seal into the bay sludge at Iron Quay. In Chapter 7, line 14, he unlocks the Solarium portal with it. Simultaneously, Elena's right forearm hairline fracture from Chapter 4 is ignored in Chapter 6 as she swings dual iron tongs.",
         metricLabel: "State Invariants",
         metricVal: "2 Collisions (Ch 4 vs Ch 6 & 7)",
-        badge: "Temporal Graph • Flagged",
+        badgeText: "Prototype (working)",
+        badgeStatus: "prototype",
       });
     } else if (type === "style") {
       setHeroOutput({
         title: "Voice Fingerprint & Private LoRA Style Adapter",
-        text: "Author Style Matrix Active: 0.76 Type-Token Ratio • 18.4 wps mean sentence cadence • High periodic trailing participial density. The private LoRA adapter preserves unique authorial syntax and tactile metaphors, preventing homogenization into corporate LLM prose.",
-        metricLabel: "Voice Match",
-        metricVal: "0.76 TTR (Private LoRA)",
-        badge: "Sovereign Adapter • 100% Owned",
+        text: "Heuristic stylometric profile active (0.76 Type-Token Ratio, 18.4 wps mean sentence cadence). Full private LoRA adapter training pipeline (~25MB .safetensors) is currently in active development to preserve authorial cadence without pooled foundation model drift.",
+        metricLabel: "Voice Adapter",
+        metricVal: "LoRA Pipeline (~25MB)",
+        badgeText: "In development",
+        badgeStatus: "in-development",
       });
     }
   };
@@ -106,7 +110,7 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-brand-border mb-8 animate-fade-in">
             <span className="w-2 h-2 rounded-full bg-brand-violet animate-pulse" />
             <span className="text-xs font-mono tracking-wider uppercase text-brand-lavender">
-              Threadspark • The Source of Truth for Fiction
+              Threadspark &bull; The Source of Truth for Fiction
             </span>
           </div>
 
@@ -120,7 +124,7 @@ export default function HomePage() {
 
           {/* Supporting Copy */}
           <p className="text-lg md:text-xl text-slate-300 font-light max-w-3xl mx-auto leading-relaxed mb-10">
-            Who exists, what&apos;s happened to whom, and who knows what—updating as you write, auditable, and sovereign. Built specifically for indie series authors, serial novelists, and worldbuilders whose continuity burden grows with every book.
+            Who exists, what&apos;s happened to whom, and who knows what—updating as you write, auditable, and sovereign. Built specifically for indie series authors, serial novelists, and worldbuilders whose continuity burden compounds with every book.
           </p>
 
           {/* AI Stance Pill */}
@@ -138,7 +142,7 @@ export default function HomePage() {
               className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-brand-violet to-purple-600 hover:from-purple-500 hover:to-brand-violet text-white font-medium text-sm transition-all duration-300 shadow-xl shadow-brand-violet/25 hover:shadow-brand-violet/40 hover:-translate-y-0.5 flex items-center justify-center gap-2.5"
             >
               <Sparkles className="w-4 h-4 text-brand-champagne" />
-              <span>Explore Studio Demo</span>
+              <span>Explore Studio Prototype</span>
             </Link>
 
             <button
@@ -146,7 +150,7 @@ export default function HomePage() {
               className="w-full sm:w-auto px-8 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white font-medium text-sm transition-all duration-300 border border-white/10 hover:border-white/25 flex items-center justify-center gap-2"
             >
               <UserCheck className="w-4 h-4 text-brand-champagne" />
-              <span>Apply for Closed Beta</span>
+              <span>Join Design Partner Program</span>
             </button>
           </div>
 
@@ -166,9 +170,11 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 font-mono text-[11px]">
                   <span className="text-emerald-400 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    Sample Manuscript Telemetry
+                    Illustrative Sample Output
                   </span>
-                  <span className="text-slate-400 hidden md:inline">{SITE_CONFIG.demoManuscript.wordCount} words indexed</span>
+                  <span className="text-slate-400 hidden md:inline">
+                    {SITE_CONFIG.demoManuscript.wordCount} words preloaded
+                  </span>
                 </div>
               </div>
 
@@ -220,11 +226,15 @@ export default function HomePage() {
                       <Activity className="w-3.5 h-3.5 text-brand-violet" />
                       {heroOutput.title}
                     </span>
-                    {heroOutput.badge && (
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-surface border border-white/10 text-brand-lavender">
-                        {heroOutput.badge}
-                      </span>
-                    )}
+                    <span
+                      className={`text-[10px] font-mono px-2 py-0.5 rounded ${
+                        heroOutput.badgeStatus === "prototype"
+                          ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                          : "bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                      }`}
+                    >
+                      {heroOutput.badgeText}
+                    </span>
                   </div>
 
                   <div className="min-h-[110px] p-4 rounded-xl bg-brand-charcoal/80 border border-brand-border/80 flex items-center">
@@ -234,14 +244,14 @@ export default function HomePage() {
                   </div>
 
                   <div className="p-3 rounded-xl bg-brand-void/50 border border-brand-border/50 text-[11px] text-slate-400 font-mono flex items-center justify-between">
-                    <span>Tested on sample political fantasy novel: <em>The Glass Meridian</em></span>
+                    <span>Illustrative output on preloaded sample manuscript: <em>The Glass Meridian</em></span>
                     <Link href="/studio" className="text-brand-champagne hover:underline">
                       Inspect in Studio &rarr;
                     </Link>
                   </div>
                 </div>
 
-                {/* Right: Real-time Metric Indicators */}
+                {/* Right: Metric Indicators */}
                 <div className="md:col-span-4 p-5 rounded-xl bg-brand-surface/70 border border-brand-border flex flex-col justify-between space-y-4">
                   <div>
                     <div className="text-[10px] font-mono uppercase text-slate-400 mb-1">
@@ -261,7 +271,7 @@ export default function HomePage() {
                       href="/studio"
                       className="w-full py-2.5 px-4 rounded-lg bg-brand-violet/20 hover:bg-brand-violet text-brand-lavender hover:text-white border border-brand-violet/40 text-xs font-medium transition-all flex items-center justify-between"
                     >
-                      <span>Open Full Studio Demo</span>
+                      <span>Open Studio Prototype</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
@@ -359,76 +369,145 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* 6 CONCRETE CAPABILITIES OF THREADSPARK */}
+          {/* 6 CONCRETE CAPABILITIES WITH UNIFORM 3 TAGS */}
           <div className="pt-8">
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="text-xs font-mono uppercase tracking-widest text-brand-violet mb-2 block">
                 The Concrete Mechanics
               </span>
-              <h3 className="font-serif text-2xl md:text-4xl font-normal text-white">
+              <h3 className="font-serif text-2xl md:text-4xl font-normal text-white mb-3">
                 Six capabilities that make Threadspark a true source of truth.
               </h3>
+              <p className="text-xs font-mono text-slate-400">
+                Every capability is labeled clearly as <span className="text-emerald-400 font-semibold">Prototype (working)</span>, <span className="text-amber-300 font-semibold">In development</span>, or <span className="text-purple-300 font-semibold">Vision</span>.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
-                <div className="w-9 h-9 rounded-xl bg-brand-violet/20 border border-brand-violet/30 text-brand-lavender flex items-center justify-center">
-                  <History className="w-4 h-4" />
+              {/* Capability 1 */}
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="w-9 h-9 rounded-xl bg-brand-violet/20 border border-brand-violet/30 text-brand-lavender flex items-center justify-center">
+                      <History className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold">
+                      Prototype (working)
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-lg text-white font-medium">1. Temporal Story-State Graph</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Tracks state over story time: physical injuries, item locations, character ages, and faction alliances. We use embeddings for semantic retrieval, but the temporal graph is the deterministic source of truth.
+                  </p>
                 </div>
-                <h4 className="font-serif text-lg text-white font-medium">1. Temporal Story-State Graph</h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Tracks state over story time: physical injuries, item locations, character ages, and faction alliances. We use embeddings for semantic retrieval, but the temporal graph is the deterministic source of truth.
-                </p>
+                <div className="pt-2 text-[11px] font-mono text-slate-400">
+                  Status: Functional in sample test suite
+                </div>
               </div>
 
-              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
-                <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 flex items-center justify-center">
-                  <KeyRound className="w-4 h-4" />
+              {/* Capability 2 */}
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 flex items-center justify-center">
+                      <KeyRound className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold">
+                      Prototype (working)
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-lg text-white font-medium">2. Epistemic Tracking (&ldquo;Who Knows What&rdquo;)</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    The strongest guard against plot holes. Evaluates scenes against the knowledge boundary of present characters, preventing premature secret reveals before an in-world revelation occurs.
+                  </p>
                 </div>
-                <h4 className="font-serif text-lg text-white font-medium">2. Epistemic Tracking (&ldquo;Who Knows What&rdquo;)</h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  The strongest guard against plot holes. Evaluates every scene against the knowledge boundary of present characters, preventing premature secret reveals before an in-world revelation occurs.
-                </p>
+                <div className="pt-2 text-[11px] font-mono text-slate-400">
+                  Status: Intercepts premature secret leaks
+                </div>
               </div>
 
-              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
-                <div className="w-9 h-9 rounded-xl bg-purple-500/20 border border-purple-500/30 text-purple-300 flex items-center justify-center">
-                  <GitBranch className="w-4 h-4" />
+              {/* Capability 3 */}
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="w-9 h-9 rounded-xl bg-purple-500/20 border border-purple-500/30 text-purple-300 flex items-center justify-center">
+                      <GitBranch className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-semibold">
+                      In development
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-lg text-white font-medium">3. Story Time vs. Draft Time</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Versions every manuscript draft and lets authors branch counterfactuals (&ldquo;What if Silas dies in Chapter 9?&rdquo;) without corrupting canonical timelines or prior volumes.
+                  </p>
                 </div>
-                <h4 className="font-serif text-lg text-white font-medium">3. Story Time vs. Draft Time</h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Versions every manuscript draft and lets authors safely branch counterfactuals (&ldquo;What if Silas dies in Chapter 9?&rdquo;) without corrupting your canonical story timeline or previous drafts.
-                </p>
+                <div className="pt-2 text-[11px] font-mono text-slate-400">
+                  Status: Multi-draft branching in development
+                </div>
               </div>
 
-              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 flex items-center justify-center">
-                  <CheckCircle2 className="w-4 h-4" />
+              {/* Capability 4 */}
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 flex items-center justify-center">
+                      <CheckCircle2 className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold">
+                      Prototype (working)
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-lg text-white font-medium">4. Propose, Then Confirm</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Automated extraction can make mistakes, so the system proposes entities and timeline events for author approval. Every flagged collision links directly to the exact conflicting manuscript passages.
+                  </p>
                 </div>
-                <h4 className="font-serif text-lg text-white font-medium">4. Propose, Then Confirm</h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Automated extraction can make mistakes, so the system proposes entities and timeline events for author approval. Every flagged collision links directly to the exact conflicting manuscript passages.
-                </p>
+                <div className="pt-2 text-[11px] font-mono text-slate-400">
+                  Status: Author veto on every proposed entity
+                </div>
               </div>
 
-              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
-                <div className="w-9 h-9 rounded-xl bg-red-500/20 border border-red-500/30 text-red-300 flex items-center justify-center">
-                  <Target className="w-4 h-4" />
+              {/* Capability 5 */}
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="w-9 h-9 rounded-xl bg-red-500/20 border border-red-500/30 text-red-300 flex items-center justify-center">
+                      <Target className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold">
+                      Prototype (working)
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-lg text-white font-medium">5. Precision Over Recall</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    A continuity tool that cries wolf gets disabled immediately. Our collision detector is aggressively tuned to prioritize precision over noisy false alarms—alerting you only when real contradictions exist.
+                  </p>
                 </div>
-                <h4 className="font-serif text-lg text-white font-medium">5. Precision Over Recall</h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  A continuity tool that cries wolf gets turned off immediately. Our collision detector is aggressively tuned to prioritize precision over noisy false alarms—only alerting you when a real contradiction exists.
-                </p>
+                <div className="pt-2 text-[11px] font-mono text-slate-400">
+                  Status: 95.0% precision in preliminary test
+                </div>
               </div>
 
-              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3">
-                <div className="w-9 h-9 rounded-xl bg-brand-champagne/20 border border-brand-champagne/30 text-brand-champagne flex items-center justify-center">
-                  <Feather className="w-4 h-4" />
+              {/* Capability 6 */}
+              <div className="p-6 rounded-2xl bg-brand-surface/70 border border-brand-border space-y-3 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="w-9 h-9 rounded-xl bg-brand-champagne/20 border border-brand-champagne/30 text-brand-champagne flex items-center justify-center">
+                      <Feather className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-semibold">
+                      In development
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-lg text-white font-medium">6. Private Voice Fingerprint (LoRA)</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Heuristic stylometric profiling works today. Training per-author lightweight style adapters (LoRA, ~25MB .safetensors) that authors own and can deploy privately is currently in development for Phase 2.
+                  </p>
                 </div>
-                <h4 className="font-serif text-lg text-white font-medium">6. Private Voice Fingerprint</h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Captures cadence, diction, sentence rhythm, and dialogue habits as an inspectable profile powered by per-author lightweight style adapters (LoRA) whose weights you own and can run privately.
-                </p>
+                <div className="pt-2 text-[11px] font-mono text-slate-400">
+                  Status: Targeted for Q2 2027
+                </div>
               </div>
             </div>
           </div>
@@ -440,13 +519,13 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-brand-champagne mb-3 block">
-              Market Positioning (As of late 2026)
+              Market Positioning (Late 2026)
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
               Where Incumbents Stop vs. Where Threadspark Begins
             </h2>
             <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
-              Tools like Sudowrite, Novelcrafter, and NovelAI rely on manual story bibles you must type by hand, while general chatbots lack persistent structure. Threadspark bridges the gap with automated, confirmed state tracking.
+              Incumbent writing tools rely on manual story bibles you must type by hand, while general chatbots lack persistent state structure. Threadspark bridges the gap with automated, author-confirmed state tracking.
             </p>
           </div>
 
@@ -456,42 +535,42 @@ export default function HomePage() {
                 <thead>
                   <tr className="border-b border-brand-border bg-brand-dark/95 text-slate-400 uppercase tracking-wider">
                     <th className="p-4 sm:p-5">Capability Dimension</th>
-                    <th className="p-4 sm:p-5 text-slate-400">Manual Notebooks (Sudowrite / Novelcrafter / NovelAI)</th>
-                    <th className="p-4 sm:p-5 text-red-400">General Chatbots (Claude / ChatGPT)</th>
+                    <th className="p-4 sm:p-5 text-slate-400">Manual Story Bibles (Sudowrite / Novelcrafter / NovelAI)</th>
+                    <th className="p-4 sm:p-5 text-slate-400">General Chatbots (Claude Projects / ChatGPT)</th>
                     <th className="p-4 sm:p-5 text-brand-champagne font-semibold bg-brand-violet/10">THREADSPARK</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5 text-slate-300 font-sans">
                   <tr>
                     <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Story Knowledge</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Author must manually type and maintain the Story Bible, Codex, or Lorebook.</td>
-                    <td className="p-4 sm:p-5 text-slate-400">No persistent storage; author must re-paste manuscript every session.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Author must manually write and maintain the Story Bible, Codex, or Lorebook notes.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Semantic RAG over uploaded project files; no temporal state graph or entity timeline.</td>
                     <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
-                      Auto-built from manuscript archive; author confirms proposed entities with 1 click.
+                      Auto-extracted from manuscript; author confirms proposed entities with 1 click. <span className="text-[10px] font-mono text-emerald-400 block mt-1">[Prototype (working)]</span>
                     </td>
                   </tr>
                   <tr>
                     <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Continuity &amp; State</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Keyword retrieval of user notes; no temporal state or injury tracking.</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Unreliable search across long context; prone to hallucinations and missed facts.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Keyword retrieval of user notes into prompt context; no temporal state or injury tracking.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Unreliable search across long context windows; prone to hallucinations and misses timeline slips.</td>
                     <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
-                      Temporal story-state &amp; epistemic knowledge tracking; flags collisions with exact passage links.
+                      Deterministic temporal story-state &amp; epistemic knowledge tracking; flags collisions with exact passage links. <span className="text-[10px] font-mono text-emerald-400 block mt-1">[Prototype (working)]</span>
                     </td>
                   </tr>
                   <tr>
                     <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Voice &amp; Stylometrics</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Generic fiction model or pooled user fine-tune.</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Generic corporate tone; voice imitation fades over session.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Generic fiction model or pooled user fine-tune (e.g. Muse).</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Generic corporate defaults; voice imitation drifts across conversation turns.</td>
                     <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
-                      Per-author private LoRA style adapter that learns cadence, syntax, and sensory habits.
+                      Heuristic stylometrics active today; per-author private LoRA adapters (~25MB .safetensors) in development. <span className="text-[10px] font-mono text-amber-300 block mt-1">[In development - Q2 2027]</span>
                     </td>
                   </tr>
                   <tr>
                     <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Data Sovereignty</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Vendor cloud-hosted; subject to vendor terms and model providers.</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Public cloud API with standard commercial data retention policies.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Vendor cloud-hosted; subject to vendor retention policies and third-party APIs.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Public cloud API with standard commercial data retention and training clauses.</td>
                     <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
-                      Sovereign by design: author owns adapter weights, zero training by default, private cloud ready.
+                      Architectural commitments: zero training on drafts, author-owned adapter weights, local-first export. <span className="text-[10px] font-mono text-brand-champagne block mt-1">[Design commitments]</span>
                     </td>
                   </tr>
                 </tbody>
@@ -501,18 +580,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SERIES AUTHOR CLOSED BETA (REPLACING UNGROUNDED PRICING TIERS) */}
+      {/* DESIGN PARTNER PROGRAM (REPLACING UNGROUNDED PRICING TIERS) */}
       <section className="py-28 border-t border-brand-border/40 relative bg-brand-dark/30">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 block">
-              Pilot Program
+              Early Access Cohort
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
-              Closed Beta for Series Authors
+              Design Partner Program for Series Authors
             </h2>
             <p className="text-slate-300 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-              We are deliberately staying small: selecting {SITE_CONFIG.betaCohortSize} indie and self-published series authors to stress-test automated story bibles and continuity verification on live manuscripts.
+              We are deliberately staying small: selecting {SITE_CONFIG.designPartnerCohortSize} indie and self-published series authors to stress-test automated story bibles and continuity verification on live manuscripts.
             </p>
           </div>
 
@@ -520,36 +599,36 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-7 space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-mono">
-                  100% Free During Beta • Concierge Setup
+                  100% Free During Cohort &bull; Concierge Onboarding
                 </div>
 
                 <h3 className="font-serif text-2xl md:text-3xl text-white font-medium">
-                  What You Receive in the Beta Cohort:
+                  What You Receive as a Design Partner:
                 </h3>
 
                 <ul className="space-y-3.5 text-xs sm:text-sm text-slate-300 font-sans">
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Concierge Manuscript Ingestion:</strong> Founder Ezekiel Heretta will personally help parse your previous series volumes to build your initial story-state graph.
+                      <strong className="text-white">Concierge Manuscript Ingestion:</strong> Solo founder Ezekiel Heretta will personally help parse your previous series volumes to build your initial story-state graph.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Full Temporal &amp; Epistemic Radar:</strong> Real-time contradiction checking across all your books with exact passage citation links.
+                      <strong className="text-white">Temporal &amp; Epistemic Radar Testing:</strong> Contradiction checking across your books with exact passage citation links in our prototype engine.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Absolute Privacy Guarantee:</strong> Zero third-party training, complete data export, and dedicated cloud sandboxing.
+                      <strong className="text-white">Design Commitments:</strong> Zero third-party training, complete data export, and dedicated cloud sandboxing.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Direct Engineering Line:</strong> Weekly check-ins to fix false alarms and tune the radar to your world rules.
+                      <strong className="text-white">Direct Engineering Line:</strong> Weekly check-ins with the founder to tune false alarms and adapt to your world rules.
                     </span>
                   </li>
                 </ul>
@@ -567,7 +646,7 @@ export default function HomePage() {
                     onClick={() => setBetaModalOpen(true)}
                     className="w-full py-3.5 px-6 rounded-full bg-brand-violet hover:bg-purple-600 text-white font-semibold text-xs font-mono transition-all shadow-xl shadow-brand-violet/30"
                   >
-                    Apply for the Closed Beta
+                    Apply for Design Partner Cohort
                   </button>
                 </div>
 
@@ -583,31 +662,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* EMPIRICAL BENCHMARK & VALIDATION STUDY */}
+      {/* PRELIMINARY INTERNAL EXPERIMENT (RENAMED FROM BENCHMARK STUDY) */}
       <section className="py-24 border-t border-brand-border/40 relative">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 block">
-              Empirical Validation Study
+              Internal Verification
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
-              Ground-Truth Continuity Benchmark
+              Preliminary Internal Experiment
             </h2>
             <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
-              We turn continuity claims from vendor promises into verifiable science. Here is how our pipeline performs against raw LLM prompt pasting.
+              A sanity check on 20 self-seeded errors to test precision and recall against raw 1M-token LLM prompt pasting.
             </p>
           </div>
 
           <div className="glass-panel p-8 rounded-3xl border border-white/10 max-w-4xl mx-auto space-y-6">
             <div className="flex flex-wrap items-center justify-between pb-4 border-b border-brand-border gap-2 text-xs font-mono">
               <span className="text-white font-semibold">
-                Test Suite: {SITE_CONFIG.benchmark.author}&apos;s &ldquo;{SITE_CONFIG.benchmark.bookTitle}&rdquo; ({SITE_CONFIG.benchmark.wordCount} words)
+                Test Corpus: {SITE_CONFIG.benchmark.author}&apos;s &ldquo;{SITE_CONFIG.benchmark.bookTitle}&rdquo; ({SITE_CONFIG.benchmark.wordCount} words)
               </span>
-              <span className="text-emerald-400">{SITE_CONFIG.benchmark.seededErrors} Realistic Inserted Errors</span>
+              <span className="text-emerald-400">{SITE_CONFIG.benchmark.seededErrors} Self-Seeded Errors (Sanity Check)</span>
             </div>
 
             <p className="text-xs text-slate-300 leading-relaxed">
-              We inserted {SITE_CONFIG.benchmark.seededErrors} deliberate continuity defects into a public-domain novel: 5 healed physical injuries without medical mention, 5 epistemic knowledge leaks (characters speaking of secrets before discovery), 5 disappearing carried weapons, and 5 timeline slips. Because we inserted these errors internally, this is an initial benchmark; a held-out test on a second novel is currently in progress.
+              We inserted {SITE_CONFIG.benchmark.seededErrors} deliberate continuity defects into a public-domain novel: 5 healed physical injuries without medical mention, 5 epistemic knowledge leaks, 5 disappearing carried weapons, and 5 timeline slips. We compared our prototype against passing the full manuscript into {SITE_CONFIG.benchmark.baselineModel} with the prompt: <em>&ldquo;{SITE_CONFIG.benchmark.baselinePrompt}&rdquo;</em>.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
@@ -616,16 +695,20 @@ export default function HomePage() {
                 <div className="font-serif text-2xl text-emerald-400 font-medium">
                   {SITE_CONFIG.benchmark.threadsparkRecall} ({SITE_CONFIG.benchmark.detectedErrors}/{SITE_CONFIG.benchmark.seededErrors})
                 </div>
-                <div className="text-[10px] text-slate-400 mt-1">vs. {SITE_CONFIG.benchmark.baselineLLMRecall} for 1M-token prompt pasting</div>
+                <div className="text-[10px] text-slate-400 mt-1">vs. {SITE_CONFIG.benchmark.baselineLLMRecall} (9/20 caught) for LLM prompt pasting</div>
               </div>
 
               <div className="p-4 rounded-xl bg-brand-dark border border-brand-border">
                 <div className="text-[11px] font-mono text-slate-400 uppercase mb-1">Precision (False Alarm Suppression)</div>
                 <div className="font-serif text-2xl text-brand-champagne font-medium">
-                  {SITE_CONFIG.benchmark.threadsparkPrecision}
+                  {SITE_CONFIG.benchmark.threadsparkPrecision} (19/20, 1 false alarm)
                 </div>
-                <div className="text-[10px] text-slate-400 mt-1">vs. {SITE_CONFIG.benchmark.baselineLLMPrecision} for raw LLM prompt baseline</div>
+                <div className="text-[10px] text-slate-400 mt-1">vs. {SITE_CONFIG.benchmark.baselineLLMPrecision} (9/22, 13 hallucinated errors) for LLM baseline</div>
               </div>
+            </div>
+
+            <div className="pt-2 text-[11px] font-mono text-slate-400 text-center">
+              Note: Because errors were self-seeded internally, this serves as an architectural sanity check. A held-out experiment on external author manuscripts is currently ongoing.
             </div>
           </div>
         </div>
@@ -640,7 +723,7 @@ export default function HomePage() {
             <span className="italic font-light text-brand-champagne">Give it a memory that doesn&apos;t fade.</span>
           </h2>
           <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
-            Step inside the interactive demonstration of Threadspark Studio or apply for the closed beta to run your own manuscripts.
+            Step inside the interactive demonstration of Threadspark Studio or apply for the design partner program to run your own manuscripts.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
@@ -657,7 +740,7 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white font-medium text-sm transition-all border border-white/10"
             >
               <UserCheck className="w-4 h-4 text-brand-champagne" />
-              <span>Apply for Beta Cohort</span>
+              <span>Apply for Design Partner Program</span>
             </button>
           </div>
         </div>

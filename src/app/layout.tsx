@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Newsreader, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { SITE_CONFIG } from "@/lib/site";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -22,9 +23,36 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "THREADSPARK — Personal Intelligence for Everything You Create",
-  description: "An AI platform that develops an ongoing contextual understanding of your creative projects, fictional universes, research archives, and documents.",
-  keywords: ["AI", "Creative Intelligence", "Personal Knowledge", "Worldbuilding", "Writing Assistant", "Threadspark"],
+  title: "Threadspark | The Source of Truth for Long-Form Fiction",
+  description:
+    "Deterministic continuity engine and living story bible for indie series authors. Tracks character states, physical invariants, and epistemic secrets across multi-book sagas.",
+  keywords: [
+    "fiction continuity",
+    "story bible",
+    "series authors",
+    "epistemic tracking",
+    "novel writing assistant",
+    "Threadspark",
+    "worldbuilding",
+    "continuity checker",
+  ],
+  authors: [{ name: SITE_CONFIG.founder.name, url: SITE_CONFIG.founder.linkedIn }],
+  creator: SITE_CONFIG.founder.name,
+  openGraph: {
+    title: "Threadspark | The Source of Truth for Long-Form Fiction",
+    description:
+      "Deterministic continuity engine and living story bible for indie series authors. Tracks character states, physical invariants, and epistemic secrets across multi-book sagas.",
+    url: `https://${SITE_CONFIG.companyDomain}`,
+    siteName: "Threadspark",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Threadspark | The Source of Truth for Long-Form Fiction",
+    description:
+      "Deterministic continuity engine and living story bible for indie series authors.",
+  },
 };
 
 export default function RootLayout({
@@ -40,4 +68,3 @@ export default function RootLayout({
     </html>
   );
 }
-

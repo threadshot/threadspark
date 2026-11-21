@@ -8,7 +8,8 @@ import { ContextualAIPanel } from "@/components/studio/ContextualAIPanel";
 import { PresenterTourBar } from "@/components/studio/PresenterTourBar";
 import { CommandPalette } from "@/components/CommandPalette";
 import { BetaApplicationModal } from "@/components/BetaApplicationModal";
-import { Sparkles } from "lucide-react";
+import { Sparkles, UserCheck } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/site";
 
 // Views
 import { OverviewView } from "@/components/studio/views/OverviewView";
@@ -102,14 +103,16 @@ function StudioContent() {
         <div className="bg-gradient-to-r from-brand-violet/20 via-brand-surface to-brand-charcoal px-4 py-2 border-b border-brand-violet/30 flex items-center justify-between text-xs font-mono select-none flex-shrink-0 z-30">
           <div className="flex items-center gap-2 text-slate-300 truncate">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
-            <span className="text-white font-medium">Interactive Demo:</span>
-            <span className="text-slate-300 truncate">Preloaded with <em>The Glass Meridian</em> (36,420 words &bull; 12 character dossiers &bull; 148 graph nodes).</span>
+            <span className="text-white font-medium">Illustrative Prototype Demo:</span>
+            <span className="text-slate-300 truncate">
+              Preloaded with <em>{SITE_CONFIG.demoManuscript.title}</em> ({SITE_CONFIG.demoManuscript.wordCount} words &bull; {SITE_CONFIG.demoManuscript.characters} character dossiers &bull; {SITE_CONFIG.demoManuscript.stateNodes} graph nodes).
+            </span>
           </div>
           <button
             onClick={() => setBetaOpen(true)}
             className="ml-3 px-3 py-1 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-[11px] font-medium transition-all flex items-center gap-1.5 flex-shrink-0 shadow-sm"
           >
-            <Sparkles className="w-3 h-3 text-brand-champagne" />
+            <UserCheck className="w-3 h-3 text-brand-champagne" />
             <span>Apply to analyze your series &rarr;</span>
           </button>
         </div>
@@ -145,7 +148,7 @@ function StudioContent() {
         </div>
       )}
 
-      {/* 4. Guided Presenter Tour Overlay Dock */}
+      {/* 4. Guided Feature Tour Overlay Dock */}
       <PresenterTourBar
         activeTab={activeTab}
         onSelectTab={setActiveTab}
@@ -160,8 +163,33 @@ function StudioContent() {
 
 export default function StudioPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-brand-void flex items-center justify-center text-xs font-mono text-slate-400">Loading Threadspark Studio...</div>}>
-      <StudioContent />
-    </Suspense>
+    <>
+      {/* Search Crawler and Non-JavaScript Accessible Summary */}
+      <noscript>
+        <div className="p-8 max-w-4xl mx-auto bg-slate-900 text-slate-100 font-sans space-y-6">
+          <h1 className="text-3xl font-serif">Threadspark Studio — Interactive Prototype</h1>
+          <p className="text-base text-slate-300">
+            Threadspark is a deterministic continuity engine and living story bible for fiction authors. This studio prototype is preloaded with the complete sample political fantasy manuscript of <em>The Glass Meridian</em> (36,420 words, 8 chapters).
+          </p>
+          <div className="space-y-4">
+            <h2 className="text-xl font-medium text-purple-300">Preloaded Prototype Capabilities:</h2>
+            <ul className="list-disc pl-6 space-y-2 text-sm text-slate-300">
+              <li><strong>Document Ingestion Pipeline:</strong> Multi-pass lexical parsing, entity identification, and chronological event mapping.</li>
+              <li><strong>Stylometrics &amp; Authorship Profiling:</strong> 0.76 Type-Token Ratio, 18.4 avg sentence length, dialogue cadence analysis.</li>
+              <li><strong>Character Dossiers &amp; Epistemic Bounds:</strong> 12 character profiles tracking secrets, alliances, and knowledge propagation.</li>
+              <li><strong>Relational Knowledge Graph:</strong> 148 state nodes connecting characters, locations, carried artifacts, and political covenants.</li>
+              <li><strong>Continuity Radar:</strong> Detection of physical state invariants (broken seal reappearance, ignored forearm fracture) with links to conflicting passages.</li>
+            </ul>
+          </div>
+          <p className="text-sm text-slate-400">
+            To participate in the 25-author Design Partner Program, contact founder Ezekiel Heretta at kumirealms@gmail.com.
+          </p>
+        </div>
+      </noscript>
+
+      <Suspense fallback={<div className="min-h-screen bg-brand-void flex items-center justify-center text-xs font-mono text-slate-400">Loading Threadspark Studio Prototype...</div>}>
+        <StudioContent />
+      </Suspense>
+    </>
   );
 }

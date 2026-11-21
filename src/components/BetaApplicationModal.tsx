@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, CheckCircle2, Sparkles, Send, ShieldCheck } from "lucide-react";
+import { X, CheckCircle2, Sparkles, Send, ShieldCheck, UserCheck } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/site";
 
 interface BetaModalProps {
@@ -13,7 +13,7 @@ export function BetaApplicationModal({ isOpen, onClose }: BetaModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    genre: "Fantasy",
+    genre: "Epic Fantasy",
     bookCount: "2-3 Books",
     wordCount: "100k - 250k words",
     currentTools: "",
@@ -28,17 +28,17 @@ export function BetaApplicationModal({ isOpen, onClose }: BetaModalProps) {
     setSubmitted(true);
 
     const subject = encodeURIComponent(
-      `Threadspark Beta Application: ${formData.name} (${formData.genre})`
+      `Threadspark Design Partner Application: ${formData.name} (${formData.genre})`
     );
     const body = encodeURIComponent(
-      `Hi Ezekiel,\n\nI would like to apply for the Threadspark Closed Beta.\n\n` +
+      `Hi Ezekiel,\n\nI would like to apply for the Threadspark Design Partner Program.\n\n` +
         `• Name: ${formData.name}\n` +
         `• Email: ${formData.email}\n` +
         `• Genre: ${formData.genre}\n` +
         `• Series Size: ${formData.bookCount} (~${formData.wordCount})\n` +
         `• Current Continuity Method: ${formData.currentTools || "None / Memory"}\n` +
         `• Willing to give weekly feedback: ${formData.feedbackCommitment ? "Yes" : "No"}\n\n` +
-        `Looking forward to running our manuscript through the continuity pipeline!`
+        `Looking forward to testing our manuscript in the continuity pipeline!`
     );
 
     // Open mailto link so it dispatches directly to Ezekiel's email
@@ -67,10 +67,10 @@ export function BetaApplicationModal({ isOpen, onClose }: BetaModalProps) {
             </div>
             <div>
               <h3 className="font-serif text-lg font-medium text-white">
-                Series Author Closed Beta
+                Design Partner Program
               </h3>
               <p className="text-[11px] font-mono text-slate-400">
-                Cohort of {SITE_CONFIG.betaCohortSize} Authors • Free Concierge Onboarding
+                Cohort of {SITE_CONFIG.designPartnerCohortSize} Authors &bull; Free Concierge Onboarding
               </p>
             </div>
           </div>
@@ -227,7 +227,7 @@ export function BetaApplicationModal({ isOpen, onClose }: BetaModalProps) {
                   className="w-full py-3 rounded-full bg-gradient-to-r from-brand-violet to-purple-600 hover:from-purple-500 hover:to-brand-violet text-white text-xs font-mono font-medium transition-all shadow-xl shadow-brand-violet/25 flex items-center justify-center gap-2"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>Submit Closed Beta Application</span>
+                  <span>Submit Design Partner Application</span>
                 </button>
               </div>
             </form>

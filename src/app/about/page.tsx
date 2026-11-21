@@ -24,6 +24,8 @@ import {
   Mail,
   User,
   Check,
+  UserCheck,
+  ExternalLink,
 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/site";
 
@@ -55,23 +57,26 @@ export default function AboutPage() {
 
   const milestones = [
     {
-      version: "Phase 1: Active Today",
-      year: "Current Release",
-      status: "Live in Closed Beta",
-      title: "Temporal Graph & Precision Continuity",
-      summary: "Validated on open-weight models: automated manuscript ingestion, propose-then-confirm story bible extraction, temporal state invariants (injuries, items, locations), and epistemic leak detection.",
+      version: "Phase 1: Working Prototype",
+      tag: "Prototype (working)",
+      period: "2026",
+      status: "Functional Prototype",
+      title: "Temporal Graph & Ingestion Engine",
+      summary: "Validated on open-weight models: automated manuscript ingestion, propose-then-confirm story bible extraction, temporal state invariants (injuries, items, locations), and epistemic leak detection on sample manuscripts.",
     },
     {
       version: "Phase 2: In Development",
-      year: "Q2 2025",
-      status: "In Training",
+      tag: "In development",
+      period: "Target: Q2 2027",
+      status: "In Development",
       title: "Per-Author LoRA Style Adapters",
-      summary: "Lightweight (~25MB) PEFT/LoRA style adapters trained solely on an author's backlist. Authors own their adapter weights (.safetensors) with 100% portable sovereignty.",
+      summary: "Lightweight (~25MB) PEFT/LoRA style adapters trained solely on an author's backlist. Authors own their adapter weights (.safetensors) with 100% portable sovereignty. Currently in active model pipeline development.",
     },
     {
-      version: "Phase 3: Roadmap",
-      year: "2026",
-      status: "Research",
+      version: "Phase 3: Long-Term Vision",
+      tag: "Vision",
+      period: "Target: 2028",
+      status: "Vision / Research",
       title: "Consensual Genre Bases & Studio Sandbox",
       summary: "Genre- and trope-tuned base models built strictly on public-domain or explicitly compensated, opt-in author archives with verified legal provenance.",
     },
@@ -118,7 +123,7 @@ export default function AboutPage() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill border border-brand-border mb-6">
             <Feather className="w-3.5 h-3.5 text-brand-champagne" />
             <span className="text-xs font-mono uppercase tracking-widest text-brand-lavender">
-              About Threadspark &amp; The Founder
+              About Threadspark &bull; The Founder &amp; The Thesis
             </span>
           </div>
 
@@ -135,8 +140,8 @@ export default function AboutPage() {
               onClick={() => setBetaOpen(true)}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono font-medium transition-all shadow-xl shadow-brand-violet/25"
             >
-              <Sparkles className="w-4 h-4 text-brand-champagne" />
-              <span>Apply for Closed Beta (25 Authors)</span>
+              <UserCheck className="w-4 h-4 text-brand-champagne" />
+              <span>Apply for Design Partner Program</span>
             </button>
 
             <Link
@@ -144,38 +149,71 @@ export default function AboutPage() {
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-mono font-medium transition-all border border-white/10"
             >
               <BookOpen className="w-4 h-4 text-brand-champagne" />
-              <span>Explore Interactive Studio</span>
+              <span>Explore Studio Prototype</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* FOUNDER STORY SECTION */}
+      {/* FOUNDER & COMPANY FACTS SECTION */}
       <section className="py-24 border-b border-brand-border/40 relative bg-brand-dark/30">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
             <div className="md:col-span-5 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-violet/20 border border-brand-violet/40 text-brand-lavender text-xs font-mono">
                 <User className="w-3.5 h-3.5" />
-                <span>The Founder</span>
+                <span>The Founder &amp; Company Facts</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl text-white font-normal">
-                Why Ezekiel Heretta Built Threadspark
+                Ezekiel Heretta
               </h2>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Software engineer, lifelong speculative fiction reader, and builder of deterministic narrative systems.
+                Solo founder, software engineer, and lifelong speculative fiction reader building deterministic continuity tools.
               </p>
 
+              {/* Verified Company Facts Box for AWS & Reviewers */}
               <div className="p-5 rounded-2xl bg-brand-charcoal/80 border border-brand-border space-y-3 font-mono text-xs">
-                <div className="text-brand-champagne font-semibold">Direct Founder Contact:</div>
-                <div className="text-slate-300 flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5 text-brand-lavender" />
-                  <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="hover:underline">
-                    {SITE_CONFIG.contactEmail}
-                  </a>
+                <div className="text-brand-champagne font-semibold uppercase tracking-wider text-[11px]">
+                  Verified Company Facts:
+                </div>
+                <div className="space-y-1.5 text-slate-300">
+                  <div className="flex justify-between border-b border-white/5 pb-1">
+                    <span className="text-slate-400">Founded:</span>
+                    <span>{SITE_CONFIG.foundedYear}</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/5 pb-1">
+                    <span className="text-slate-400">Structure:</span>
+                    <span>Solo Founder &amp; Engineer</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/5 pb-1">
+                    <span className="text-slate-400">Funding Stage:</span>
+                    <span className="text-emerald-400">{SITE_CONFIG.companyType}</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/5 pb-1">
+                    <span className="text-slate-400">Company Domain:</span>
+                    <span>{SITE_CONFIG.companyDomain}</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/5 pb-1">
+                    <span className="text-slate-400">Direct Email:</span>
+                    <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-brand-champagne underline">
+                      {SITE_CONFIG.contactEmail}
+                    </a>
+                  </div>
+                  <div className="flex justify-between pt-1">
+                    <span className="text-slate-400">Founder Profile:</span>
+                    <a
+                      href={SITE_CONFIG.founder.linkedIn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-lavender underline inline-flex items-center gap-1"
+                    >
+                      <span>LinkedIn Profile</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
                 </div>
                 <div className="text-slate-400 text-[11px] pt-1">
-                  Personally onboarding the initial 25 series author beta cohort.
+                  Personally onboarding the initial 25 series author design partner cohort.
                 </div>
               </div>
             </div>
@@ -271,7 +309,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* HONEST ROADMAP: WHAT WORKS TODAY VS WHAT'S PLANNED */}
+      {/* HONEST ROADMAP: WITH UPDATED DATES AND UNIFORM 3 TAGS */}
       <section className="py-24 border-b border-brand-border/40 relative bg-brand-dark/30">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -282,7 +320,7 @@ export default function AboutPage() {
               What Works Today vs. What&apos;s Planned
             </h2>
             <p className="text-slate-400 text-sm">
-              We reject ungrounded AI claims. Here is our staged engineering roadmap from bedrock graph parsing to private style adapters.
+              We reject ungrounded AI claims. Every milestone is marked with its exact implementation status: <span className="text-emerald-400 font-semibold font-mono">Prototype (working)</span>, <span className="text-amber-300 font-semibold font-mono">In development</span>, or <span className="text-purple-300 font-semibold font-mono">Vision</span>.
             </p>
           </div>
 
@@ -291,7 +329,7 @@ export default function AboutPage() {
               <div
                 key={m.version}
                 className={`glass-panel p-6 rounded-2xl border flex flex-col justify-between ${
-                  m.status.includes("Live")
+                  m.tag === "Prototype (working)"
                     ? "border-brand-violet/50 shadow-lg shadow-brand-violet/10"
                     : "border-white/10"
                 }`}
@@ -303,19 +341,21 @@ export default function AboutPage() {
                     </span>
                     <span
                       className={`text-[10px] font-mono px-2 py-0.5 rounded ${
-                        m.status.includes("Live")
-                          ? "bg-brand-violet text-white font-semibold"
-                          : "bg-brand-surface text-slate-400"
+                        m.tag === "Prototype (working)"
+                          ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 font-semibold"
+                          : m.tag === "In development"
+                          ? "bg-amber-500/10 border border-amber-500/20 text-amber-300 font-semibold"
+                          : "bg-purple-500/10 border border-purple-500/20 text-purple-300 font-semibold"
                       }`}
                     >
-                      {m.status}
+                      {m.tag}
                     </span>
                   </div>
                   <h3 className="font-serif text-lg font-medium text-white mb-2">{m.title}</h3>
                   <p className="text-xs text-slate-400 leading-relaxed mb-4">{m.summary}</p>
                 </div>
                 <div className="pt-3 border-t border-white/5 text-[11px] font-mono text-slate-400">
-                  Target: {m.year}
+                  Target: {m.period}
                 </div>
               </div>
             ))}
@@ -404,8 +444,8 @@ export default function AboutPage() {
               onClick={() => setBetaOpen(true)}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono font-medium transition-all shadow-xl shadow-brand-violet/25"
             >
-              <Sparkles className="w-4 h-4 text-brand-champagne" />
-              <span>Join Closed Beta (25 Authors)</span>
+              <UserCheck className="w-4 h-4 text-brand-champagne" />
+              <span>Join Design Partner Program (25 Authors)</span>
             </button>
 
             <Link
@@ -413,7 +453,7 @@ export default function AboutPage() {
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-mono font-medium transition-all border border-white/10"
             >
               <BookOpen className="w-4 h-4 text-brand-champagne" />
-              <span>Explore Studio Demonstration</span>
+              <span>Explore Studio Prototype</span>
             </Link>
           </div>
         </div>

@@ -22,11 +22,11 @@ export default function PrivacyPage() {
           </div>
 
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-white mb-6 leading-tight">
-            Our Plain-Language Data Promise
+            Our Data Commitments &amp; Privacy Architecture
           </h1>
 
           <p className="text-slate-300 text-lg md:text-xl font-light leading-relaxed mb-12">
-            For writers, an unpublished manuscript is the most sensitive document they possess. Here is our exact, enforceable commitment regarding your intellectual property.
+            For fiction writers, an unpublished manuscript is the most sensitive document they possess. Here are the core architectural commitments we design toward to protect your intellectual property.
           </p>
 
           <div className="space-y-12">
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
 
             {/* 2. Concrete Commitments */}
             <div className="space-y-6">
-              <h3 className="font-serif text-2xl text-white font-medium">Five Direct Commitments</h3>
+              <h3 className="font-serif text-2xl text-white font-medium">Architectural Design Commitments</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 rounded-2xl bg-brand-dark/70 border border-white/10 space-y-3">
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
                   </div>
                   <h4 className="font-serif text-lg text-white font-medium">2. Author-Owned Style Adapters</h4>
                   <p className="text-xs text-slate-300 leading-relaxed">
-                    If you use the optional voice-fingerprint feature, the resulting style adapter weights (.safetensors) are 100% your property. You can download and run them privately anytime.
+                    In Phase 2, if you use the optional voice-fingerprint feature, the resulting style adapter weights (.safetensors) are 100% your property. You can download and run them privately anytime.
                   </p>
                 </div>
 
@@ -93,11 +93,11 @@ export default function PrivacyPage() {
               </div>
             </div>
 
-            {/* 3. Beta Cohort Transparency */}
+            {/* 3. Design Partner Cohort Transparency */}
             <div className="p-8 rounded-3xl bg-brand-charcoal/50 border border-brand-border space-y-4">
-              <h3 className="font-serif text-xl text-white font-medium">Beta Cohort Manuscript Handling</h3>
+              <h3 className="font-serif text-xl text-white font-medium">Design Partner Cohort Manuscript Handling</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                During the closed beta cohort of {SITE_CONFIG.betaCohortSize} authors, all manuscript ingestion and verification runs are supervised directly by founder {SITE_CONFIG.founder.name}. Manuscripts are ingested over encrypted connections into dedicated AWS environments and never pooled.
+                During the early design partner cohort of {SITE_CONFIG.designPartnerCohortSize} authors, all manuscript ingestion and verification runs are supervised directly by solo founder {SITE_CONFIG.founder.name}. Manuscripts are ingested over encrypted connections into dedicated AWS environments and never pooled.
               </p>
               <div className="pt-2 flex items-center gap-3">
                 <a

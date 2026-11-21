@@ -22,6 +22,7 @@ import {
   ShieldCheck,
   Gamepad2,
   Scroll,
+  UserCheck,
 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/site";
 
@@ -35,6 +36,7 @@ export default function UseCasesPage() {
       id: "series-authors",
       icon: BookOpen,
       badge: "Primary Wedge • Multi-Book Sagas",
+      tag: "Prototype (working)",
       title: "Indie Series Authors",
       subtitle: "Where continuity burden compounds across Books 1 through 10.",
       description:
@@ -44,14 +46,14 @@ export default function UseCasesPage() {
         "Epistemic boundaries preventing characters from leaking secrets they haven't witnessed",
         "Chronological timeline graph linking plot dependencies across volumes",
         "1-click passage links to conflicting lines in previous drafts and books",
-        "Phase 2 author LoRA style adapter preserving voice across multi-year sagas",
+        "Phase 2 author LoRA style adapter preserving voice across multi-year sagas (In development)",
       ],
       studioDeepLink: "/studio?tab=continuity",
       scenarios: [
         {
           title: "Tracking Secrets Across a 3-Book Arc",
           challenge: "In Book 1, Mara secretly poisons the imperial regent. In Book 3, an allied commander references the poison during a war council before Mara ever confesses.",
-          resolution: "Threadspark flags an Epistemic Knowledge Collision, showing that the allied commander was never present during the poisoning or privy to the discovery.",
+          resolution: "Threadspark flags an Epistemic Knowledge Collision in the prototype, showing that the allied commander was never present during the poisoning or privy to the discovery.",
           metric: "Epistemic Boundary Enforced",
         },
         {
@@ -66,6 +68,7 @@ export default function UseCasesPage() {
       id: "serial-novelists",
       icon: Feather,
       badge: "High Velocity • Serialization",
+      tag: "Prototype (working)",
       title: "Serial & Web Novelists",
       subtitle: "Weekly release pressure where reader-facing retcons are fatal.",
       description:
@@ -97,6 +100,7 @@ export default function UseCasesPage() {
       id: "narrative-games",
       icon: Gamepad2,
       badge: "Branching Canon • Narrative Studios",
+      tag: "In development",
       title: "Narrative Game Teams & TTRPG GMs",
       subtitle: "Managing branching storylines, player state, and world consequence.",
       description:
@@ -128,6 +132,7 @@ export default function UseCasesPage() {
       id: "worldbuilders",
       icon: Compass,
       badge: "Speculative Worlds & Lore",
+      tag: "Prototype (working)",
       title: "Speculative Worldbuilders",
       subtitle: "Build consistent magic systems, fictional histories, and political maps.",
       description:
@@ -218,9 +223,20 @@ export default function UseCasesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left: Overview & Capabilities */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-violet/20 border border-brand-violet/40 text-brand-lavender text-xs font-mono">
-                <CurrentIcon className="w-3.5 h-3.5" />
-                <span>{currentCase.badge}</span>
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-violet/20 border border-brand-violet/40 text-brand-lavender text-xs font-mono">
+                  <CurrentIcon className="w-3.5 h-3.5" />
+                  <span>{currentCase.badge}</span>
+                </div>
+                <span
+                  className={`text-[10px] font-mono px-2 py-0.5 rounded ${
+                    currentCase.tag === "Prototype (working)"
+                      ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-300"
+                      : "bg-amber-500/10 border border-amber-500/30 text-amber-300"
+                  }`}
+                >
+                  {currentCase.tag}
+                </span>
               </div>
 
               <h2 className="font-serif text-3xl sm:text-4xl text-white font-normal leading-tight">
@@ -254,8 +270,8 @@ export default function UseCasesPage() {
                   onClick={() => setBetaOpen(true)}
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-violet hover:bg-purple-600 text-xs font-mono font-medium text-white transition-all shadow-md"
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
-                  <span>Apply for Beta Cohort</span>
+                  <UserCheck className="w-3.5 h-3.5 text-brand-champagne" />
+                  <span>Apply for Design Partner Cohort</span>
                 </button>
 
                 <Link
@@ -276,7 +292,7 @@ export default function UseCasesPage() {
                     Live Continuity Scenario Simulation
                   </span>
                   <span className="text-xs font-mono text-brand-champagne">
-                    Interactive Walkthrough
+                    Illustrative Sample Output
                   </span>
                 </div>
 
@@ -312,7 +328,7 @@ export default function UseCasesPage() {
                   <div className="p-4 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 space-y-1.5">
                     <span className="text-[10px] font-mono uppercase text-emerald-400 font-semibold block flex items-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5" />
-                      Threadspark Deterministic Resolution:
+                      Threadspark Resolution ({currentCase.tag}):
                     </span>
                     <p className="text-xs text-slate-200 font-sans leading-relaxed">
                       {activeScenario.resolution}
@@ -320,8 +336,8 @@ export default function UseCasesPage() {
                   </div>
 
                   <div className="p-3 rounded-xl bg-brand-surface/70 border border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
-                    <span>Performance Metric: <strong>{activeScenario.metric}</strong></span>
-                    <span className="text-brand-champagne">100% Deterministic</span>
+                    <span>Performance Target: <strong>{activeScenario.metric}</strong></span>
+                    <span className="text-brand-champagne">Deterministic Rule</span>
                   </div>
                 </div>
               </div>
@@ -359,14 +375,25 @@ export default function UseCasesPage() {
                   className="glass-panel-interactive p-6 rounded-2xl cursor-pointer flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-brand-violet/10 border border-brand-violet/30 text-brand-lavender flex items-center justify-center mb-4">
-                      <Icon className="w-5 h-5" />
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-brand-violet/10 border border-brand-violet/30 text-brand-lavender flex items-center justify-center">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <span
+                        className={`text-[9px] font-mono px-2 py-0.5 rounded ${
+                          c.tag === "Prototype (working)"
+                            ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                            : "bg-amber-500/10 text-amber-300 border border-amber-500/20"
+                        }`}
+                      >
+                        {c.tag}
+                      </span>
                     </div>
                     <h3 className="font-serif text-xl text-white font-medium mb-2">{c.title}</h3>
                     <p className="text-xs text-slate-400 leading-relaxed mb-4">{c.subtitle}</p>
                   </div>
                   <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs text-brand-champagne font-mono">
-                    <span>Test Workflow</span>
+                    <span>Inspect Workflow</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
@@ -390,8 +417,8 @@ export default function UseCasesPage() {
               onClick={() => setBetaOpen(true)}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono font-medium transition-all shadow-xl shadow-brand-violet/25"
             >
-              <Sparkles className="w-4 h-4 text-brand-champagne" />
-              <span>Apply for 25-Author Closed Beta</span>
+              <UserCheck className="w-4 h-4 text-brand-champagne" />
+              <span>Apply for 25-Author Design Partner Program</span>
             </button>
 
             <Link
@@ -399,7 +426,7 @@ export default function UseCasesPage() {
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-mono font-medium transition-all border border-white/10"
             >
               <BookOpen className="w-4 h-4 text-brand-champagne" />
-              <span>Explore Interactive Demo</span>
+              <span>Explore Studio Prototype</span>
             </Link>
           </div>
         </div>
