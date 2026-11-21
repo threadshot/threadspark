@@ -7,6 +7,8 @@ import { StudioHeader } from "@/components/studio/StudioHeader";
 import { ContextualAIPanel } from "@/components/studio/ContextualAIPanel";
 import { PresenterTourBar } from "@/components/studio/PresenterTourBar";
 import { CommandPalette } from "@/components/CommandPalette";
+import { BetaApplicationModal } from "@/components/BetaApplicationModal";
+import { Sparkles } from "lucide-react";
 
 // Views
 import { OverviewView } from "@/components/studio/views/OverviewView";
@@ -26,6 +28,7 @@ function StudioContent() {
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(true);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [isPresenterTourOpen, setIsPresenterTourOpen] = useState(false);
+  const [betaOpen, setBetaOpen] = useState(false);
   const [resetKey, setResetKey] = useState(0);
 
   // Sync tab with URL query parameter if provided
@@ -95,6 +98,22 @@ function StudioContent() {
 
       {/* 2. Main Central Application Shell */}
       <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+        {/* Interactive Sample Manuscript Notice Banner */}
+        <div className="bg-gradient-to-r from-brand-violet/20 via-brand-surface to-brand-charcoal px-4 py-2 border-b border-brand-violet/30 flex items-center justify-between text-xs font-mono select-none flex-shrink-0 z-30">
+          <div className="flex items-center gap-2 text-slate-300 truncate">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+            <span className="text-white font-medium">Interactive Demo:</span>
+            <span className="text-slate-300 truncate">Preloaded with <em>The Glass Meridian</em> (36,420 words &bull; 12 character dossiers &bull; 148 graph nodes).</span>
+          </div>
+          <button
+            onClick={() => setBetaOpen(true)}
+            className="ml-3 px-3 py-1 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-[11px] font-medium transition-all flex items-center gap-1.5 flex-shrink-0 shadow-sm"
+          >
+            <Sparkles className="w-3 h-3 text-brand-champagne" />
+            <span>Apply to analyze your series &rarr;</span>
+          </button>
+        </div>
+
         {/* Top Header */}
         <StudioHeader
           activeTab={activeTab}
@@ -133,6 +152,8 @@ function StudioContent() {
         isOpen={isPresenterTourOpen}
         onClose={() => setIsPresenterTourOpen(false)}
       />
+
+      <BetaApplicationModal isOpen={betaOpen} onClose={() => setBetaOpen(false)} />
     </div>
   );
 }

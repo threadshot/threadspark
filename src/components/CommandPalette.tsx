@@ -66,11 +66,11 @@ export function CommandPalette() {
 
   const items: CommandItem[] = [
     // Pages
-    { id: "page-home", title: "Overview / Homepage", category: "Navigation", description: "Return to THREADSPARK home", icon: LayoutDashboard, href: "/" },
-    { id: "page-platform", title: "Platform Architecture", category: "Navigation", description: "Deep dive into the 6 cognitive pillars", icon: Layers, href: "/platform" },
-    { id: "page-use-cases", title: "Use Cases & Case Studies", category: "Navigation", description: "Novelists, Worldbuilders, Screenwriters, Researchers", icon: Compass, href: "/use-cases" },
-    { id: "page-about", title: "Manifesto & Thesis", category: "Navigation", description: "Our mission, philosophy, and principles", icon: Info, href: "/about" },
-    { id: "page-studio", title: "Launch THREADSPARK Studio", category: "Navigation", description: "Interactive product demonstration", icon: Sparkles, href: "/studio" },
+    { id: "page-home", title: "Overview / Homepage", category: "Navigation", description: "Return to Threadspark home", icon: LayoutDashboard, href: "/" },
+    { id: "page-platform", title: "How Threadspark Works", category: "Navigation", description: "Deep dive into the 4-step canon pipeline", icon: Layers, href: "/platform" },
+    { id: "page-use-cases", title: "Use Cases & Workflows", category: "Navigation", description: "Series authors, web serialists, game teams, worldbuilders", icon: Compass, href: "/use-cases" },
+    { id: "page-about", title: "About & Founder", category: "Navigation", description: "Founder story, mission, and roadmap", icon: Info, href: "/about" },
+    { id: "page-studio", title: "Threadspark Studio", category: "Navigation", description: "Interactive product demonstration", icon: Sparkles, href: "/studio" },
 
     // Studio Views
     { id: "st-doc", title: "Document Ingestion Pipeline", category: "Studio Views", description: "8-stage manuscript synthesis simulation", icon: FileSearch, href: "/studio?tab=document-intelligence" },

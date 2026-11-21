@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { BetaApplicationModal } from "@/components/BetaApplicationModal";
 import {
   Sparkles,
   ArrowRight,
@@ -15,81 +16,82 @@ import {
   Globe,
   BookOpen,
   Anchor,
-  Building2,
   GitBranch,
   Lock,
   Layers,
   CheckCircle2,
   Clock,
+  Mail,
+  User,
+  Check,
 } from "lucide-react";
-import { sound } from "@/lib/sound";
-import { InvestorModal } from "@/components/InvestorModal";
+import { SITE_CONFIG } from "@/lib/site";
 
 export default function AboutPage() {
-  const [investorOpen, setInvestorOpen] = useState(false);
+  const [betaOpen, setBetaOpen] = useState(false);
 
   const principles = [
     {
       title: "Context Sovereignty",
       description:
-        "Your thoughts, characters, research, and stories belong solely to you. We believe in local-first storage, encrypted relational graphs, and a strict commitment against training third-party public foundation models on private user creations.",
+        "Your characters, lore, manuscripts, and outlines belong solely to you. We believe in encrypted, local-first storage, private graph topologies, and an absolute commitment against training public foundation models on private author creations.",
     },
     {
-      title: "Symbiosis, Not Replacement",
+      title: "Symbiosis, Not Ghostwriting",
       description:
-        "The goal of AI in creative work should never be to press a button and generate a generic book. The goal is to illuminate connections, preserve memory, spark lateral thinking, and empower human authors to reach heights of complexity previously unmanageable.",
+        "The goal of AI in fiction should never be to press a button and generate a generic novel. The goal is to preserve memory, enforce continuity, track state, and empower human authors to manage sprawling multi-book universes without fear of plot holes.",
     },
     {
-      title: "Long-Horizon Intelligence",
+      title: "State Is More Than Raw Text",
       description:
-        "Ephemeral prompt windows are fundamentally incompatible with ambitious intellectual projects. True personal intelligence requires an architecture built for years, remembering early fragments as clearly as recent drafts.",
+        "A 1-million-token context window is not a state machine. It cannot reliably remember whether a character's left arm is broken in Chapter 14 or whether they've learned a secret yet. True narrative intelligence requires structured, deterministic temporal graphs.",
     },
     {
       title: "Stylistic Sanctity",
       description:
-        "An author's voice is their soul. We reject homogenized, bland machine prose. Our system studies and respects your syntax, rhythm, vocabulary, and tonal choices, acting as a true mirror to your unique literary style.",
+        "An author's voice is their signature. We reject homogenized machine prose. In our staged model architecture, style is captured through private, author-owned lightweight adapters—never pooled into shared foundation models.",
     },
   ];
 
   const milestones = [
     {
-      version: "Phase 1",
-      year: "2024",
-      status: "Completed",
-      title: "Core Graph & Ingestion Engine",
-      summary: "Validated on open-weight models: manuscript chunking, entity extraction, temporal story-state mapping, and epistemic boundary enforcement.",
-    },
-    {
-      version: "Phase 2",
+      version: "Phase 1: Active Today",
       year: "Current Release",
-      status: "Active",
-      title: "Per-Author LoRA Style Adapters",
-      summary: "Lightweight (~25MB) style adapters trained solely on an author's prose. Authors own their adapter weights (.safetensors) with 100% portable sovereignty.",
+      status: "Live in Closed Beta",
+      title: "Temporal Graph & Precision Continuity",
+      summary: "Validated on open-weight models: automated manuscript ingestion, propose-then-confirm story bible extraction, temporal state invariants (injuries, items, locations), and epistemic leak detection.",
     },
     {
-      version: "Phase 3",
-      year: "2026-2027",
-      status: "In Development",
+      version: "Phase 2: In Development",
+      year: "Q2 2025",
+      status: "In Training",
+      title: "Per-Author LoRA Style Adapters",
+      summary: "Lightweight (~25MB) PEFT/LoRA style adapters trained solely on an author's backlist. Authors own their adapter weights (.safetensors) with 100% portable sovereignty.",
+    },
+    {
+      version: "Phase 3: Roadmap",
+      year: "2026",
+      status: "Research",
       title: "Consensual Genre Bases & Studio Sandbox",
-      summary: "Genre- and theme-tuned base models built strictly on public-domain or explicitly compensated, opt-in author datasets with verified provenance.",
+      summary: "Genre- and trope-tuned base models built strictly on public-domain or explicitly compensated, opt-in author archives with verified legal provenance.",
     },
   ];
 
   const strategicRisks = [
     {
       risk: "Authors' Distrust of AI",
-      detail: "Many serious fiction writers view AI as generic ghostwriting that undermines creative integrity.",
-      mitigation: "Positioned strictly as a memory assistant, temporal fact-checker, and developmental editor. Text generation is strictly optional; our primary value is state tracking.",
+      detail: "Many serious fiction writers view AI as generic ghostwriting that threatens creative integrity and plagiarizes author labor.",
+      mitigation: "Positioned strictly as a continuity supervisor and memory engine. Threadspark never ghostwrites your books; text generation is strictly optional and our core product is deterministic state tracking.",
     },
     {
       risk: "Extraction Errors & Hallucinations",
-      detail: "Automated NLP pipelines can misidentify aliases, misattribute dialogue, or flag false continuity bugs.",
-      mitigation: "Propose-then-confirm workflow gives authors final veto on every entity. Collision radar is tuned for precision over recall to eliminate annoying false alarms.",
+      detail: "Automated NLP pipelines can misidentify character aliases, confuse dialogue attributions, or flag false continuity bugs.",
+      mitigation: "Propose-then-confirm workflow gives authors final veto on every entity and timeline event. Collision detection is aggressively tuned for precision over recall to eliminate crying-wolf false alarms.",
     },
     {
       risk: "Incumbents Adding Auto-Extraction",
-      detail: "Competitors with existing distribution (Sudowrite, Novelcrafter) could try to automate their story bibles.",
-      mitigation: "We compete on temporal story-state & epistemic boundaries, author-owned LoRA weights, and private-cloud data sovereignty—not just note summaries.",
+      detail: "Competitors with existing distribution (Sudowrite, Novelcrafter) could attempt to automate their manual story bibles.",
+      mitigation: "We compete on temporal story-state & epistemic boundaries ('who knows what, when'), author-owned LoRA weights, and private data sovereignty—not just static character notes.",
     },
     {
       risk: "Inference & Training Unit Economics",
@@ -106,53 +108,100 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-brand-void text-slate-100 flex flex-col selection:bg-brand-violet/30 selection:text-white">
       <Navbar />
-      <InvestorModal isOpen={investorOpen} onClose={() => setInvestorOpen(false)} />
+      <BetaApplicationModal isOpen={betaOpen} onClose={() => setBetaOpen(false)} />
 
       {/* Hero Header */}
-      <section className="relative pt-36 pb-24 md:pt-48 md:pb-32 overflow-hidden border-b border-brand-border/40">
+      <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 overflow-hidden border-b border-brand-border/40">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-brand-violet/15 blur-[140px] pointer-events-none rounded-full" />
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill border border-brand-border mb-6">
             <Feather className="w-3.5 h-3.5 text-brand-champagne" />
             <span className="text-xs font-mono uppercase tracking-widest text-brand-lavender">
-              Our Manifesto &amp; Creative Thesis
+              About Threadspark &amp; The Founder
             </span>
           </div>
 
           <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white mb-8 leading-[1.1]">
-            We believe ideas have history.
+            We believe stories deserve an infallible memory.
           </h1>
 
           <p className="text-slate-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-10">
-            THREADSPARK was founded on a simple conviction: artificial intelligence should not be a disposable vending machine for quick answers, but an enduring personal memory for everything you create.
+            Threadspark was founded to solve the hardest technical problem in long-form storytelling: keeping track of complex canon, physical states, and character secrets across multi-book sagas.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/studio"
-              onClick={() => sound.tick()}
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono font-medium transition-all shadow-xl shadow-brand-violet/25"
+            <button
+              onClick={() => setBetaOpen(true)}
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono font-medium transition-all shadow-xl shadow-brand-violet/25"
             >
               <Sparkles className="w-4 h-4 text-brand-champagne" />
-              <span>Explore The Live Platform</span>
-            </Link>
-
-            <button
-              onClick={() => {
-                sound.tick();
-                setInvestorOpen(true);
-              }}
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-mono font-medium transition-all border border-white/10"
-            >
-              <Building2 className="w-4 h-4 text-brand-champagne" />
-              <span>Institutional Inquiries</span>
+              <span>Apply for Closed Beta (25 Authors)</span>
             </button>
+
+            <Link
+              href="/studio"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-mono font-medium transition-all border border-white/10"
+            >
+              <BookOpen className="w-4 h-4 text-brand-champagne" />
+              <span>Explore Interactive Studio</span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* THE THREE CORE PILLARS: MISSION, PHILOSOPHY, VISION */}
+      {/* FOUNDER STORY SECTION */}
+      <section className="py-24 border-b border-brand-border/40 relative bg-brand-dark/30">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+            <div className="md:col-span-5 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-violet/20 border border-brand-violet/40 text-brand-lavender text-xs font-mono">
+                <User className="w-3.5 h-3.5" />
+                <span>The Founder</span>
+              </div>
+              <h2 className="font-serif text-3xl sm:text-4xl text-white font-normal">
+                Why Ezekiel Heretta Built Threadspark
+              </h2>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Software engineer, lifelong speculative fiction reader, and builder of deterministic narrative systems.
+              </p>
+
+              <div className="p-5 rounded-2xl bg-brand-charcoal/80 border border-brand-border space-y-3 font-mono text-xs">
+                <div className="text-brand-champagne font-semibold">Direct Founder Contact:</div>
+                <div className="text-slate-300 flex items-center gap-2">
+                  <Mail className="w-3.5 h-3.5 text-brand-lavender" />
+                  <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="hover:underline">
+                    {SITE_CONFIG.contactEmail}
+                  </a>
+                </div>
+                <div className="text-slate-400 text-[11px] pt-1">
+                  Personally onboarding the initial 25 series author beta cohort.
+                </div>
+              </div>
+            </div>
+
+            <div className="md:col-span-7 space-y-6 text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+              <p>
+                When generative AI first exploded into creative writing, almost every product rushed toward the same flawed premise: <em className="text-white">&ldquo;Press a button, get a novel.&rdquo;</em>
+              </p>
+              <p>
+                As a software engineer who reads sprawling fantasy and sci-fi series, Ezekiel knew that real authors don&apos;t want an AI ghostwriter. Writing the words is the joy of the craft. The actual nightmare begins when you reach Book 4 of an eight-book series:
+              </p>
+              <blockquote className="p-4 rounded-xl bg-brand-surface/70 border-l-2 border-brand-violet text-slate-200 font-serif italic text-base">
+                &ldquo;Did Marcus lose his bronze seal in Chapter 4 of Book 2, or was it retrieved? When Mara poisoned the regent in Book 1, was Commander Vance in the council room? Why did Elena use her fractured arm to swing an axe three days later?&rdquo;
+              </blockquote>
+              <p>
+                Authors today spend hundreds of hours maintaining manual lore bibles in Scrivener, Notion, or World Anvil. When they try using general chatbots with 1-million-token context windows, the chatbot hallucinates, confuses drafts, and fails to differentiate between what a character knows versus what the reader knows.
+              </p>
+              <p>
+                <strong className="text-white font-medium">Raw text is not state.</strong> Threadspark was engineered to be the missing deterministic state machine for fiction: reading your whole archive, proposing a structured story bible that you confirm, and actively catching continuity collisions with links to the exact conflicting lines.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* THE THREE CORE PILLARS: MISSION, WEDGE, SOVEREIGNTY */}
       <section className="py-24 border-b border-brand-border/40 relative">
         <div className="max-w-5xl mx-auto px-6 space-y-20">
           {/* Mission */}
@@ -163,66 +212,66 @@ export default function AboutPage() {
               </span>
               <h2 className="font-serif text-3xl font-normal text-white">Our Mission</h2>
             </div>
-            <div className="md:col-span-8 space-y-4 text-slate-300 text-base leading-relaxed">
+            <div className="md:col-span-8 space-y-4 text-slate-300 text-base leading-relaxed font-light">
               <p className="text-lg text-white font-serif italic">
                 &ldquo;Threadspark is the source of truth for long-form fiction. It reads an author&apos;s entire archive and builds a living, versioned model of their story: who exists, what&apos;s happened to them, and who knows what.&rdquo;
               </p>
-              <p className="text-sm">
+              <p className="text-sm text-slate-400">
                 Authors don&apos;t need a bigger chat window; they need a persistent, auditable state machine. By automating story-state extraction, confirming entities with authors, and flagging continuity collisions with exact line links, Threadspark preserves the canon of long-form universes.
               </p>
             </div>
           </div>
 
-          {/* Philosophy */}
+          {/* Wedge to Expansion */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start pt-12 border-t border-brand-border/40">
             <div className="md:col-span-4">
               <span className="text-xs font-mono uppercase tracking-widest text-brand-champagne block mb-2">
-                02 / THE WEDGE
+                02 / THE CUSTOMER WEDGE
               </span>
               <h2 className="font-serif text-3xl font-normal text-white">Wedge to Expansion</h2>
             </div>
-            <div className="md:col-span-8 space-y-4 text-slate-300 text-base leading-relaxed">
+            <div className="md:col-span-8 space-y-4 text-slate-300 text-base leading-relaxed font-light">
               <p className="text-lg text-white font-serif italic">
                 &ldquo;Start where the continuity burden is acute: indie series authors managing multi-book universes.&rdquo;
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs font-mono">
                 <div className="p-4 rounded-xl bg-brand-charcoal/70 border border-brand-border">
-                  <div className="text-brand-champagne font-semibold mb-1">Wedge: Series Authors</div>
+                  <div className="text-brand-champagne font-semibold mb-1">Primary Wedge: Series Authors</div>
                   <div className="text-slate-400">Indie and self-published novelists whose lore and character arcs compound across 3&ndash;10 books.</div>
                 </div>
                 <div className="p-4 rounded-xl bg-brand-charcoal/70 border border-brand-border">
-                  <div className="text-brand-lavender font-semibold mb-1">Stage 2: Small Presses</div>
-                  <div className="text-slate-400">Freelance developmental editors and book packaging houses auditing client manuscripts.</div>
+                  <div className="text-brand-lavender font-semibold mb-1">Stage 2: Serial Novelists</div>
+                  <div className="text-slate-400">High-velocity web fiction authors on Royal Road &amp; Substack where public retcons ruin reader trust.</div>
                 </div>
                 <div className="p-4 rounded-xl bg-brand-charcoal/70 border border-brand-border">
                   <div className="text-emerald-400 font-semibold mb-1">Stage 3: Narrative Studios</div>
-                  <div className="text-slate-400">Game narrative designers and screenwriters managing episodic lore bibles.</div>
+                  <div className="text-slate-400">Game narrative designers and screenwriters managing episodic lore bibles and branching player states.</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Vision */}
+          {/* Sovereignty & Moat */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start pt-12 border-t border-brand-border/40">
             <div className="md:col-span-4">
               <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 block mb-2">
-                03 / THE VISION
+                03 / THE SOVEREIGNTY PROMISE
               </span>
               <h2 className="font-serif text-3xl font-normal text-white">Sovereignty &amp; Moat</h2>
             </div>
-            <div className="md:col-span-8 space-y-4 text-slate-300 text-base leading-relaxed">
+            <div className="md:col-span-8 space-y-4 text-slate-300 text-base leading-relaxed font-light">
               <p className="text-lg text-white font-serif italic">
                 &ldquo;Lock-in comes from compounding value, never from held-hostage data.&rdquo;
               </p>
-              <p className="text-sm">
-                We believe in 100% open export (SQLite, JSON, and Markdown) and author-owned style adapter weights (.safetensors). The more an author writes, the more valuable their private story graph and voice fingerprint become. You stay because Threadspark makes you a better author, not because you can&apos;t leave.
+              <p className="text-sm text-slate-400">
+                We believe in 100% open export (SQLite, JSON, and Markdown) and author-owned style adapter weights (.safetensors). The more an author writes, the more valuable their private story graph and voice fingerprint become. You stay because Threadspark protects your canon, not because you can&apos;t leave.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* TECHNOLOGY ROADMAP */}
+      {/* HONEST ROADMAP: WHAT WORKS TODAY VS WHAT'S PLANNED */}
       <section className="py-24 border-b border-brand-border/40 relative bg-brand-dark/30">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -230,19 +279,19 @@ export default function AboutPage() {
               Architectural Roadmap
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
-              Evolution of the Platform
+              What Works Today vs. What&apos;s Planned
             </h2>
             <p className="text-slate-400 text-sm">
-              Our engineering milestones from bedrock token parsing to multi-agent counterfactual sandboxes.
+              We reject ungrounded AI claims. Here is our staged engineering roadmap from bedrock graph parsing to private style adapters.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {milestones.map((m, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {milestones.map((m) => (
               <div
                 key={m.version}
                 className={`glass-panel p-6 rounded-2xl border flex flex-col justify-between ${
-                  m.status === "Active"
+                  m.status.includes("Live")
                     ? "border-brand-violet/50 shadow-lg shadow-brand-violet/10"
                     : "border-white/10"
                 }`}
@@ -254,10 +303,8 @@ export default function AboutPage() {
                     </span>
                     <span
                       className={`text-[10px] font-mono px-2 py-0.5 rounded ${
-                        m.status === "Active"
+                        m.status.includes("Live")
                           ? "bg-brand-violet text-white font-semibold"
-                          : m.status === "Completed"
-                          ? "bg-emerald-500/20 text-emerald-300"
                           : "bg-brand-surface text-slate-400"
                       }`}
                     >
@@ -287,7 +334,7 @@ export default function AboutPage() {
               Risks We Name &amp; How We Mitigate Them
             </h2>
             <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
-              Credibility means confronting hard platform realities openly. Here are the five existential risks in creative AI software and our exact engineering answers.
+              Credibility means confronting hard platform realities openly. Here are the five real risks in creative software and our exact engineering answers.
             </p>
           </div>
 
@@ -308,7 +355,7 @@ export default function AboutPage() {
                   <div className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-1 font-semibold">
                     Engineered Mitigation:
                   </div>
-                  <p className="text-xs text-slate-200 leading-relaxed">{item.mitigation}</p>
+                  <p className="text-xs text-slate-300 leading-relaxed">{item.mitigation}</p>
                 </div>
               </div>
             ))}
@@ -333,45 +380,41 @@ export default function AboutPage() {
               <div key={idx} className="glass-panel p-8 rounded-2xl border border-white/10 space-y-3">
                 <span className="text-xs font-mono text-brand-champagne">0{idx + 1} // PRINCIPLE</span>
                 <h3 className="font-serif text-2xl text-white font-medium">{pr.title}</h3>
-                <p className="text-slate-300 text-sm leading-relaxed">{pr.description}</p>
+                <p className="text-slate-300 text-sm leading-relaxed font-light">{pr.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* POLISHED CLOSING STATEMENT */}
+      {/* CLOSING CALL TO ACTION */}
       <section className="py-28 relative text-center">
         <div className="max-w-3xl mx-auto px-6">
           <div className="w-12 h-12 rounded-2xl bg-brand-violet/20 border border-brand-violet/40 text-brand-lavender flex items-center justify-center mx-auto mb-8">
             <Anchor className="w-6 h-6 text-brand-champagne" />
           </div>
           <h2 className="font-serif text-3xl md:text-5xl text-white font-normal leading-snug mb-6">
-            &ldquo;We don&apos;t just remember what you write. We remember why you wrote it.&rdquo;
+            &ldquo;We don&apos;t just remember what you write. We remember what your characters know.&rdquo;
           </h2>
           <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-10 max-w-xl mx-auto">
-            Experience how persistent personal intelligence transforms the horizon of what you can build.
+            Experience how persistent story-state tracking transforms the horizon of what you can write.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/studio"
-              onClick={() => sound.tick()}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-medium transition-all shadow-xl shadow-brand-violet/25"
+            <button
+              onClick={() => setBetaOpen(true)}
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono font-medium transition-all shadow-xl shadow-brand-violet/25"
             >
               <Sparkles className="w-4 h-4 text-brand-champagne" />
-              <span>Enter Threadspark Studio</span>
-            </Link>
-
-            <button
-              onClick={() => {
-                sound.tick();
-                setInvestorOpen(true);
-              }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-medium transition-all border border-white/10"
-            >
-              <Building2 className="w-4 h-4 text-brand-champagne" />
-              <span>Institutional Briefing</span>
+              <span>Join Closed Beta (25 Authors)</span>
             </button>
+
+            <Link
+              href="/studio"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-mono font-medium transition-all border border-white/10"
+            >
+              <BookOpen className="w-4 h-4 text-brand-champagne" />
+              <span>Explore Studio Demonstration</span>
+            </Link>
           </div>
         </div>
       </section>

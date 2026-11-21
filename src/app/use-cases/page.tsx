@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { BetaApplicationModal } from "@/components/BetaApplicationModal";
 import {
   BookOpen,
   Compass,
   FileText,
   Layers,
-  Database,
   Sparkles,
   ArrowRight,
   CheckCircle2,
@@ -19,17 +19,16 @@ import {
   Users,
   Feather,
   GitBranch,
-  Play,
   ShieldCheck,
-  Building2,
+  Gamepad2,
+  Scroll,
 } from "lucide-react";
-import { sound } from "@/lib/sound";
-import { InvestorModal } from "@/components/InvestorModal";
+import { SITE_CONFIG } from "@/lib/site";
 
 export default function UseCasesPage() {
   const [selectedCase, setSelectedCase] = useState<string>("series-authors");
   const [activeScenarioIdx, setActiveScenarioIdx] = useState<number>(0);
-  const [investorOpen, setInvestorOpen] = useState(false);
+  const [betaOpen, setBetaOpen] = useState(false);
 
   const useCases = [
     {
@@ -39,19 +38,19 @@ export default function UseCasesPage() {
       title: "Indie Series Authors",
       subtitle: "Where continuity burden compounds across Books 1 through 10.",
       description:
-        "Series authors are our sharpest customer wedge because continuity burden grows exponentially with each release. By Book 4, an author must remember dozens of character wounds, broken oaths, carried relics, and secret revelations made three years ago. Threadspark reads your previous volumes and maintains an automatic, confirmed living state machine.",
+        "Series authors are our sharpest customer wedge because continuity burden grows exponentially with each release. By Book 4, an author must remember dozens of character wounds, broken oaths, carried relics, and secret revelations made three years ago. Threadspark reads your backlist and maintains an automatic, confirmed living state machine.",
       keyFeatures: [
-        "Cross-book character dossiers and physical invariant tracking",
-        "Epistemic boundaries preventing characters from leaking secrets early",
-        "Chronological timeline graph linking plot dependencies across books",
-        "1-click passage links to conflicting lines in previous volumes",
-        "Per-author LoRA style adapter preserving voice across volumes",
+        "Cross-book character dossiers and physical invariant tracking (injuries, lost items)",
+        "Epistemic boundaries preventing characters from leaking secrets they haven't witnessed",
+        "Chronological timeline graph linking plot dependencies across volumes",
+        "1-click passage links to conflicting lines in previous drafts and books",
+        "Phase 2 author LoRA style adapter preserving voice across multi-year sagas",
       ],
       studioDeepLink: "/studio?tab=continuity",
       scenarios: [
         {
           title: "Tracking Secrets Across a 3-Book Arc",
-          challenge: "In Book 1, Mara secretly poisons the imperial regent. In Book 3, an allied commander references the poison during a war council before Mara confesses.",
+          challenge: "In Book 1, Mara secretly poisons the imperial regent. In Book 3, an allied commander references the poison during a war council before Mara ever confesses.",
           resolution: "Threadspark flags an Epistemic Knowledge Collision, showing that the allied commander was never present during the poisoning or privy to the discovery.",
           metric: "Epistemic Boundary Enforced",
         },
@@ -70,7 +69,7 @@ export default function UseCasesPage() {
       title: "Serial & Web Novelists",
       subtitle: "Weekly release pressure where reader-facing retcons are fatal.",
       description:
-        "Serialized writers on Royal Road, Substack, and Patreon produce 5,000 to 15,000 words a week under fierce public review. Retconning in public ruins reader trust. Threadspark gives serialized authors immediate pre-flight continuity audits before each chapter drops.",
+        "Serialized writers on Royal Road, Substack, and Patreon produce 5,000 to 15,000 words a week under fierce public scrutiny. Retconning in public ruins reader trust. Threadspark gives serialized authors immediate pre-flight continuity audits before each chapter drops.",
       keyFeatures: [
         "Rapid chapter ingestion checking against the canon graph in seconds",
         "Power scaling and magic rule invariants verification",
@@ -95,18 +94,49 @@ export default function UseCasesPage() {
       ],
     },
     {
+      id: "narrative-games",
+      icon: Gamepad2,
+      badge: "Branching Canon • Narrative Studios",
+      title: "Narrative Game Teams & TTRPG GMs",
+      subtitle: "Managing branching storylines, player state, and world consequence.",
+      description:
+        "Game writers and dungeon masters manage branching trees where player choices create diverging states of the world. Threadspark tracks state invariants across divergent story branches so dialogue trees and quest logic remain bulletproof.",
+      keyFeatures: [
+        "Branching state-graph tracking player decisions across narrative nodes",
+        "Faction relationship matrix adjusting disposition deterministically",
+        "Interactive geography lore linking game locations to key historical events",
+        "Quest objective vs. consequence audits for multi-outcome encounters",
+        "Exportable canon dossiers formatted for game design documents",
+      ],
+      studioDeepLink: "/studio?tab=knowledge-graph",
+      scenarios: [
+        {
+          title: "Branching Quest Consequence Audit",
+          challenge: "If the player executes the Iron Quay smuggler in Chapter 3, ensure Act 4 dialogue trees don't generate quests dependent on that smuggler's fleet.",
+          resolution: "Threadspark flags a Branch Invariant Violation in the Act 4 quest outline, routing dialogue to the smuggler's vengeful first mate instead.",
+          metric: "Branching Invariant Enforced",
+        },
+        {
+          title: "Tabletop Campaign Lore Querying",
+          challenge: "During an unscripted tabletop session, players ask an obscure magistrate about a 200-year-old border treaty.",
+          resolution: "The GM queries Threadspark Studio, which instantly surfaces the exact terms of the Treaty of Iron Quay with associated NPC grudges.",
+          metric: "Instant Canon Retrieval",
+        },
+      ],
+    },
+    {
       id: "worldbuilders",
       icon: Compass,
       badge: "Speculative Worlds & Lore",
-      title: "Worldbuilders & RPG Creators",
+      title: "Speculative Worldbuilders",
       subtitle: "Build consistent magic systems, fictional histories, and political maps.",
       description:
-        "Worldbuilding requires rigorous internal coherence. If your magic system has strict gravitational rules in one kingdom, those rules cannot be casually broken in another without explanation. THREADSPARK turns your world bible into a living, queryable cosmos.",
+        "Worldbuilding requires rigorous internal coherence. If your magic system has strict gravitational rules in one kingdom, those rules cannot be casually broken in another without explanation. Threadspark turns your world bible into a living, queryable cosmos.",
       keyFeatures: [
         "Canon rule-enforcement engine for magic and technology constraints",
         "Faction relationship matrix tracking diplomatic treaties and feuds",
         "Interactive geography lore linking locations to key historical events",
-        "Generative timeline expansion testing centuries of historical cause-and-effect",
+        "Chronological timeline expansion testing centuries of cause-and-effect",
         "Custom glossary generation with phonetic and etymological consistency",
       ],
       studioDeepLink: "/studio?tab=knowledge-graph",
@@ -114,7 +144,7 @@ export default function UseCasesPage() {
         {
           title: "Validating Magic System Constraints",
           challenge: "Ether resonance requires ambient silicate glass to transmit across distances.",
-          resolution: "THREADSPARK alerts you when an underground dungeon scene in Chapter 6 uses wireless communication without mentioning crystal relays or mineral veins.",
+          resolution: "Threadspark alerts you when an underground dungeon scene in Chapter 6 uses wireless communication without mentioning crystal relays or mineral veins.",
           metric: "Rule Invariant Enforced",
         },
         {
@@ -122,99 +152,6 @@ export default function UseCasesPage() {
           challenge: "Determining whether the Sunk Hollows dissidents would legally shelter Marcus.",
           resolution: "Instantly surfaces the Treaty of Iron Quay from 40 winters ago, highlighting an obscure extradition immunity clause Marcus's father signed.",
           metric: "Canon Precedent Verified",
-        },
-      ],
-    },
-    {
-      id: "screenwriters",
-      icon: FileText,
-      badge: "Dramatic Structure & Dialogue",
-      title: "Screenwriters & Dramatists",
-      subtitle: "Hone scene beats, character subtext, and dialogue cadences.",
-      description:
-        "Screenplays demand economy of language, ruthless scene pacing, and unmistakable character voices. THREADSPARK examines your scenes for subtextual depth, rhythmic variety, and structural beat alignment.",
-      keyFeatures: [
-        "Dialogue cadence radar comparing speech patterns across cast members",
-        "Scene objective vs. obstacle audit for every sequence",
-        "Alternative beat generator exploring diverging story choices",
-        "Format-aware script ingestion preserving sluglines and stage direction",
-        "Actor table-read simulation predicting line delivery rhythm",
-      ],
-      studioDeepLink: "/studio?tab=creative-studio",
-      scenarios: [
-        {
-          title: "Preventing Dialogue Homogenization",
-          challenge: "Two characters from opposing social tiers start using similar polysyllabic vocabulary.",
-          resolution: "The engine highlights 14 shared phrases and recommends shorter, tactile contractions for the street-level protagonist to restore verbal contrast.",
-          metric: "Voice Differentiation: +34%",
-        },
-        {
-          title: "Subtext Density Audit",
-          challenge: "A pivotal confrontation feels melodramatic because both characters state their feelings too explicitly.",
-          resolution: "Creative Studio generates a rewritten draft where the tension is transferred onto physical action and interrupted sentences.",
-          metric: "Restraint Metric: High",
-        },
-      ],
-    },
-    {
-      id: "researchers",
-      icon: Layers,
-      badge: "Academic & Cross-Domain Synthesis",
-      title: "Researchers & Academics",
-      subtitle: "Connect disparate papers, interview transcripts, and archival fragments.",
-      description:
-        "Academic and investigative research often involves synthesizing hundreds of papers, source interviews, and archival notes. THREADSPARK discovers invisible bridges between findings across diverse disciplines.",
-      keyFeatures: [
-        "Multi-document thematic clustering across PDFs, notes, and citations",
-        "Contradiction detection across experimental findings and literature reviews",
-        "Evidence provenance mapping linking conclusions to original source lines",
-        "Automated structured briefing generator for literature reviews",
-        "Exploratory querying that surfaces overlooked cross-citations",
-      ],
-      studioDeepLink: "/studio?tab=document-intelligence",
-      scenarios: [
-        {
-          title: "Cross-Synthesizing 100+ Field Notes",
-          challenge: "Finding where economic records contradict personal archival journals.",
-          resolution: "THREADSPARK correlates municipal expenditure ledgers with private diary entries, highlighting the exact discrepancies in harbor tariff collections.",
-          metric: "Cross-Document Match: 96%",
-        },
-        {
-          title: "Citation Provenance Validation",
-          challenge: "Verifying whether a secondary source misquoted an original 18th-century covenant.",
-          resolution: "Traverses the semantic provenance graph back to the verbatim archival passage, highlighting omitted qualifying clauses.",
-          metric: "Exact Provenance Edge",
-        },
-      ],
-    },
-    {
-      id: "pkm",
-      icon: Database,
-      badge: "Personal Knowledge Management",
-      title: "Personal Knowledge Management",
-      subtitle: "A second brain that truly understands the evolution of your ideas.",
-      description:
-        "Instead of maintaining a graveyard of static markdown notes and forgotten bookmark folders, THREADSPARK creates an active, evolving neural library that surfaces relevant past thinking right when you need it.",
-      keyFeatures: [
-        "Effortless ingestion of daily notes, bookmarks, journal entries, and drafts",
-        "Automated bidirectional linking without tedious manual tagging",
-        "Cognitive trajectory tracking showing how your opinions have shifted over time",
-        "Context-sensitive ideation assistant recommending related historical thoughts",
-        "Local-first vector storage with absolute privacy guarantees",
-      ],
-      studioDeepLink: "/studio?tab=ai-workspace",
-      scenarios: [
-        {
-          title: "Resurfacing Forgotten Insights",
-          challenge: "Wrestling with a conceptual paradox while drafting an essay on civic architecture.",
-          resolution: "THREADSPARK automatically pulls in an unfinished thesis from two years ago that solved the exact philosophical dilemma with supporting diagrams.",
-          metric: "Associative Leap Identified",
-        },
-        {
-          title: "Intellectual Trajectory Tracking",
-          challenge: "Seeing how your perspective on decentralized institutions has evolved over 3 years.",
-          resolution: "Generates an annotated timeline comparing your notes across 2024, 2025, and 2026, marking pivotal moments of paradigm shift.",
-          metric: "3-Year Trajectory Mapped",
         },
       ],
     },
@@ -227,7 +164,7 @@ export default function UseCasesPage() {
   return (
     <div className="min-h-screen bg-brand-void text-slate-100 flex flex-col selection:bg-brand-violet/30 selection:text-white">
       <Navbar />
-      <InvestorModal isOpen={investorOpen} onClose={() => setInvestorOpen(false)} />
+      <BetaApplicationModal isOpen={betaOpen} onClose={() => setBetaOpen(false)} />
 
       {/* Hero Section */}
       <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 overflow-hidden border-b border-brand-border/40">
@@ -237,16 +174,16 @@ export default function UseCasesPage() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill border border-brand-border mb-6">
             <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
             <span className="text-xs font-mono uppercase tracking-widest text-brand-lavender">
-              Tailored For Deep Thinkers &amp; Storytellers
+              Built For Fiction Writers &amp; Narrative Creators
             </span>
           </div>
 
           <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white mb-8 leading-[1.1]">
-            How visionary creators use persistent intelligence.
+            How long-form authors rely on Threadspark.
           </h1>
 
           <p className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed mb-10">
-            Whether you are maintaining continuity across a multi-book fantasy saga, organizing decades of research, or polishing screenplay dialogue, THREADSPARK adapts to your workflow.
+            Whether you are maintaining continuity across an 8-book fantasy saga, publishing weekly serialized chapters, or worldbuilding a complex sci-fi setting, Threadspark is your deterministic source of truth.
           </p>
 
           <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto">
@@ -257,7 +194,6 @@ export default function UseCasesPage() {
                 <button
                   key={c.id}
                   onClick={() => {
-                    sound.tick();
                     setSelectedCase(c.id);
                     setActiveScenarioIdx(0);
                   }}
@@ -295,7 +231,7 @@ export default function UseCasesPage() {
                 &ldquo;{currentCase.subtitle}&rdquo;
               </p>
 
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-slate-300 text-sm leading-relaxed font-light">
                 {currentCase.description}
               </p>
 
@@ -313,13 +249,20 @@ export default function UseCasesPage() {
                 </ul>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-4 flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={() => setBetaOpen(true)}
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-violet hover:bg-purple-600 text-xs font-mono font-medium text-white transition-all shadow-md"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
+                  <span>Apply for Beta Cohort</span>
+                </button>
+
                 <Link
                   href={currentCase.studioDeepLink}
-                  onClick={() => sound.tick()}
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-surface hover:bg-white/10 border border-brand-border text-xs font-mono text-white transition-all shadow-sm"
                 >
-                  <span>Launch {currentCase.title.split("&")[0]} Workflow in Studio</span>
+                  <span>Test in Studio Demo</span>
                   <ArrowRight className="w-3.5 h-3.5 text-brand-champagne" />
                 </Link>
               </div>
@@ -330,7 +273,7 @@ export default function UseCasesPage() {
               <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 shadow-2xl space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-brand-border/60">
                   <span className="text-xs font-mono uppercase tracking-wider text-slate-400">
-                    Live Workflow Scenario Simulation
+                    Live Continuity Scenario Simulation
                   </span>
                   <span className="text-xs font-mono text-brand-champagne">
                     Interactive Walkthrough
@@ -342,10 +285,7 @@ export default function UseCasesPage() {
                   {currentCase.scenarios.map((scen, idx) => (
                     <button
                       key={idx}
-                      onClick={() => {
-                        sound.tick();
-                        setActiveScenarioIdx(idx);
-                      }}
+                      onClick={() => setActiveScenarioIdx(idx)}
                       className={`flex-1 p-3 rounded-xl border text-left text-xs transition-all ${
                         activeScenarioIdx === idx
                           ? "bg-brand-surface border-brand-violet text-white shadow-md font-medium"
@@ -362,7 +302,7 @@ export default function UseCasesPage() {
                 <div className="space-y-4">
                   <div className="p-4 rounded-2xl bg-brand-dark/90 border border-brand-border space-y-1.5">
                     <span className="text-[10px] font-mono uppercase text-red-400 font-semibold block">
-                      The Creator&apos;s Bottleneck:
+                      The Creator&apos;s Continuity Challenge:
                     </span>
                     <p className="text-xs text-slate-300 font-sans leading-relaxed">
                       {activeScenario.challenge}
@@ -372,7 +312,7 @@ export default function UseCasesPage() {
                   <div className="p-4 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 space-y-1.5">
                     <span className="text-[10px] font-mono uppercase text-emerald-400 font-semibold block flex items-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5" />
-                      THREADSPARK Contextual Resolution:
+                      Threadspark Deterministic Resolution:
                     </span>
                     <p className="text-xs text-slate-200 font-sans leading-relaxed">
                       {activeScenario.resolution}
@@ -395,24 +335,23 @@ export default function UseCasesPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-brand-champagne mb-3 block">
-              Universal Ecosystem
+              Dedicated Fiction Workflows
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
-              Built for interconnected knowledge.
+              Built for storytellers who care about canon.
             </h2>
             <p className="text-slate-400 text-sm">
-              Explore how each creator archetype integrates with the same unified memory engine.
+              Explore how each creator archetype integrates with the same persistent memory engine.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {useCases.map((c) => {
               const Icon = c.icon;
               return (
                 <div
                   key={c.id}
                   onClick={() => {
-                    sound.tick();
                     setSelectedCase(c.id);
                     setActiveScenarioIdx(0);
                     window.scrollTo({ top: 400, behavior: "smooth" });
@@ -441,31 +380,27 @@ export default function UseCasesPage() {
       <section className="py-24 text-center">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="font-serif text-3xl md:text-4xl text-white font-normal mb-6">
-            Bring your creative universe into persistent focus.
+            Protect your fictional universe from continuity decay.
           </h2>
           <p className="text-slate-400 text-sm mb-8 leading-relaxed">
-            THREADSPARK Studio lets you test character dossiers, continuity radars, and style-conditioned rewriting in a real sandbox.
+            Threadspark Studio lets you test character dossiers, epistemic boundaries, and continuity radars with the preloaded manuscript of <em>The Glass Meridian</em> ({SITE_CONFIG.demoStats.words.toLocaleString()} words).
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/studio"
-              onClick={() => sound.tick()}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-medium transition-all shadow-xl shadow-brand-violet/25"
+            <button
+              onClick={() => setBetaOpen(true)}
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono font-medium transition-all shadow-xl shadow-brand-violet/25"
             >
               <Sparkles className="w-4 h-4 text-brand-champagne" />
-              <span>Launch Studio Experience</span>
-            </Link>
-
-            <button
-              onClick={() => {
-                sound.tick();
-                setInvestorOpen(true);
-              }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-medium transition-all border border-white/10"
-            >
-              <Building2 className="w-4 h-4 text-brand-champagne" />
-              <span>Institutional Studio Pilot</span>
+              <span>Apply for 25-Author Closed Beta</span>
             </button>
+
+            <Link
+              href="/studio"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-mono font-medium transition-all border border-white/10"
+            >
+              <BookOpen className="w-4 h-4 text-brand-champagne" />
+              <span>Explore Interactive Demo</span>
+            </Link>
           </div>
         </div>
       </section>

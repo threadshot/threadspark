@@ -134,13 +134,13 @@ export function PresenterTourBar({
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-mono uppercase tracking-wider text-brand-champagne">
-                Presenter Guided Walkthrough
+                Product Feature Tour
               </span>
               <button
                 onClick={() => setShowNotes(!showNotes)}
                 className="text-[10px] font-mono text-slate-400 hover:text-white underline"
               >
-                {showNotes ? "Hide Notes" : "Show Speaker Notes"}
+                {showNotes ? "Hide Notes" : "Show Feature Notes"}
               </button>
             </div>
             <div className="font-serif text-base font-medium text-white flex items-center gap-2">
@@ -214,12 +214,12 @@ export function PresenterTourBar({
         <div className="mt-3 pt-3 border-t border-brand-border/60 grid grid-cols-1 md:grid-cols-12 gap-3 text-xs">
           <div className="md:col-span-8 p-3 rounded-xl bg-brand-dark/90 border border-brand-border/80 text-slate-300 font-sans leading-relaxed">
             <strong className="text-brand-champagne font-mono block text-[11px] mb-1">
-              Presenter Talking Points:
+              Feature Walkthrough Details:
             </strong>
             {currentStep.presenterScript}
           </div>
           <div className="md:col-span-4 p-3 rounded-xl bg-brand-violet/10 border border-brand-violet/30 text-brand-lavender font-mono text-[11px] flex flex-col justify-between">
-            <strong className="text-white block">Key Investor / Audience Takeaway:</strong>
+            <strong className="text-white block">Key Author Benefit:</strong>
             <span className="mt-1">{currentStep.keyTakeaway}</span>
           </div>
         </div>

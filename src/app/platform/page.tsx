@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { BetaApplicationModal } from "@/components/BetaApplicationModal";
 import {
   Brain,
   History,
@@ -22,28 +23,27 @@ import {
   Search,
   Eye,
   Zap,
-  Building2,
   Lock,
   HardDrive,
   FileCode2,
   Terminal,
   Activity,
+  BookOpen,
+  Check,
 } from "lucide-react";
-import { sound } from "@/lib/sound";
-import { GLASS_MERIDIAN_DATA } from "@/data/glassMeridian";
-import { InvestorModal } from "@/components/InvestorModal";
+import { SITE_CONFIG } from "@/lib/site";
 
 export default function PlatformPage() {
   const [activeStyleMetric, setActiveStyleMetric] = useState<number>(0);
   const [selectedNode, setSelectedNode] = useState<string>("Marcus");
   const [activeStackLayer, setActiveStackLayer] = useState<number>(0);
-  const [investorOpen, setInvestorOpen] = useState(false);
+  const [betaOpen, setBetaOpen] = useState(false);
 
   const styleMetrics = [
     {
       title: "Vocabulary Complexity",
       value: "0.76 Lexical Richness",
-      description: "Extracts rare sensory descriptors, era-appropriate jargon, and domain-specific terms to ensure generated prose matches authorial vocabulary depth.",
+      description: "Extracts rare sensory descriptors, era-appropriate jargon, and domain-specific terms to ensure generated assistance matches authorial vocabulary depth.",
       example: "Prefers 'vitrification' and 'calcified' over generic terms like 'hardened' or 'stonework'.",
     },
     {
@@ -59,23 +59,24 @@ export default function PlatformPage() {
       example: "Marcus speaks with formal bureaucratic precision; Elena cuts sentences short with sardonic pragmatism.",
     },
     {
-      title: "Emotional Valence & Atmosphere",
+      title: "Atmospheric Mood & Tension",
       value: "Atmospheric Dread (34%)",
       description: "Tracks ambient mood shifts across chapters, evaluating psychological resonance and scene tension before and after pivotal turning points.",
       example: "Maintains brooding, somber tension leading up to the Solarium infiltration.",
     },
   ];
 
-  const stackLayers = [
+  const workflowSteps = [
     {
       id: "ingest",
-      name: "1. Auto-Built Story Bible",
-      badge: "Benefit-First Layer",
+      step: "01",
+      name: "1. Ingest Archive",
+      badge: "Automated Ingestion",
       headline: "Reads Your Whole Archive & Builds Your Story Bible Automatically",
       description:
-        "Drop in a finished manuscript, messy Scrivener drafts, or a multi-book series. Threadspark automatically extracts character dossiers, faction allegiances, locations, and chronological events. The author reviews and confirms proposed entities with 1 click, eliminating weeks of manual notebook entry.",
-      telemetry: "36,420 words indexed • 12 dossiers proposed • 100% author confirmed",
-      codeSample: `// Layer 1: Propose-Then-Confirm Ingestion Pipeline
+        "Drop in a finished manuscript, messy Scrivener exports, markdown chapter drafts, or a multi-book series. Threadspark parses text into structured scene boundaries and extracts characters, locations, carried artifacts, and chronological events.",
+      telemetry: `${SITE_CONFIG.demoStats.words.toLocaleString()} words indexed • ${SITE_CONFIG.demoStats.characters} dossiers proposed • 100% author confirmed`,
+      codeSample: `// Step 1: Propose-Then-Confirm Ingestion Pipeline
 interface ProposedStoryEntity {
   id: "char-marcus-thorne";
   name: "Marcus Thorne";
@@ -93,14 +94,15 @@ interface ProposedStoryEntity {
 }`,
     },
     {
-      id: "spatial",
-      name: "2. Temporal Story-State Graph",
-      badge: "Source of Truth Layer",
-      headline: "State Invariants & Epistemic Tracking (\"Who Knows What, When\")",
+      id: "propose",
+      step: "02",
+      name: "2. Propose Story Bible",
+      badge: "Extraction & Graph",
+      headline: "Temporal Story-State Graph & Epistemic Tracking (\"Who Knows What, When\")",
       description:
-        "Tracks physical state over story time: bodily injuries, carried possessions, locations, ages, and alliances. Deterministically tracks knowledge propagation so characters never leak secrets they haven't witnessed yet. Embeddings are used for semantic search, but the temporal graph is the unassailable source of truth.",
-      telemetry: "148 State Nodes • Epistemic Boundaries Enforced • Deterministic Graph",
-      codeSample: `// Layer 2: Epistemic Knowledge Boundary Schema
+        "Tracks physical state over story time: injuries, carried possessions, locations, ages, and alliances. Deterministically tracks knowledge propagation so characters never leak secrets they haven't learned yet. Embeddings handle search, but the temporal graph is the unassailable source of truth.",
+      telemetry: `${SITE_CONFIG.demoStats.nodes} State Nodes • Epistemic Boundaries Enforced • Deterministic Graph`,
+      codeSample: `// Step 2: Epistemic Knowledge Boundary Schema
 {
   "secretId": "sec-foundation-covenant-defect",
   "originatingEvent": "Ch 1: Subterranean Tremblor",
@@ -113,32 +115,33 @@ interface ProposedStoryEntity {
 }`,
     },
     {
-      id: "style",
-      name: "3. Staged Model Architecture",
-      badge: "Sovereign Voice Layer",
-      headline: "Per-Author LoRA Style Adapters on Open-Weight Foundations",
+      id: "confirm",
+      step: "03",
+      name: "3. Author Confirms",
+      badge: "Author In The Loop",
+      headline: "Human Veto on Every Entity & Canon Rule",
       description:
-        "We reject ungrounded claims of training foundation models from scratch. In Phase 1, we prove value using open-weight models for extraction. In Phase 2, each author receives a lightweight, portable style adapter (LoRA-style, ~25MB) trained solely on their prose that they own. In Phase 3, we build genre-tuned base models on data with verified author consent.",
-      telemetry: "~25MB Portable Adapter • Author Owns Weights (.safetensors) • Zero Shared Drift",
-      codeSample: `// Layer 3: Author LoRA Style Adapter Config
-const authorStyleAdapter = {
-  authorId: "usr_elena_author_77",
-  baseModel: "OpenWeight-8B-v2",
-  adapterFormat: "LoRA-PEFT (.safetensors)",
-  sizeBytes: 26843545, // 25.6 MB portable weight file
-  ownership: "100% Author-Owned (Downloadable / Self-Hostable)",
-  lexicalCadence: { ttr: 0.76, sentenceCadence: 18.4, periodicClausePct: 0.42 }
+        "Automated NLP pipelines can misinterpret aliases or misattribute dialogue. Threadspark uses a strict propose-then-confirm model: the engine surfaces proposed entities, aliases, and timeline dependencies, and the author approves or adjusts them with one click. Canon is always author-governed.",
+      telemetry: "Zero Black-Box Drift • 1-Click Author Approvals • Full Editability",
+      codeSample: `// Step 3: Author Approval & Alias Consolidation
+const entityResolution = {
+  aliasDetected: "The Blind Glassmith",
+  resolvedTo: "Silas Ward (char-silas-ward)",
+  confidence: 0.94,
+  authorAction: "CONFIRMED", // Author approved consolidation
+  canonLocked: true
 };`,
     },
     {
-      id: "verification",
-      name: "4. Precision-First Continuity Radar",
-      badge: "Constraint & Audit Layer",
-      headline: "Story Time vs. Draft Time with Exact Manuscript Line Anchors",
+      id: "verify",
+      step: "04",
+      name: "4. Continuous Verification",
+      badge: "Precision Collision Radar",
+      headline: "Precision-First Continuity Radar with Exact Manuscript Anchors",
       description:
-        "Versions every draft and lets authors branch counterfactuals without corrupting canon. Aggressively tuned for precision over noisy recall—a tool that cries wolf gets disabled. Every flagged collision links directly to the exact conflicting manuscript passages so authors can audit without frustration.",
-      telemetry: "Precision > 95% • Exact Line Links • Zero False Crying-Wolf",
-      codeSample: `// Layer 4: Continuity Collision Report #CNT-01
+        "Versions every draft and lets authors branch counterfactuals without corrupting canon. Aggressively tuned for precision over noisy recall—a tool that cries wolf gets disabled. Every flagged collision links directly to the exact conflicting manuscript lines so you can audit without frustration.",
+      telemetry: `Precision ${SITE_CONFIG.benchmark.threadsparkPrecision} • Recall ${SITE_CONFIG.benchmark.threadsparkRecall} • Exact Line Links`,
+      codeSample: `// Step 4: Continuity Collision Report #CNT-01
 {
   "collisionType": "PHYSICAL_STATE_INVARIANT",
   "severity": "CRITICAL",
@@ -149,28 +152,30 @@ const authorStyleAdapter = {
 }`,
     },
     {
-      id: "synthesis",
-      name: "5. Symbiotic Creative Studio",
-      badge: "Synthesis Layer",
-      headline: "Assisted Brainstorming with Full Authorial Sovereignty",
+      id: "staged-models",
+      step: "05",
+      name: "5. Staged Models",
+      badge: "Sovereign Voice Layer",
+      headline: "Phase 1 Open-Weights Today • Phase 2 Author LoRA Adapters",
       description:
-        "Generation is strictly optional. Use Threadspark as an infallible developmental editor and memory assistant, or spar on dialogue and alternate scene turns knowing your established lore, temporal timeline, and character injuries are strictly respected.",
-      telemetry: "Side-by-Side & Unified Diff Engine • Generation Strictly Optional",
-      codeSample: `// Layer 5: Creative Sparring with Strict State Constraints
-sparSceneDialogue({
-  scene: "Chapter 6: Iron Quay Confrontation",
-  characters: ["Marcus Thorne", "Elena Vance"],
-  enforceStateInvariants: ["Elena forearm fractured", "Marcus lacks bronze seal"],
-  enforceEpistemicBoundaries: ["Elena unaware of Malakar warrant"],
-  preserveVoiceAdapter: authorStyleAdapter
-});`,
+        "We reject ungrounded claims of training foundation models from scratch. Today in Phase 1, we prove value using open-weight models for extraction and graph building. In Phase 2, authors receive lightweight, portable style adapters (LoRA-style, ~25MB) trained solely on their prose that they own and can export.",
+      telemetry: "~25MB Portable Adapter • Author Owns Weights (.safetensors) • Zero Shared Drift",
+      codeSample: `// Step 5: Author LoRA Style Adapter Config (Phase 2)
+const authorStyleAdapter = {
+  authorId: "usr_elena_author_77",
+  baseModel: "OpenWeight-8B-v2",
+  adapterFormat: "LoRA-PEFT (.safetensors)",
+  sizeBytes: 26843545, // 25.6 MB portable weight file
+  ownership: "100% Author-Owned (Downloadable / Self-Hostable)",
+  lexicalCadence: { ttr: 0.76, sentenceCadence: 18.4 }
+};`,
     },
   ];
 
   return (
     <div className="min-h-screen bg-brand-void text-slate-100 flex flex-col selection:bg-brand-violet/30 selection:text-white">
       <Navbar />
-      <InvestorModal isOpen={investorOpen} onClose={() => setInvestorOpen(false)} />
+      <BetaApplicationModal isOpen={betaOpen} onClose={() => setBetaOpen(false)} />
 
       {/* Hero Header */}
       <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 overflow-hidden border-b border-brand-border/40">
@@ -180,69 +185,62 @@ sparSceneDialogue({
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill border border-brand-border mb-6">
             <Cpu className="w-3.5 h-3.5 text-brand-violet" />
             <span className="text-xs font-mono uppercase tracking-widest text-brand-lavender">
-              Under The Hood • Platform Architecture
+              How Threadspark Works • Technical Overview
             </span>
           </div>
 
           <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white mb-8 leading-[1.1]">
-            A persistent cognitive engine for long-form creative ambition.
+            Deterministic memory for long-form fiction.
           </h1>
 
           <p className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed mb-10">
-            THREADSPARK combines deep neural document parsing, persistent graph memory, stylometric profiling, and real-time narrative verification into a unified intelligence ecosystem.
+            Raw text isn&apos;t state. Threadspark combines neural document parsing, temporal state graphs, epistemic tracking, and real-time continuity verification into a reliable authoring companion.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/studio"
-              onClick={() => sound.tick()}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-medium transition-all shadow-xl shadow-brand-violet/25"
+            <button
+              onClick={() => setBetaOpen(true)}
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono font-medium transition-all shadow-xl shadow-brand-violet/25"
             >
               <Sparkles className="w-4 h-4 text-brand-champagne" />
+              <span>Apply for Closed Beta (25 Authors)</span>
+            </button>
+
+            <Link
+              href="/studio"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-mono font-medium transition-all border border-white/10"
+            >
+              <BookOpen className="w-4 h-4 text-brand-champagne" />
               <span>Launch Studio Simulator</span>
             </Link>
-
-            <button
-              onClick={() => {
-                sound.tick();
-                setInvestorOpen(true);
-              }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-medium transition-all border border-white/10"
-            >
-              <Building2 className="w-4 h-4 text-brand-champagne" />
-              <span>Institutional Architecture Briefing</span>
-            </button>
           </div>
         </div>
       </section>
 
-      {/* INTERACTIVE ARCHITECTURE STACK INSPECTOR */}
+      {/* 4-STEP PIPELINE WALKTHROUGH */}
       <section className="py-24 border-b border-brand-border/40 relative bg-brand-dark/30">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-brand-violet mb-3 block">
-              Interactive Stack Inspector
+              The Engine Pipeline
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
-              Explore The 5-Layer Cognitive Pipeline
+              From Raw Manuscript to Deterministic Canon
             </h2>
             <p className="text-slate-400 text-sm">
-              Click each layer to inspect its algorithmic mechanics, internal schemas, and live telemetry outputs.
+              Click each step of the pipeline to inspect its algorithmic mechanics, internal schemas, and live telemetry outputs.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Layer Selector */}
             <div className="lg:col-span-5 space-y-2.5">
-              {stackLayers.map((layer, idx) => {
+              {workflowSteps.map((layer, idx) => {
                 const isActive = activeStackLayer === idx;
                 return (
                   <button
                     key={layer.id}
-                    onClick={() => {
-                      sound.tick();
-                      setActiveStackLayer(idx);
-                    }}
+                    onClick={() => setActiveStackLayer(idx)}
                     className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 ${
                       isActive
                         ? "bg-brand-surface border-brand-violet text-white shadow-lg shadow-brand-violet/15"
@@ -272,10 +270,10 @@ sparSceneDialogue({
               <div className="flex items-center justify-between pb-4 border-b border-brand-border/60">
                 <div>
                   <span className="text-xs font-mono text-brand-champagne uppercase">
-                    {stackLayers[activeStackLayer].badge}
+                    Step {workflowSteps[activeStackLayer].step} &bull; {workflowSteps[activeStackLayer].badge}
                   </span>
                   <h3 className="font-serif text-2xl text-white font-medium mt-0.5">
-                    {stackLayers[activeStackLayer].headline}
+                    {workflowSteps[activeStackLayer].headline}
                   </h3>
                 </div>
                 <span className="text-[11px] font-mono text-emerald-400 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 hidden sm:inline">
@@ -283,8 +281,8 @@ sparSceneDialogue({
                 </span>
               </div>
 
-              <p className="text-sm text-slate-300 leading-relaxed">
-                {stackLayers[activeStackLayer].description}
+              <p className="text-sm text-slate-300 leading-relaxed font-light">
+                {workflowSteps[activeStackLayer].description}
               </p>
 
               {/* Code / Data Schema Box */}
@@ -294,15 +292,15 @@ sparSceneDialogue({
                     <FileCode2 className="w-3.5 h-3.5 text-brand-violet" />
                     Internal Schema / Dispatch Pipeline
                   </span>
-                  <span className="text-slate-400">Layer {activeStackLayer + 1} of 5</span>
+                  <span className="text-slate-400">Step {activeStackLayer + 1} of 5</span>
                 </div>
                 <pre className="p-4 text-brand-lavender overflow-x-auto text-[11px] leading-relaxed">
-                  <code>{stackLayers[activeStackLayer].codeSample}</code>
+                  <code>{workflowSteps[activeStackLayer].codeSample}</code>
                 </pre>
               </div>
 
               <div className="p-3.5 rounded-xl bg-brand-dark/80 border border-brand-border flex items-center justify-between text-xs font-mono text-slate-400">
-                <span>Telemetry: <strong>{stackLayers[activeStackLayer].telemetry}</strong></span>
+                <span>Telemetry: <strong>{workflowSteps[activeStackLayer].telemetry}</strong></span>
                 <span className="text-brand-champagne">Zero Drift</span>
               </div>
             </div>
@@ -321,8 +319,8 @@ sparSceneDialogue({
               <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight">
                 Contextual Intelligence
               </h2>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                When you upload a manuscript, pitch deck, world atlas, or notebook, THREADSPARK does not merely store raw tokens. It parses semantic hierarchies, entity registries, geographic systems, and thematic motifs.
+              <p className="text-slate-300 text-sm leading-relaxed font-light">
+                When you upload a manuscript, series backlist, or world atlas, Threadspark does not merely store raw tokens. It parses semantic hierarchies, entity registries, geographic systems, and chronological causality.
               </p>
               <div className="space-y-3 text-xs text-slate-300 font-mono">
                 <div className="p-3 rounded-lg bg-brand-surface/60 border border-brand-border flex items-start gap-3">
@@ -346,7 +344,7 @@ sparSceneDialogue({
                 {[
                   { step: "Pass 1: Tokenization & Lexical Indexing", time: "0.4s", detail: "36,420 words segmented into thematic clusters" },
                   { step: "Pass 2: Entity & Character Extraction", time: "1.2s", detail: "12 primary entities & 8 world locations identified" },
-                  { step: "Pass 3: Chronological Causal Mapping", time: "2.1s", detail: "24 interconnected plot events serialized along the Equinox timeline" },
+                  { step: "Pass 3: Chronological Causal Mapping", time: "2.1s", detail: "24 interconnected plot events serialized along the timeline" },
                   { step: "Pass 4: Stylometric Fingerprinting", time: "1.8s", detail: "Synthesizing tone radar, average cadence, and vocabulary distribution" },
                 ].map((item, idx) => (
                   <div key={idx} className="p-4 rounded-xl bg-brand-dark/90 border border-brand-border flex items-center justify-between">
@@ -380,19 +378,19 @@ sparSceneDialogue({
                   <div className="p-4 rounded-xl bg-red-950/20 border border-red-500/20 space-y-2">
                     <span className="text-red-400 font-semibold block">Standard Context Windows</span>
                     <p className="text-slate-400 leading-relaxed font-sans">
-                      As conversation continues, earlier documents are dropped or truncated. Details from Chapter 1 fade from recall when generating Chapter 8.
+                      As conversation continues, earlier documents are dropped or truncated. Details from Book 1 fade from recall when drafting Book 4.
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 space-y-2">
-                    <span className="text-emerald-400 font-semibold block">THREADSPARK Graph Topology</span>
+                    <span className="text-emerald-400 font-semibold block">Threadspark Graph Topology</span>
                     <p className="text-slate-400 leading-relaxed font-sans">
-                      Information is stored in persistent relational nodes. Chapter 8 query automatically traverses edges back to Chapter 1 with 100% precision.
+                      Information is stored in persistent relational nodes. A Book 4 query automatically traverses edges back to Book 1 with 100% precision.
                     </p>
                   </div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-brand-surface/70 border border-white/5 text-xs text-slate-300 flex items-center justify-between">
-                  <span>Current Graph Footprint: <strong>148 active relational edges</strong></span>
+                  <span>Current Graph Footprint: <strong>{SITE_CONFIG.demoStats.nodes} active relational nodes</strong></span>
                   <span className="font-mono text-brand-champagne">Zero Drift Rate</span>
                 </div>
               </div>
@@ -405,11 +403,11 @@ sparSceneDialogue({
               <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight">
                 Persistent Project Memory
               </h2>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Most creative projects take months or years to complete. THREADSPARK maintains an unbroken, evolving memory across revisions, brainstorming sessions, and new chapters.
+              <p className="text-slate-300 text-sm leading-relaxed font-light">
+                Writing a fantasy or sci-fi saga takes years. Threadspark maintains an unbroken, evolving memory across revisions, brainstorming sessions, and new volumes.
               </p>
               <p className="text-slate-400 text-xs leading-relaxed">
-                Even if you pause a novel for six months and return, the platform preserves your established rules, character motivations, and ongoing plot covenants without retraining.
+                Even if you pause a series for six months and return, the platform preserves your established lore, character physical states, and ongoing covenants without retraining.
               </p>
             </div>
           </div>
@@ -426,8 +424,8 @@ sparSceneDialogue({
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
               Writing Style Intelligence
             </h2>
-            <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-              Every author has an unmistakable stylistic fingerprint. THREADSPARK decodes yours, so any assistance feels like an extension of your mind, not a generic robot.
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+              Every author has an unmistakable stylistic fingerprint. In Phase 2, Threadspark profiles yours so any assistance feels like an extension of your mind, not a generic robot.
             </p>
           </div>
 
@@ -437,10 +435,7 @@ sparSceneDialogue({
               {styleMetrics.map((metric, idx) => (
                 <button
                   key={idx}
-                  onClick={() => {
-                    sound.tick();
-                    setActiveStyleMetric(idx);
-                  }}
+                  onClick={() => setActiveStyleMetric(idx)}
                   className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                     activeStyleMetric === idx
                       ? "bg-brand-surface border-brand-violet text-white shadow-lg shadow-brand-violet/10"
@@ -460,7 +455,7 @@ sparSceneDialogue({
             <div className="lg:col-span-7 glass-panel p-8 rounded-3xl border border-white/10 shadow-2xl">
               <div className="flex items-center justify-between pb-4 border-b border-brand-border/60 mb-6">
                 <span className="text-xs font-mono uppercase tracking-wider text-slate-300">
-                  Active Stylometric Radar • {styleMetrics[activeStyleMetric].title}
+                  Active Stylometric Radar &bull; {styleMetrics[activeStyleMetric].title}
                 </span>
                 <span className="text-xs font-mono text-brand-lavender">Fingerprint Match 98.4%</span>
               </div>
@@ -487,7 +482,7 @@ sparSceneDialogue({
                   </div>
                   <div className="p-3 rounded-lg bg-brand-surface/40 border border-white/5">
                     <div className="text-slate-400 text-[10px]">SENTENCE VAR</div>
-                    <div className="text-brand-lavender font-semibold text-sm mt-0.5">±6.2 Words</div>
+                    <div className="text-brand-lavender font-semibold text-sm mt-0.5">&plusmn;6.2 Words</div>
                   </div>
                   <div className="p-3 rounded-lg bg-brand-surface/40 border border-white/5">
                     <div className="text-slate-400 text-[10px]">SYNTAX DRIFT</div>
@@ -511,20 +506,17 @@ sparSceneDialogue({
               <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight">
                 Knowledge Relationships
               </h2>
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-slate-300 text-sm leading-relaxed font-light">
                 Nothing in a great story exists in a vacuum. Characters belong to factions, wield ancient artifacts, inhabit physical geography, and harbor historical grudges.
               </p>
               <p className="text-slate-400 text-xs leading-relaxed">
-                THREADSPARK traces multidirectional links between characters, locations, artifacts, and political decrees. Clicking any node instantly surfaces its dependencies throughout the timeline.
+                Threadspark traces multidirectional links between characters, locations, artifacts, and political decrees. Clicking any node instantly surfaces its dependencies throughout the timeline.
               </p>
               <div className="flex gap-2">
                 {["Marcus", "Elena", "Malakar", "Silas"].map((node) => (
                   <button
                     key={node}
-                    onClick={() => {
-                      sound.tick();
-                      setSelectedNode(node);
-                    }}
+                    onClick={() => setSelectedNode(node)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-colors ${
                       selectedNode === node
                         ? "bg-brand-violet text-white"
@@ -659,48 +651,12 @@ sparSceneDialogue({
               <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight">
                 Continuity Intelligence
               </h2>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Even great authors make continuity mistakes when managing complex world states. THREADSPARK operates like an indefatigable fact-checker and script supervisor.
+              <p className="text-slate-300 text-sm leading-relaxed font-light">
+                Even great authors make continuity mistakes when managing complex world states. Threadspark operates like an indefatigable fact-checker and script supervisor.
               </p>
               <p className="text-slate-400 text-xs leading-relaxed">
                 The scanner flags item transfers, character eye colors, injury timelines, travel distances, and calendar counts across tens of thousands of words in seconds.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURE 6: Creative Collaboration */}
-      <section className="py-24 border-b border-brand-border/40 relative bg-brand-dark/30">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <div className="max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-champagne/20 border border-brand-champagne/40 text-brand-champagne text-xs font-mono mb-4">
-              06 / CREATIVE CO-PILOT
-            </div>
-            <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
-              Creative Collaboration
-            </h2>
-            <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-              When writer&apos;s block strikes, brainstorm with an assistant that knows every secret in your universe. Test hypothetical &ldquo;what if&rdquo; turns, generate alternate dialogue, and refine pacing while preserving creative ownership.
-            </p>
-          </div>
-
-          <div className="glass-panel p-8 rounded-3xl border border-white/10 max-w-4xl mx-auto text-left space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-brand-border text-xs font-mono">
-              <span className="text-slate-300">Hypothetical Simulation: &ldquo;What if Elena betrays Marcus in Chapter 6?&rdquo;</span>
-              <span className="text-brand-champagne">Simulation Depth: 3 Chapters</span>
-            </div>
-
-            <div className="p-4 rounded-xl bg-brand-dark border border-brand-border text-xs text-slate-300 leading-relaxed font-sans">
-              <strong className="text-brand-lavender block mb-1">Downstream Ripple Analysis:</strong>
-              If Elena absconds with the focusing prism in Chapter 6 to bargain directly with Seraphina Voss, the Lower City rebellion loses its moral anchor. Marcus would be forced into an emergency pact with Captain Vane of the City Watch, altering the Chapter 7 Gala infiltration from an intellectual sting into an armed military mutiny.
-            </div>
-
-            <div className="flex items-center justify-between text-xs text-slate-400 pt-2 font-mono">
-              <span>Estimated Tone Impact: +28% Kinetic Urgency</span>
-              <Link href="/studio?tab=creative-studio" className="text-brand-champagne hover:underline flex items-center gap-1">
-                Try in Threadspark Studio <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
             </div>
           </div>
         </div>
@@ -739,25 +695,25 @@ sparSceneDialogue({
               </div>
               <h3 className="font-serif text-lg font-medium text-white">2. Author-Owned LoRA Weights</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Your custom voice fingerprint is packaged into standard PEFT/LoRA weight files (.safetensors). You own these weights and can export them anytime.
+                In Phase 2, your custom voice fingerprint is packaged into standard PEFT/LoRA weight files (.safetensors). You own these weights and can export them anytime.
               </p>
               <div className="pt-2 text-[11px] font-mono text-brand-champagne">Downloadable .safetensors</div>
             </div>
 
             <div className="glass-panel p-6 rounded-2xl border border-white/10 space-y-3">
               <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 flex items-center justify-center">
-                <Building2 className="w-5 h-5" />
+                <ShieldAlert className="w-5 h-5" />
               </div>
-              <h3 className="font-serif text-lg font-medium text-white">3. Private-Cloud &amp; On-Prem</h3>
+              <h3 className="font-serif text-lg font-medium text-white">3. Private-Cloud &amp; VPC Options</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Own models strengthen data sovereignty only because they can run inside the author&apos;s own environment. Threadspark containers run locally or in private VPCs.
+                Own models strengthen data sovereignty only because they can run inside the author&apos;s own environment. Threadspark containers can deploy to private VPCs.
               </p>
               <div className="pt-2 text-[11px] font-mono text-amber-300">Author-Controlled Compute</div>
             </div>
 
             <div className="glass-panel p-6 rounded-2xl border border-white/10 space-y-3">
               <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-300 flex items-center justify-center">
-                <ShieldAlert className="w-5 h-5" />
+                <Lock className="w-5 h-5" />
               </div>
               <h3 className="font-serif text-lg font-medium text-white">4. Per-Tenant Encryption</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
@@ -783,7 +739,7 @@ sparSceneDialogue({
               </div>
               <h3 className="font-serif text-lg font-medium text-white">Training Data Provenance</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Competitors like Sudowrite claim consent-based training. Threadspark ensures any future genre base models are trained strictly on verified public domain or compensated opt-in data.
+                Competitors claim consent-based training. Threadspark ensures any future genre base models are trained strictly on verified public domain or compensated opt-in data.
               </p>
               <div className="pt-2 text-[11px] font-mono text-emerald-400">Verifiable Literary Provenance</div>
             </div>
@@ -796,7 +752,7 @@ sparSceneDialogue({
                 Technical Appendix: Ground-Truth Continuity Benchmark
               </span>
               <span className="text-xs font-mono text-slate-400">
-                Evaluation Protocol &bull; 43k Words &bull; Arthur Conan Doyle Test Set
+                Evaluation Protocol &bull; {SITE_CONFIG.benchmark.words.toLocaleString()} Words &bull; {SITE_CONFIG.benchmark.corpus} Test Set
               </span>
             </div>
 
@@ -804,7 +760,7 @@ sparSceneDialogue({
               <div className="space-y-3">
                 <h4 className="font-serif text-base text-white font-medium">Methodology &amp; Seeded Anomalies</h4>
                 <p>
-                  To validate precision and recall, we used <em>The Sign of the Four</em> (43,400 words) and seeded 20 synthetic continuity defects across 4 distinct categories:
+                  To validate precision and recall, we used <em>{SITE_CONFIG.benchmark.corpus}</em> ({SITE_CONFIG.benchmark.words.toLocaleString()} words) and seeded {SITE_CONFIG.benchmark.seededErrors} synthetic continuity defects across 4 distinct categories:
                 </p>
                 <ul className="list-disc pl-4 space-y-1 font-mono text-[11px] text-slate-400">
                   <li><strong>Physical Invariant:</strong> Holmes sustains a sprained wrist in Ch 3, then picks a heavy lock with both hands in Ch 5 without mention of healing.</li>
@@ -822,19 +778,19 @@ sparSceneDialogue({
                 <div className="p-4 rounded-xl bg-brand-dark/90 border border-brand-border font-mono text-[11px] space-y-2">
                   <div className="flex justify-between text-emerald-300">
                     <span>Threadspark Precision:</span>
-                    <span>95.2% (1 False Alarm)</span>
+                    <span>{SITE_CONFIG.benchmark.threadsparkPrecision} (1 False Alarm)</span>
                   </div>
                   <div className="flex justify-between text-slate-400">
                     <span>1M Prompt LLM Precision:</span>
-                    <span>38.0% (Hallucinated 13 non-errors)</span>
+                    <span>{SITE_CONFIG.benchmark.llmPromptPrecision} (Hallucinated 13 non-errors)</span>
                   </div>
                   <div className="flex justify-between text-emerald-300">
                     <span>Threadspark Recall:</span>
-                    <span>95.0% (Caught 19/20 seeded errors)</span>
+                    <span>{SITE_CONFIG.benchmark.threadsparkRecall} (Caught 19/20 seeded errors)</span>
                   </div>
                   <div className="flex justify-between text-slate-400">
                     <span>1M Prompt LLM Recall:</span>
-                    <span>45.0% (Missed 11 seeded errors)</span>
+                    <span>{SITE_CONFIG.benchmark.llmPromptRecall} (Missed 11 seeded errors)</span>
                   </div>
                 </div>
               </div>
@@ -850,28 +806,24 @@ sparSceneDialogue({
             Ready to experience these capabilities in real time?
           </h2>
           <p className="text-slate-400 text-sm mb-8 leading-relaxed">
-            THREADSPARK Studio is fully interactive and preloaded with the complete fictional manuscript of <em>The Glass Meridian</em>.
+            Threadspark Studio is fully interactive and preloaded with the complete fictional manuscript of <em>The Glass Meridian</em> ({SITE_CONFIG.demoStats.words.toLocaleString()} words).
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/studio"
-              onClick={() => sound.tick()}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-medium transition-all shadow-xl shadow-brand-violet/25"
+            <button
+              onClick={() => setBetaOpen(true)}
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono font-medium transition-all shadow-xl shadow-brand-violet/25"
             >
               <Sparkles className="w-4 h-4 text-brand-champagne" />
-              <span>Enter Threadspark Studio</span>
-            </Link>
-
-            <button
-              onClick={() => {
-                sound.tick();
-                setInvestorOpen(true);
-              }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-medium transition-all border border-white/10"
-            >
-              <Building2 className="w-4 h-4 text-brand-champagne" />
-              <span>Request Strategic Walkthrough</span>
+              <span>Apply for Closed Beta (25 Authors)</span>
             </button>
+
+            <Link
+              href="/studio"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-slate-200 hover:text-white text-xs font-mono font-medium transition-all border border-white/10"
+            >
+              <BookOpen className="w-4 h-4 text-brand-champagne" />
+              <span>Explore Studio Demonstration</span>
+            </Link>
           </div>
         </div>
       </section>
