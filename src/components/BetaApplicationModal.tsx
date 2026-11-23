@@ -67,10 +67,10 @@ export function BetaApplicationModal({ isOpen, onClose }: BetaModalProps) {
             </div>
             <div>
               <h3 className="font-serif text-lg font-medium text-white">
-                Design Partner Program
+                Design Partner Application
               </h3>
-              <p className="text-[11px] font-mono text-slate-400">
-                Cohort of {SITE_CONFIG.designPartnerCohortSize} Authors &bull; Free Concierge Onboarding
+              <p className="text-[11px] font-mono text-emerald-400">
+                {SITE_CONFIG.designPartnerCohort.spotsTakenText} places taken &bull; {SITE_CONFIG.designPartnerCohort.replyWindow} response
               </p>
             </div>
           </div>
@@ -97,7 +97,7 @@ export function BetaApplicationModal({ isOpen, onClose }: BetaModalProps) {
                 Thank you, {formData.name}. Your email client was opened to send your application details directly to Ezekiel Heretta ({SITE_CONFIG.contactEmail}).
               </p>
               <p className="text-xs text-slate-400">
-                If your email client did not open automatically, you can email Ezekiel directly at{" "}
+                Ezekiel will reply within {SITE_CONFIG.designPartnerCohort.replyWindow}. If your email client did not open automatically, you can email directly at{" "}
                 <a
                   href={`mailto:${SITE_CONFIG.contactEmail}`}
                   className="text-brand-champagne underline"
@@ -117,9 +117,14 @@ export function BetaApplicationModal({ isOpen, onClose }: BetaModalProps) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
-              <p className="text-xs text-slate-300 leading-relaxed">
-                We are selecting 25 indie series novelists to test automated story-bible extraction and temporal continuity checking on live manuscripts. Free concierge setup included.
-              </p>
+              <div className="p-3.5 rounded-xl bg-brand-dark/90 border border-brand-border space-y-1">
+                <div className="text-xs font-semibold text-white">
+                  {SITE_CONFIG.designPartnerCohort.spotsTakenText} places taken.
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Apply with the form below and Ezekiel will reply within {SITE_CONFIG.designPartnerCohort.replyWindow}. The cohort is 100% free with concierge setup by the founder.
+                </p>
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>

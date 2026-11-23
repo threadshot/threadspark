@@ -17,101 +17,121 @@ export default function PrivacyPage() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill border border-brand-border mb-6">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
             <span className="text-xs font-mono uppercase tracking-widest text-brand-lavender">
-              Trust &amp; Author Sovereignty
+              Privacy Policy &amp; Data Promise
             </span>
           </div>
 
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-white mb-6 leading-tight">
-            Our Data Commitments &amp; Privacy Architecture
+            Privacy Policy
           </h1>
 
+          <div className="text-xs font-mono text-slate-400 mb-8 pb-4 border-b border-brand-border flex flex-wrap items-center justify-between gap-2">
+            <span>Effective Date: November 23, 2026</span>
+            <span>Data Controller: {SITE_CONFIG.founder.name} ({SITE_CONFIG.location})</span>
+          </div>
+
           <p className="text-slate-300 text-lg md:text-xl font-light leading-relaxed mb-12">
-            For fiction writers, an unpublished manuscript is the most sensitive document they possess. Here are the core architectural commitments we design toward to protect your intellectual property.
+            For fiction authors, an unpublished manuscript is an irreplaceable creative asset. Here is our exact, binding privacy policy and data governance standard.
           </p>
 
-          <div className="space-y-12">
-            {/* 1. What the AI does and doesn't do */}
-            <div className="p-8 rounded-3xl bg-brand-charcoal/80 border border-brand-border space-y-4">
+          <div className="space-y-12 text-sm text-slate-300 leading-relaxed font-light">
+            {/* 1. Controller & Scope */}
+            <section className="space-y-3">
+              <h2 className="font-serif text-2xl text-white font-medium">1. Data Controller and Contact</h2>
+              <p>
+                The data controller for Threadspark is solo founder &amp; engineer {SITE_CONFIG.founder.name}, operating from {SITE_CONFIG.location}.
+              </p>
+              <p>
+                For any privacy questions, access requests, or permanent deletion demands, contact Ezekiel directly at:
+              </p>
+              <div className="p-4 rounded-xl bg-brand-charcoal/80 border border-brand-border font-mono text-xs text-slate-200 space-y-1">
+                <div>Primary Privacy Contact: <a href={`mailto:${SITE_CONFIG.privacyEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.privacyEmail}</a></div>
+                <div>Alternative Direct Email: <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.contactEmail}</a></div>
+                <div>Entity: {SITE_CONFIG.companyIdentity}</div>
+              </div>
+            </section>
+
+            {/* 2. Isolated Infrastructure & Exact AWS Plan */}
+            <section className="p-8 rounded-3xl bg-brand-charcoal/70 border border-brand-violet/40 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-violet/20 border border-brand-violet/40 text-brand-lavender text-xs font-mono">
-                Core Stance
+                Cohort Architecture &amp; Hosting Environment
               </div>
               <h2 className="font-serif text-2xl text-white font-medium">
-                What Threadspark Does and Doesn&apos;t Do
+                Manuscript Processing &amp; AWS Infrastructure Roadmap
               </h2>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                <strong className="text-white">Threadspark does not ghostwrite your book.</strong> It reads what you have already written, extracts your characters, physical states, timelines, and secrets, and tells you when something doesn&apos;t add up.
-              </p>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Writing sparring or dialogue generation is strictly optional and separated from the continuity engine. Our primary value is memory, state tracking, and developmental fact-checking.
-              </p>
-            </div>
+              <blockquote className="p-4 rounded-xl bg-brand-dark/90 border-l-2 border-brand-violet text-slate-200 font-sans leading-relaxed text-sm">
+                During the design partner cohort, the founder supervises all manuscript ingestion and verification. Manuscripts are processed over encrypted connections in an isolated environment for each partner and are never pooled with other authors&apos; work. Today this environment runs on dedicated local workstation compute with per-partner encrypted containers. We plan to move it to AWS, with a separate account or VPC per partner, by Q2 2027.
+              </blockquote>
+            </section>
 
-            {/* 2. Concrete Commitments */}
-            <div className="space-y-6">
-              <h3 className="font-serif text-2xl text-white font-medium">Architectural Design Commitments</h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 rounded-2xl bg-brand-dark/70 border border-white/10 space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                    <Lock className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-serif text-lg text-white font-medium">1. Zero Public Training</h4>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    We will never sell your manuscripts, share them with third parties, or use them to train public foundation models. Your drafts belong solely to you.
-                  </p>
+            {/* 3. What We Collect and Why */}
+            <section className="space-y-4">
+              <h2 className="font-serif text-2xl text-white font-medium">2. Information We Collect and Process</h2>
+              <div className="space-y-3 text-xs sm:text-sm">
+                <div className="p-4 rounded-xl bg-brand-dark/80 border border-brand-border">
+                  <strong className="text-white font-mono block mb-1">A. Partner Information</strong>
+                  <span>Your name, email address, series genre, volume count, and current continuity workflow submitted through our Design Partner application form. Used solely to manage cohort communications and onboarding.</span>
                 </div>
-
-                <div className="p-6 rounded-2xl bg-brand-dark/70 border border-white/10 space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-brand-violet/10 border border-brand-violet/20 text-brand-lavender flex items-center justify-center">
-                    <FileText className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-serif text-lg text-white font-medium">2. Author-Owned Style Adapters</h4>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    In Phase 2, if you use the optional voice-fingerprint feature, the resulting style adapter weights (.safetensors) are 100% your property. You can download and run them privately anytime.
-                  </p>
+                <div className="p-4 rounded-xl bg-brand-dark/80 border border-brand-border">
+                  <strong className="text-white font-mono block mb-1">B. Manuscript &amp; Lore Files</strong>
+                  <span>EPUB, DOCX, Markdown, or Scrivener text submitted for continuity processing. Used strictly to extract entity dossiers, temporal state graphs, and continuity collision reports.</span>
                 </div>
-
-                <div className="p-6 rounded-2xl bg-brand-dark/70 border border-white/10 space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-300 flex items-center justify-center">
-                    <HardDrive className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-serif text-lg text-white font-medium">3. Lossless Export Anytime</h4>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    You can export your entire extracted story bible, timeline, and character dossiers into open JSON, SQLite, and Markdown with a single click. Zero proprietary lock-in.
-                  </p>
-                </div>
-
-                <div className="p-6 rounded-2xl bg-brand-dark/70 border border-white/10 space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300 flex items-center justify-center">
-                    <CheckCircle2 className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-serif text-lg text-white font-medium">4. Permanent Deletion on Demand</h4>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    If you choose to leave Threadspark, clicking delete permanently purges your manuscripts, extracted state graphs, and cached vectors from our database.
-                  </p>
+                <div className="p-4 rounded-xl bg-brand-dark/80 border border-brand-border">
+                  <strong className="text-white font-mono block mb-1">C. Technical Telemetry &amp; Error Logs</strong>
+                  <span>Internal model diagnostic counts (e.g. token segment counts, runtime per pass) without recording manuscript text into shared monitoring services.</span>
                 </div>
               </div>
-            </div>
+            </section>
 
-            {/* 3. Design Partner Cohort Transparency */}
-            <div className="p-8 rounded-3xl bg-brand-charcoal/50 border border-brand-border space-y-4">
-              <h3 className="font-serif text-xl text-white font-medium">Design Partner Cohort Manuscript Handling</h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                During the early design partner cohort of {SITE_CONFIG.designPartnerCohortSize} authors, all manuscript ingestion and verification runs are supervised directly by solo founder {SITE_CONFIG.founder.name}. Manuscripts are ingested over encrypted connections into dedicated AWS environments and never pooled.
+            {/* 4. Strict Zero-Training Guarantee */}
+            <section className="space-y-3">
+              <h2 className="font-serif text-2xl text-white font-medium">3. Strict Zero Public Model Training</h2>
+              <p>
+                <strong className="text-white">We do not train, fine-tune, or evaluate public or third-party foundation models on your submitted manuscripts.</strong>
               </p>
-              <div className="pt-2 flex items-center gap-3">
-                <a
-                  href={`mailto:${SITE_CONFIG.contactEmail}`}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-violet hover:bg-purple-600 text-white text-xs font-mono transition-all"
-                >
-                  <Mail className="w-3.5 h-3.5" />
-                  <span>Email Ezekiel Heretta directly</span>
-                </a>
-                <Link href="/" className="text-xs font-mono text-slate-400 hover:text-white transition-colors">
-                  &larr; Back to Overview
-                </Link>
-              </div>
-            </div>
+              <p>
+                Any future genre-specific base models developed by Threadspark (Phase 3) will be trained exclusively on verified public domain literature or works provided with explicit, compensated author consent.
+              </p>
+            </section>
+
+            {/* 5. Data Retention & Permanent Deletion Requests */}
+            <section className="space-y-3">
+              <h2 className="font-serif text-2xl text-white font-medium">4. Data Retention and Deletion Rights</h2>
+              <p>
+                <strong className="text-white">Retention Period:</strong> Your manuscripts and generated story graphs are retained only for the active duration of the Design Partner Program to provide continuity checking across drafts, or until you request deletion.
+              </p>
+              <p>
+                <strong className="text-white">One-Click Deletion:</strong> You have the right to request immediate and complete deletion of your manuscripts, extracted story-state graphs, vector embeddings, and all diagnostic logs at any time. To execute a deletion request, email <a href={`mailto:${SITE_CONFIG.privacyEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.privacyEmail}</a> or <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.contactEmail}</a> with the subject &ldquo;Data Deletion Request&rdquo;. Requests are processed and permanently wiped within 48 hours.
+              </p>
+              <p>
+                <strong className="text-white">Lossless Export:</strong> You may request or download an export of your extracted story bible and graph in open JSON, SQLite, or Markdown formats at any time.
+              </p>
+            </section>
+
+            {/* 6. Legal Rights (GDPR & CCPA) */}
+            <section className="space-y-3">
+              <h2 className="font-serif text-2xl text-white font-medium">5. Your Legal Rights</h2>
+              <p>
+                Depending on your location, you may have rights under the GDPR, UK Data Protection Act, or California Consumer Privacy Act (CCPA), including the right to access, rectify, port, or erase your personal information. Because we collect minimal personal data and maintain direct founder contact, any request can be addressed directly by emailing our data controller.
+              </p>
+            </section>
+
+            {/* 7. Subprocessors & Security */}
+            <section className="space-y-3">
+              <h2 className="font-serif text-2xl text-white font-medium">6. Security Measures</h2>
+              <p>
+                All data transfers occur over TLS 1.3 encrypted connections. During the prototype stage, data is maintained on hardware-encrypted disks with per-partner isolated environments.
+              </p>
+            </section>
+          </div>
+
+          <div className="pt-12 border-t border-brand-border/60 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <Link href="/terms" className="text-xs font-mono text-brand-champagne hover:underline">
+              &rarr; Review Terms of Service
+            </Link>
+            <Link href="/" className="text-xs font-mono text-slate-400 hover:text-white transition-colors">
+              &larr; Return to Homepage
+            </Link>
           </div>
         </div>
       </main>

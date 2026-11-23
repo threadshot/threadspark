@@ -301,6 +301,19 @@ export default function HomePage() {
                 <span>Context windows let you paste a book. They cannot tell you if Mara&apos;s sword is broken in Chapter 14.</span>
               </div>
             </div>
+
+            {/* Core Technical Definition: Deterministic */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-brand-charcoal/90 border border-brand-violet/40 text-left mb-8 shadow-xl">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-brand-champagne block mb-1">
+                Core Technical Definition &bull; What &ldquo;Deterministic&rdquo; Means
+              </span>
+              <p className="text-sm sm:text-base text-slate-200 font-serif leading-relaxed">
+                &ldquo;{SITE_CONFIG.deterministicDefinition}&rdquo;
+              </p>
+              <p className="text-xs text-slate-400 font-mono pt-1">
+                Extraction is language-model-assisted and author-confirmed; continuity checks that run over the confirmed graph are rule-based.
+              </p>
+            </div>
             <p className="text-slate-400 text-xs md:text-sm leading-relaxed">
               Target Wedge: Built specifically for <strong className="text-white">indie and self-published series authors</strong>, serial web novelists, and lore architects—creators whose continuity burden compounds with every new chapter and volume.
             </p>
@@ -543,38 +556,42 @@ export default function HomePage() {
                 <tbody className="divide-y divide-white/5 text-slate-300 font-sans">
                   <tr>
                     <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Story Knowledge</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Author must manually write and maintain the Story Bible, Codex, or Lorebook notes.</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Semantic RAG over uploaded project files; no temporal state graph or entity timeline.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Sudowrite includes a Story Bible and Chapter Continuity feature to update notes; Novelcrafter uses a manual Codex; NovelAI uses a keyword Lorebook.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Semantic RAG search over uploaded project documents; no temporal state graph or entity timeline.</td>
                     <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
-                      Auto-extracted from manuscript; author confirms proposed entities with 1 click. <span className="text-[10px] font-mono text-emerald-400 block mt-1">[Prototype (working)]</span>
+                      Auto-extracted from manuscript archive; author confirms proposed entities with 1 click. <span className="text-[10px] font-mono text-emerald-400 block mt-1">[Prototype (working)]</span>
                     </td>
                   </tr>
                   <tr>
                     <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Continuity &amp; State</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Keyword retrieval of user notes into prompt context; no temporal state or injury tracking.</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Unreliable search across long context windows; prone to hallucinations and misses timeline slips.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Sudowrite checks chapter summaries against character lists; Novelcrafter and NovelAI inject notes into prompt context. None maintain a temporal graph or track epistemic knowledge boundaries (&ldquo;who knows what, when&rdquo;).</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Can evaluate chapters when prompted, but recall degrades across full manuscripts and is prone to hallucinating non-errors.</td>
                     <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
                       Deterministic temporal story-state &amp; epistemic knowledge tracking; flags collisions with exact passage links. <span className="text-[10px] font-mono text-emerald-400 block mt-1">[Prototype (working)]</span>
                     </td>
                   </tr>
                   <tr>
                     <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Voice &amp; Stylometrics</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Generic fiction model or pooled user fine-tune (e.g. Muse).</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Generic corporate defaults; voice imitation drifts across conversation turns.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Sudowrite offers Muse and genre plugins; Novelcrafter supports prompt-level voice instructions via external LLMs; NovelAI offers fine-tuned fiction models.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Strong baseline prose generation, but defaults to corporate cadence unless actively guided each turn.</td>
                     <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
-                      Heuristic stylometrics active today; per-author private LoRA adapters (~25MB .safetensors) in development. <span className="text-[10px] font-mono text-amber-300 block mt-1">[In development - Q2 2027]</span>
+                      Heuristic stylometrics active in prototype; per-author private LoRA adapters (~25MB .safetensors) in development. <span className="text-[10px] font-mono text-amber-300 block mt-1">[In development - Q2 2027]</span>
                     </td>
                   </tr>
                   <tr>
                     <td className="p-4 sm:p-5 font-mono text-white text-xs font-medium">Data Sovereignty</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Vendor cloud-hosted; subject to vendor retention policies and third-party APIs.</td>
-                    <td className="p-4 sm:p-5 text-slate-400">Public cloud API with standard commercial data retention and training clauses.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Vendor cloud-hosted with standard commercial retention policies and third-party model dependencies.</td>
+                    <td className="p-4 sm:p-5 text-slate-400">Public cloud APIs governed by vendor commercial terms and data retention policies.</td>
                     <td className="p-4 sm:p-5 text-emerald-300 font-medium bg-brand-violet/5">
-                      Architectural commitments: zero training on drafts, author-owned adapter weights, local-first export. <span className="text-[10px] font-mono text-brand-champagne block mt-1">[Design commitments]</span>
+                      Architectural commitments: zero training on user drafts, author-owned adapter weights, local-first export. <span className="text-[10px] font-mono text-brand-champagne block mt-1">[Design commitments]</span>
                     </td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+            <div className="p-3 text-[11px] font-mono text-slate-400 border-t border-white/5 bg-brand-void/40 flex flex-wrap items-center justify-between gap-2">
+              <span>Verified {SITE_CONFIG.competitorVerificationDate} against vendor documentation and public feature releases.</span>
+              <span className="text-brand-champagne">Comparative Analysis</span>
             </div>
           </div>
         </div>
@@ -585,7 +602,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 block">
-              Early Access Cohort
+              Early Access Cohort &bull; {SITE_CONFIG.designPartnerCohort.spotsTakenText} Places Taken
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
               Design Partner Program for Series Authors
@@ -599,7 +616,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-7 space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-mono">
-                  100% Free During Cohort &bull; Concierge Onboarding
+                  {SITE_CONFIG.designPartnerCohort.spotsTakenText} places taken &bull; {SITE_CONFIG.designPartnerCohort.pricingNote}
                 </div>
 
                 <h3 className="font-serif text-2xl md:text-3xl text-white font-medium">
@@ -632,13 +649,27 @@ export default function HomePage() {
                     </span>
                   </li>
                 </ul>
+
+                {/* Business Model Clarification */}
+                <div className="p-4 rounded-xl bg-brand-charcoal/90 border border-brand-border/80 space-y-2">
+                  <div className="text-xs font-mono uppercase text-brand-champagne font-semibold">
+                    Transparent Business Model
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                    {SITE_CONFIG.businessModel}
+                  </p>
+                </div>
               </div>
 
               <div className="md:col-span-5 bg-brand-charcoal/90 p-6 md:p-8 rounded-2xl border border-brand-border space-y-5 text-center">
                 <div className="space-y-1">
-                  <div className="text-[11px] font-mono uppercase text-slate-400">Current Cohort Size</div>
-                  <div className="font-serif text-4xl text-brand-champagne font-medium">25 Authors</div>
-                  <div className="text-xs text-slate-400">Fantasy, Sci-Fi &amp; Serialized Sagas</div>
+                  <div className="text-[11px] font-mono uppercase text-slate-400">Design Partner Status</div>
+                  <div className="font-serif text-3xl sm:text-4xl text-brand-champagne font-medium">
+                    {SITE_CONFIG.designPartnerCohort.spotsTakenText}
+                  </div>
+                  <div className="text-xs text-emerald-400 font-mono">
+                    Apply below &bull; Ezekiel replies within {SITE_CONFIG.designPartnerCohort.replyWindow}
+                  </div>
                 </div>
 
                 <div className="pt-2">
@@ -667,13 +698,13 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 block">
-              Internal Verification
+              Preliminary Internal Experiment &bull; Tested {SITE_CONFIG.benchmark.testDate}
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
               Preliminary Internal Experiment
             </h2>
             <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
-              A sanity check on 20 self-seeded errors to test precision and recall against raw 1M-token LLM prompt pasting.
+              Internal sanity check, not independent. We inserted 20 deliberate continuity defects into one public-domain novel and compared our prototype against prompting {SITE_CONFIG.benchmark.baselineModel} with the full manuscript.
             </p>
           </div>
 
@@ -682,33 +713,33 @@ export default function HomePage() {
               <span className="text-white font-semibold">
                 Test Corpus: {SITE_CONFIG.benchmark.author}&apos;s &ldquo;{SITE_CONFIG.benchmark.bookTitle}&rdquo; ({SITE_CONFIG.benchmark.wordCount} words)
               </span>
-              <span className="text-emerald-400">{SITE_CONFIG.benchmark.seededErrors} Self-Seeded Errors (Sanity Check)</span>
+              <span className="text-emerald-400">{SITE_CONFIG.benchmark.seededErrors} Self-Seeded Errors (Sanity Check, {SITE_CONFIG.benchmark.testDate})</span>
             </div>
 
             <p className="text-xs text-slate-300 leading-relaxed">
-              We inserted {SITE_CONFIG.benchmark.seededErrors} deliberate continuity defects into a public-domain novel: 5 healed physical injuries without medical mention, 5 epistemic knowledge leaks, 5 disappearing carried weapons, and 5 timeline slips. We compared our prototype against passing the full manuscript into {SITE_CONFIG.benchmark.baselineModel} with the prompt: <em>&ldquo;{SITE_CONFIG.benchmark.baselinePrompt}&rdquo;</em>.
+              We inserted {SITE_CONFIG.benchmark.seededErrors} defects into one public-domain novel (5 healed physical injuries without medical mention, 5 epistemic knowledge leaks, 5 disappearing carried weapons, and 5 timeline slips). We compared our prototype with prompting {SITE_CONFIG.benchmark.baselineModel} with the full text, run on {SITE_CONFIG.benchmark.testDate}. Threadspark found 19 of 20 with 1 false alarm; the baseline found 9 of 20 with 13 false alarms. A held-out test on 3 external manuscripts is in progress, and we will publish the method and results.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="p-4 rounded-xl bg-brand-dark border border-brand-border">
-                <div className="text-[11px] font-mono text-slate-400 uppercase mb-1">Threadspark Detection (Recall)</div>
+                <div className="text-[11px] font-mono text-slate-400 uppercase mb-1">Threadspark Defect Detection</div>
                 <div className="font-serif text-2xl text-emerald-400 font-medium">
-                  {SITE_CONFIG.benchmark.threadsparkRecall} ({SITE_CONFIG.benchmark.detectedErrors}/{SITE_CONFIG.benchmark.seededErrors})
+                  {SITE_CONFIG.benchmarkComparison.threadsparkDetected}
                 </div>
-                <div className="text-[10px] text-slate-400 mt-1">vs. {SITE_CONFIG.benchmark.baselineLLMRecall} (9/20 caught) for LLM prompt pasting</div>
+                <div className="text-[10px] text-slate-400 mt-1">vs. {SITE_CONFIG.benchmarkComparison.baselineDetected} for raw LLM prompt pasting</div>
               </div>
 
               <div className="p-4 rounded-xl bg-brand-dark border border-brand-border">
-                <div className="text-[11px] font-mono text-slate-400 uppercase mb-1">Precision (False Alarm Suppression)</div>
+                <div className="text-[11px] font-mono text-slate-400 uppercase mb-1">False Alarm Count</div>
                 <div className="font-serif text-2xl text-brand-champagne font-medium">
-                  {SITE_CONFIG.benchmark.threadsparkPrecision} (19/20, 1 false alarm)
+                  {SITE_CONFIG.benchmarkComparison.threadsparkFalseAlarms}
                 </div>
-                <div className="text-[10px] text-slate-400 mt-1">vs. {SITE_CONFIG.benchmark.baselineLLMPrecision} (9/22, 13 hallucinated errors) for LLM baseline</div>
+                <div className="text-[10px] text-slate-400 mt-1">vs. {SITE_CONFIG.benchmarkComparison.baselineFalseAlarms} for raw LLM baseline</div>
               </div>
             </div>
 
             <div className="pt-2 text-[11px] font-mono text-slate-400 text-center">
-              Note: Because errors were self-seeded internally, this serves as an architectural sanity check. A held-out experiment on external author manuscripts is currently ongoing.
+              Internal sanity check, not independent. A held-out test on 3 external manuscripts is in progress, and we will publish the method and results.
             </div>
           </div>
         </div>

@@ -36,11 +36,10 @@ export default function UseCasesPage() {
       id: "series-authors",
       icon: BookOpen,
       badge: "Primary Wedge • Multi-Book Sagas",
-      tag: "Prototype (working)",
       title: "Indie Series Authors",
       subtitle: "Where continuity burden compounds across Books 1 through 10.",
       description:
-        "Series authors are our sharpest customer wedge because continuity burden grows exponentially with each release. By Book 4, an author must remember dozens of character wounds, broken oaths, carried relics, and secret revelations made three years ago. Threadspark reads your backlist and maintains an automatic, confirmed living state machine.",
+        "Series authors are our sharpest customer wedge because continuity burden grows exponentially with each release. By Book 4, an author must remember dozens of character wounds, broken oaths, carried relics, and secret revelations made three years ago. Threadspark reads your backlist and maintains an automatic, author-confirmed living state machine.",
       keyFeatures: [
         "Cross-book character dossiers and physical invariant tracking (injuries, lost items)",
         "Epistemic boundaries preventing characters from leaking secrets they haven't witnessed",
@@ -68,7 +67,6 @@ export default function UseCasesPage() {
       id: "serial-novelists",
       icon: Feather,
       badge: "High Velocity • Serialization",
-      tag: "Prototype (working)",
       title: "Serial & Web Novelists",
       subtitle: "Weekly release pressure where reader-facing retcons are fatal.",
       description:
@@ -100,7 +98,6 @@ export default function UseCasesPage() {
       id: "narrative-games",
       icon: Gamepad2,
       badge: "Branching Canon • Narrative Studios",
-      tag: "In development",
       title: "Narrative Game Teams & TTRPG GMs",
       subtitle: "Managing branching storylines, player state, and world consequence.",
       description:
@@ -132,7 +129,6 @@ export default function UseCasesPage() {
       id: "worldbuilders",
       icon: Compass,
       badge: "Speculative Worlds & Lore",
-      tag: "Prototype (working)",
       title: "Speculative Worldbuilders",
       subtitle: "Build consistent magic systems, fictional histories, and political maps.",
       description:
@@ -228,15 +224,6 @@ export default function UseCasesPage() {
                   <CurrentIcon className="w-3.5 h-3.5" />
                   <span>{currentCase.badge}</span>
                 </div>
-                <span
-                  className={`text-[10px] font-mono px-2 py-0.5 rounded ${
-                    currentCase.tag === "Prototype (working)"
-                      ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-300"
-                      : "bg-amber-500/10 border border-amber-500/30 text-amber-300"
-                  }`}
-                >
-                  {currentCase.tag}
-                </span>
               </div>
 
               <h2 className="font-serif text-3xl sm:text-4xl text-white font-normal leading-tight">
@@ -328,7 +315,7 @@ export default function UseCasesPage() {
                   <div className="p-4 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 space-y-1.5">
                     <span className="text-[10px] font-mono uppercase text-emerald-400 font-semibold block flex items-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5" />
-                      Threadspark Resolution ({currentCase.tag}):
+                      Threadspark Resolution:
                     </span>
                     <p className="text-xs text-slate-200 font-sans leading-relaxed">
                       {activeScenario.resolution}
@@ -379,14 +366,8 @@ export default function UseCasesPage() {
                       <div className="w-10 h-10 rounded-xl bg-brand-violet/10 border border-brand-violet/30 text-brand-lavender flex items-center justify-center">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <span
-                        className={`text-[9px] font-mono px-2 py-0.5 rounded ${
-                          c.tag === "Prototype (working)"
-                            ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                            : "bg-amber-500/10 text-amber-300 border border-amber-500/20"
-                        }`}
-                      >
-                        {c.tag}
+                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-brand-violet/10 text-brand-lavender border border-brand-violet/20">
+                        {c.badge.split("•")[0].trim()}
                       </span>
                     </div>
                     <h3 className="font-serif text-xl text-white font-medium mb-2">{c.title}</h3>

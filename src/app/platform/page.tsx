@@ -145,7 +145,7 @@ const entityResolution = {
       headline: "Precision-First Continuity Radar with Exact Manuscript Anchors",
       description:
         "Versions drafts and lets authors test alternative scenes without corrupting canon. Aggressively tuned for precision over noisy recall—a tool that cries wolf gets disabled. Every flagged collision links directly to the exact conflicting manuscript lines so you can audit without frustration.",
-      telemetry: `Preliminary Test: Precision ${SITE_CONFIG.benchmark.threadsparkPrecision} • Recall ${SITE_CONFIG.benchmark.threadsparkRecall} • Exact Line Links`,
+      telemetry: `Preliminary Test: ${SITE_CONFIG.benchmarkComparison.threadsparkDetected} with ${SITE_CONFIG.benchmarkComparison.threadsparkFalseAlarms} • Exact Line Links`,
       codeSample: `// Step 4: Continuity Collision Report #CNT-01 [Prototype (working)]
 {
   "collisionType": "PHYSICAL_STATE_INVARIANT",
@@ -225,6 +225,23 @@ const authorStyleAdapter = {
       {/* 5-STEP PIPELINE WALKTHROUGH */}
       <section className="py-24 border-b border-brand-border/40 relative bg-brand-dark/30">
         <div className="max-w-6xl mx-auto px-6">
+          {/* Deterministic Definition Box */}
+          <div className="mb-14 p-6 rounded-2xl glass-panel border border-brand-violet/40 bg-brand-charcoal/70">
+            <div className="flex items-start gap-4">
+              <div className="w-9 h-9 rounded-xl bg-brand-violet/20 border border-brand-violet/30 text-brand-champagne flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Brain className="w-5 h-5" />
+              </div>
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono uppercase text-brand-champagne font-semibold tracking-wider">
+                  Core Architecture Definition: Deterministic Continuity
+                </span>
+                <p className="text-sm text-slate-200 leading-relaxed font-sans">
+                  {SITE_CONFIG.deterministicDefinition}
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-brand-violet mb-3 block">
               The Engine Pipeline
@@ -233,7 +250,7 @@ const authorStyleAdapter = {
               From Raw Manuscript to Deterministic Canon
             </h2>
             <p className="text-slate-400 text-sm">
-              Click each step to inspect its algorithmic mechanics, internal schemas, and live telemetry outputs. Every stage carries an explicit status tag: <span className="text-emerald-400 font-semibold font-mono">Prototype (working)</span>, <span className="text-amber-300 font-semibold font-mono">In development</span>, or <span className="text-purple-300 font-semibold font-mono">Vision</span>.
+              Click each step to inspect its algorithmic mechanics, internal schemas, and illustrative sample outputs. Every stage carries an explicit status tag: <span className="text-emerald-400 font-semibold font-mono">Prototype (working)</span>, <span className="text-amber-300 font-semibold font-mono">In development</span>, or <span className="text-purple-300 font-semibold font-mono">Vision</span>.
             </p>
           </div>
 
@@ -786,7 +803,7 @@ const authorStyleAdapter = {
                 Technical Appendix: Preliminary Internal Experiment
               </span>
               <span className="text-xs font-mono text-slate-400">
-                Internal Sanity Check &bull; {SITE_CONFIG.benchmark.words.toLocaleString()} Words &bull; {SITE_CONFIG.benchmark.corpus}
+                Internal Sanity Check &bull; Tested {SITE_CONFIG.benchmark.testDate} &bull; {SITE_CONFIG.benchmark.corpus}
               </span>
             </div>
 
@@ -794,39 +811,42 @@ const authorStyleAdapter = {
               <div className="space-y-3">
                 <h4 className="font-serif text-base text-white font-medium">Methodology &amp; Seeded Anomalies</h4>
                 <p>
-                  To validate precision and recall internally, we used <em>{SITE_CONFIG.benchmark.corpus}</em> ({SITE_CONFIG.benchmark.words.toLocaleString()} words) and self-seeded {SITE_CONFIG.benchmark.seededErrors} synthetic continuity defects across 4 distinct categories:
+                  Internal sanity check, not independent. We inserted 20 defects into one public-domain novel (<em>{SITE_CONFIG.benchmark.corpus}</em>, {SITE_CONFIG.benchmark.words.toLocaleString()} words) across 4 categories:
                 </p>
                 <ul className="list-disc pl-4 space-y-1 font-mono text-[11px] text-slate-400">
-                  <li><strong>Physical Invariant:</strong> Holmes sustains a sprained wrist in Ch 3, then picks a heavy lock with both hands in Ch 5 without mention of healing.</li>
-                  <li><strong>Epistemic Leak:</strong> Dr. Watson refers to the Agra treasure chest being empty before the chest is unlocked in Ch 11.</li>
-                  <li><strong>Inventory Vanishing:</strong> A character&apos;s pocket lantern vanishes from inventory during a pursuit sequence.</li>
-                  <li><strong>Timeline Slip:</strong> A steam launch voyage described as taking 4 hours occurs during a 45-minute window in the city clock log.</li>
+                  <li><strong>Physical Invariant (5 defects):</strong> Holmes sustains a sprained wrist in Ch 3, then picks a heavy lock with both hands in Ch 5 without mention of healing.</li>
+                  <li><strong>Epistemic Leak (5 defects):</strong> Dr. Watson refers to the Agra treasure chest being empty before the chest is unlocked in Ch 11.</li>
+                  <li><strong>Inventory Vanishing (5 defects):</strong> A character&apos;s pocket lantern vanishes from inventory during a pursuit sequence.</li>
+                  <li><strong>Timeline Slip (5 defects):</strong> A steam launch voyage described as taking 4 hours occurs during a 45-minute window in the city clock log.</li>
                 </ul>
               </div>
 
               <div className="space-y-3">
                 <h4 className="font-serif text-base text-white font-medium">Results vs. Baseline LLM Prompt</h4>
                 <p>
-                  We compared Threadspark&apos;s prototype against passing the full novel into {SITE_CONFIG.benchmark.baselineModel} with the prompt: <em>&ldquo;{SITE_CONFIG.benchmark.baselinePrompt}&rdquo;</em>.
+                  We compared Threadspark with prompting {SITE_CONFIG.benchmark.baselineModel} with the full text, run on {SITE_CONFIG.benchmark.testDate} using the prompt: <em>&ldquo;{SITE_CONFIG.benchmark.baselinePrompt}&rdquo;</em>.
                 </p>
                 <div className="p-4 rounded-xl bg-brand-dark/90 border border-brand-border font-mono text-[11px] space-y-2">
                   <div className="flex justify-between text-emerald-300">
-                    <span>Threadspark Precision:</span>
-                    <span>{SITE_CONFIG.benchmark.threadsparkPrecision} (19/20, 1 false alarm)</span>
+                    <span>Threadspark Defects Detected:</span>
+                    <span>{SITE_CONFIG.benchmarkComparison.threadsparkDetected}</span>
                   </div>
                   <div className="flex justify-between text-slate-400">
-                    <span>Baseline LLM Precision:</span>
-                    <span>{SITE_CONFIG.benchmark.baselineLLMPrecision} (9/22, 13 false alarms)</span>
+                    <span>Baseline LLM Defects Detected:</span>
+                    <span>{SITE_CONFIG.benchmarkComparison.baselineDetected}</span>
                   </div>
-                  <div className="flex justify-between text-emerald-300">
-                    <span>Threadspark Recall:</span>
-                    <span>{SITE_CONFIG.benchmark.threadsparkRecall} (19/20 detected)</span>
+                  <div className="flex justify-between text-brand-champagne">
+                    <span>Threadspark False Alarms:</span>
+                    <span>{SITE_CONFIG.benchmarkComparison.threadsparkFalseAlarms}</span>
                   </div>
                   <div className="flex justify-between text-slate-400">
-                    <span>Baseline LLM Recall:</span>
-                    <span>{SITE_CONFIG.benchmark.baselineLLMRecall} (9/20 detected, 11 missed)</span>
+                    <span>Baseline LLM False Alarms:</span>
+                    <span>{SITE_CONFIG.benchmarkComparison.baselineFalseAlarms}</span>
                   </div>
                 </div>
+                <p className="text-[11px] text-slate-400 font-mono">
+                  A held-out test on 3 external manuscripts is in progress, and we will publish the method and results.
+                </p>
               </div>
             </div>
           </div>

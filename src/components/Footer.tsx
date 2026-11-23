@@ -26,9 +26,13 @@ export function Footer() {
               <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-4">
                 The source of truth for long-form fiction. Automatically tracking temporal state invariants, physical details, and epistemic boundaries across multi-book sagas.
               </p>
-              <div className="text-xs text-slate-400 leading-relaxed font-mono space-y-1">
-                <div>Founded in {SITE_CONFIG.foundedYear} by solo founder &amp; engineer <strong className="text-white">{SITE_CONFIG.founder.name}</strong>.</div>
-                <div className="text-emerald-400 font-semibold">{SITE_CONFIG.companyType}</div>
+              <div className="text-xs text-slate-300 leading-relaxed font-mono space-y-1.5 p-3.5 rounded-xl bg-brand-charcoal/80 border border-brand-border/70">
+                <div className="text-brand-champagne font-semibold text-[11px] uppercase tracking-wider">
+                  Company Identity
+                </div>
+                <p className="text-slate-300 text-xs font-sans leading-relaxed">
+                  {SITE_CONFIG.companyIdentity}
+                </p>
               </div>
             </div>
 
@@ -73,7 +77,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/about" className="text-slate-400 hover:text-brand-champagne transition-colors">
-                  Founder Story &amp; Roadmap
+                  Company Facts &amp; Roadmap
                 </Link>
               </li>
               <li>
@@ -86,7 +90,7 @@ export function Footer() {
 
           {/* Trust & Legal */}
           <div className="md:col-span-4">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-slate-300 mb-4">Trust &amp; Ethics</h4>
+            <h4 className="text-xs font-mono uppercase tracking-widest text-slate-300 mb-4">Trust &amp; Legal</h4>
             <div className="p-4 rounded-xl bg-brand-dark/70 border border-brand-border/60 space-y-2 mb-4">
               <div className="text-xs font-semibold text-white">What Threadspark Doesn&apos;t Do</div>
               <p className="text-xs text-slate-400 leading-relaxed">
@@ -96,7 +100,12 @@ export function Footer() {
             <ul className="space-y-2 text-xs font-mono text-slate-400">
               <li>
                 <Link href="/privacy" className="hover:text-brand-champagne transition-colors">
-                  &rarr; Plain-Language Data Promise &amp; Privacy
+                  &rarr; Privacy Policy &amp; Data Promise
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-brand-champagne transition-colors">
+                  &rarr; Terms of Service
                 </Link>
               </li>
               <li>
@@ -111,11 +120,14 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 font-mono gap-4">
           <div>
-            &copy; {new Date().getFullYear()} Threadspark. Founded by Ezekiel Heretta.
+            &copy; {new Date().getFullYear()} Threadspark. Operated by Ezekiel Heretta.
           </div>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-slate-300 transition-colors">
-              Data Promise
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-slate-300 transition-colors">
+              Terms of Service
             </Link>
             <Link href="/platform" className="hover:text-slate-300 transition-colors">
               Architecture
