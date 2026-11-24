@@ -35,5 +35,6 @@ next-env.d.ts
 # AI Review exports
 /ai-review/
 /ai-review.zip
+*.zip
 
 
