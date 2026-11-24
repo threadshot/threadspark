@@ -22,8 +22,14 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = "https://threadspark.kumirealms.workers.dev";
+
 export const metadata: Metadata = {
-  title: "Threadspark | The Source of Truth for Long-Form Fiction",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Threadspark | The Source of Truth for Long-Form Fiction",
+    template: "%s | Threadspark",
+  },
   description:
     "Deterministic continuity engine and living story bible for indie series authors. Tracks character states, physical invariants, and epistemic secrets across multi-book sagas.",
   keywords: [
@@ -42,16 +48,25 @@ export const metadata: Metadata = {
     title: "Threadspark | The Source of Truth for Long-Form Fiction",
     description:
       "Deterministic continuity engine and living story bible for indie series authors. Tracks character states, physical invariants, and epistemic secrets across multi-book sagas.",
-    url: `https://${SITE_CONFIG.companyDomain}`,
+    url: siteUrl,
     siteName: "Threadspark",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Threadspark — The Source of Truth for Long-Form Fiction",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Threadspark | The Source of Truth for Long-Form Fiction",
     description:
       "Deterministic continuity engine and living story bible for indie series authors.",
+    images: ["/og-image.png"],
   },
 };
 

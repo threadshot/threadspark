@@ -67,19 +67,19 @@ export function CommandPalette() {
   const items: CommandItem[] = [
     // Pages
     { id: "page-home", title: "Overview / Homepage", category: "Navigation", description: "Return to Threadspark home", icon: LayoutDashboard, href: "/" },
-    { id: "page-platform", title: "How Threadspark Works", category: "Navigation", description: "Deep dive into the 4-step canon pipeline", icon: Layers, href: "/platform" },
+    { id: "page-platform", title: "How Threadspark Works", category: "Navigation", description: "Deep dive into the 5-step canon pipeline", icon: Layers, href: "/platform" },
     { id: "page-use-cases", title: "Use Cases & Workflows", category: "Navigation", description: "Series authors, web serialists, game teams, worldbuilders", icon: Compass, href: "/use-cases" },
     { id: "page-about", title: "About & Founder", category: "Navigation", description: "Founder story, mission, and roadmap", icon: Info, href: "/about" },
     { id: "page-studio", title: "Threadspark Studio", category: "Navigation", description: "Interactive product demonstration", icon: Sparkles, href: "/studio" },
 
     // Studio Views
-    { id: "st-doc", title: "Document Ingestion Pipeline", category: "Studio Views", description: "8-stage manuscript synthesis simulation", icon: FileSearch, href: "/studio?tab=document-intelligence" },
+    { id: "st-doc", title: "Document Ingestion Pipeline", category: "Studio Views", description: "5-pass manuscript synthesis simulation", icon: FileSearch, href: "/studio?tab=document-intelligence" },
     { id: "st-style", title: "Writing Style Intelligence", category: "Studio Views", description: "Stylometric authorship fingerprinting & lexical variance", icon: Sliders, href: "/studio?tab=style-intelligence" },
     { id: "st-chars", title: "Character Dossiers & Arcs", category: "Studio Views", description: "12 character profiles with dynamic tension ratings", icon: BookOpen, href: "/studio?tab=characters" },
     { id: "st-graph", title: "Interactive Relational Knowledge Graph", category: "Studio Views", description: "SVG topological spatial network", icon: GitGraph, href: "/studio?tab=knowledge-graph" },
     { id: "st-continuity", title: "Continuity Radar Scanner", category: "Studio Views", description: "3 flagged discrepancies with 1-click authorial fixes", icon: ShieldCheck, href: "/studio?tab=continuity" },
     { id: "st-ai", title: "Context-Aware AI Copilot", category: "Studio Views", description: "Conversational project intelligence", icon: MessageSquareCode, href: "/studio?tab=ai-workspace" },
-    { id: "st-creative", title: "Style-Preserved Creative Studio", category: "Studio Views", description: "Side-by-side & unified diff rewriting", icon: PenTool, href: "/studio?tab=creative-studio" },
+    { id: "st-creative", title: "Style-Preserved Creative Studio", category: "Studio Views", description: "Author-approved diff suggestions to resolve continuity flags", icon: PenTool, href: "/studio?tab=creative-studio" },
     { id: "st-settings", title: "Project Vault & Local Sovereignty", category: "Studio Views", description: "Encryption, local storage, and lore export", icon: Settings, href: "/studio?tab=settings" },
 
     // Characters

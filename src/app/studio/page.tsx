@@ -182,12 +182,25 @@ export default function StudioPage() {
             </ul>
           </div>
           <p className="text-sm text-slate-400">
-            To participate in the 25-author Design Partner Program, contact founder Ezekiel Heretta at kumirealms@gmail.com.
+            To participate in the {SITE_CONFIG.designPartnerCohort.totalSpots}-author Design Partner Program, contact founder Ezekiel Heretta at {SITE_CONFIG.contactEmail}.
           </p>
         </div>
       </noscript>
 
-      <Suspense fallback={<div className="min-h-screen bg-brand-void flex items-center justify-center text-xs font-mono text-slate-400">Loading Threadspark Studio Prototype...</div>}>
+      <Suspense
+        fallback={
+          <div className="min-h-screen bg-brand-void text-slate-200 flex flex-col items-center justify-center p-6 text-center space-y-4">
+            <div className="w-10 h-10 rounded-2xl bg-brand-violet/20 border border-brand-violet/40 text-brand-champagne flex items-center justify-center animate-pulse">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <h1 className="font-serif text-2xl text-white font-medium">Threadspark Studio Prototype</h1>
+            <p className="text-sm text-slate-400 max-w-md">
+              Loading the interactive story-state engine preloaded with <em>The Glass Meridian</em> (36,420 words, 8 chapters, 148 state nodes)...
+            </p>
+            <div className="text-xs font-mono text-brand-lavender/60">Initializing relational knowledge graph &amp; epistemic radar...</div>
+          </div>
+        }
+      >
         <StudioContent />
       </Suspense>
     </>

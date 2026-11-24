@@ -3,8 +3,10 @@
   "name": "threadspark",
   "account_id": "03983e9e9666d55440dec86e2a3c20aa",
   "compatibility_date": "2026-11-03",
+  "main": "src/worker.ts",
   "assets": {
     "directory": "out",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "single-page-application"
   }

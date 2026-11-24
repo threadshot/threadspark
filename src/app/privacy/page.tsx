@@ -1,10 +1,24 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ShieldCheck, Lock, HardDrive, FileText, Mail, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, Lock, HardDrive, FileText, Mail, ArrowRight, CheckCircle2, Cookie } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy & Data Commitments",
+  description:
+    "Plain-language data promise: zero training on author manuscripts, isolated execution environments, and permanent deletion on request.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    title: "Threadspark Privacy Policy & Plain-Language Data Promise",
+    description:
+      "Zero training on author manuscripts, isolated execution environments, and permanent deletion on request.",
+    url: "/privacy",
+  },
+};
 
 export default function PrivacyPage() {
   return (
@@ -27,7 +41,7 @@ export default function PrivacyPage() {
 
           <div className="text-xs font-mono text-slate-400 mb-8 pb-4 border-b border-brand-border flex flex-wrap items-center justify-between gap-2">
             <span>Effective Date: November 23, 2026</span>
-            <span>Data Controller: {SITE_CONFIG.founder.name} ({SITE_CONFIG.location})</span>
+            <span>Data Controller: {SITE_CONFIG.companyIdentity}</span>
           </div>
 
           <p className="text-slate-300 text-lg md:text-xl font-light leading-relaxed mb-12">
@@ -39,15 +53,15 @@ export default function PrivacyPage() {
             <section className="space-y-3">
               <h2 className="font-serif text-2xl text-white font-medium">1. Data Controller and Contact</h2>
               <p>
-                The data controller for Threadspark is solo founder &amp; engineer {SITE_CONFIG.founder.name}, operating from {SITE_CONFIG.location}.
+                The data controller for Threadspark is solo founder &amp; engineer {SITE_CONFIG.founder.name}, operating as {SITE_CONFIG.companyIdentity} ({SITE_CONFIG.location}).
               </p>
               <p>
                 For any privacy questions, access requests, or permanent deletion demands, contact Ezekiel directly at:
               </p>
               <div className="p-4 rounded-xl bg-brand-charcoal/80 border border-brand-border font-mono text-xs text-slate-200 space-y-1">
-                <div>Primary Privacy Contact: <a href={`mailto:${SITE_CONFIG.privacyEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.privacyEmail}</a></div>
-                <div>Alternative Direct Email: <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.contactEmail}</a></div>
-                <div>Entity: {SITE_CONFIG.companyIdentity}</div>
+                <div>Data Controller: {SITE_CONFIG.companyIdentity}</div>
+                <div>Primary Contact: <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.contactEmail}</a></div>
+                <div>Location: {SITE_CONFIG.location}</div>
               </div>
             </section>
 
@@ -57,16 +71,16 @@ export default function PrivacyPage() {
                 Cohort Architecture &amp; Hosting Environment
               </div>
               <h2 className="font-serif text-2xl text-white font-medium">
-                Manuscript Processing &amp; AWS Infrastructure Roadmap
+                2. Manuscript Processing &amp; Infrastructure Roadmap
               </h2>
               <blockquote className="p-4 rounded-xl bg-brand-dark/90 border-l-2 border-brand-violet text-slate-200 font-sans leading-relaxed text-sm">
-                During the design partner cohort, the founder supervises all manuscript ingestion and verification. Manuscripts are processed over encrypted connections in an isolated environment for each partner and are never pooled with other authors&apos; work. Today this environment runs on dedicated local workstation compute with per-partner encrypted containers. We plan to move it to AWS, with a separate account or VPC per partner, by Q2 2027.
+                During the design partner cohort, the founder supervises all manuscript ingestion and verification. Manuscripts are processed over TLS 1.3 encrypted connections in an isolated environment for each partner and are never pooled with other authors&apos; work. Today this environment runs on dedicated local workstation compute with per-partner isolated containers and hardware-encrypted storage. We plan to migrate this pipeline to AWS, with logically isolated per-partner storage and per-partner encryption keys, by Q2 2027. We will update this policy and notify partners in advance before any migration.
               </blockquote>
             </section>
 
             {/* 3. What We Collect and Why */}
             <section className="space-y-4">
-              <h2 className="font-serif text-2xl text-white font-medium">2. Information We Collect and Process</h2>
+              <h2 className="font-serif text-2xl text-white font-medium">3. Information We Collect and Process</h2>
               <div className="space-y-3 text-xs sm:text-sm">
                 <div className="p-4 rounded-xl bg-brand-dark/80 border border-brand-border">
                   <strong className="text-white font-mono block mb-1">A. Partner Information</strong>
@@ -78,49 +92,64 @@ export default function PrivacyPage() {
                 </div>
                 <div className="p-4 rounded-xl bg-brand-dark/80 border border-brand-border">
                   <strong className="text-white font-mono block mb-1">C. Technical Telemetry &amp; Error Logs</strong>
-                  <span>Internal model diagnostic counts (e.g. token segment counts, runtime per pass) without recording manuscript text into shared monitoring services.</span>
+                  <span>Internal model diagnostic counts (e.g. token segment counts, runtime per pass) without recording manuscript text into shared external monitoring services.</span>
                 </div>
               </div>
             </section>
 
             {/* 4. Strict Zero-Training Guarantee */}
             <section className="space-y-3">
-              <h2 className="font-serif text-2xl text-white font-medium">3. Strict Zero Public Model Training</h2>
+              <h2 className="font-serif text-2xl text-white font-medium">4. Strict Zero Public Model Training</h2>
               <p>
                 <strong className="text-white">We do not train, fine-tune, or evaluate public or third-party foundation models on your submitted manuscripts.</strong>
               </p>
               <p>
-                Any future genre-specific base models developed by Threadspark (Phase 3) will be trained exclusively on verified public domain literature or works provided with explicit, compensated author consent.
+                Your creative text is never fed into shared AI training pools. Any future genre-specific base models developed by Threadspark (Phase 3) will be trained exclusively on verified public domain literature or works provided with explicit, compensated author consent.
               </p>
             </section>
 
-            {/* 5. Data Retention & Permanent Deletion Requests */}
+            {/* 5. Cookies & Local Storage */}
             <section className="space-y-3">
-              <h2 className="font-serif text-2xl text-white font-medium">4. Data Retention and Deletion Rights</h2>
+              <h2 className="font-serif text-2xl text-white font-medium">5. Cookies and Local Storage</h2>
+              <p>
+                <strong className="text-white">We do not use advertising, marketing, or tracking cookies.</strong> We do not load third-party ad networks, tracking pixels, or cross-site profiling scripts.
+              </p>
+              <p>
+                Browser storage (such as <code className="text-brand-lavender text-xs">localStorage</code>) is used strictly for essential client-side application state, such as remembering your active tab or preferences in the interactive prototype studio. This state remains entirely on your device and is never transmitted to advertising networks.
+              </p>
+            </section>
+
+            {/* 6. Data Retention & Permanent Deletion Requests */}
+            <section className="space-y-3">
+              <h2 className="font-serif text-2xl text-white font-medium">6. Data Retention and Deletion Rights</h2>
               <p>
                 <strong className="text-white">Retention Period:</strong> Your manuscripts and generated story graphs are retained only for the active duration of the Design Partner Program to provide continuity checking across drafts, or until you request deletion.
               </p>
               <p>
-                <strong className="text-white">One-Click Deletion:</strong> You have the right to request immediate and complete deletion of your manuscripts, extracted story-state graphs, vector embeddings, and all diagnostic logs at any time. To execute a deletion request, email <a href={`mailto:${SITE_CONFIG.privacyEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.privacyEmail}</a> or <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.contactEmail}</a> with the subject &ldquo;Data Deletion Request&rdquo;. Requests are processed and permanently wiped within 48 hours.
+                <strong className="text-white">Deletion on Request:</strong> You have the right to request immediate and complete deletion of your manuscripts, extracted story-state graphs, vector embeddings, and all diagnostic logs at any time. To execute a deletion request, email <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.contactEmail}</a> with the subject &ldquo;Data Deletion Request&rdquo;. Requests are processed and permanently wiped {SITE_CONFIG.deletionWindow}.
               </p>
               <p>
                 <strong className="text-white">Lossless Export:</strong> You may request or download an export of your extracted story bible and graph in open JSON, SQLite, or Markdown formats at any time.
               </p>
             </section>
 
-            {/* 6. Legal Rights (GDPR & CCPA) */}
+            {/* 7. Security Measures */}
             <section className="space-y-3">
-              <h2 className="font-serif text-2xl text-white font-medium">5. Your Legal Rights</h2>
+              <h2 className="font-serif text-2xl text-white font-medium">7. Security Measures (Current vs. Planned)</h2>
               <p>
-                Depending on your location, you may have rights under the GDPR, UK Data Protection Act, or California Consumer Privacy Act (CCPA), including the right to access, rectify, port, or erase your personal information. Because we collect minimal personal data and maintain direct founder contact, any request can be addressed directly by emailing our data controller.
+                We believe in architectural transparency rather than hollow marketing claims:
               </p>
+              <ul className="list-disc pl-5 space-y-2 text-slate-400 text-xs">
+                <li><strong className="text-white">In effect today:</strong> All data transfers occur over TLS 1.3 encrypted connections. During the prototype cohort, manuscripts and graphs reside on hardware-encrypted disks in per-partner isolated environments with zero shared pooling.</li>
+                <li><strong className="text-white">Planned for cloud migration:</strong> In our planned migration to AWS (targeted Q2 2027), each partner&apos;s workspace will be secured with dedicated per-tenant AES-256 GCM encryption keys managed via KMS, with isolated cloud storage.</li>
+              </ul>
             </section>
 
-            {/* 7. Subprocessors & Security */}
+            {/* 8. Legal Rights (GDPR & CCPA) */}
             <section className="space-y-3">
-              <h2 className="font-serif text-2xl text-white font-medium">6. Security Measures</h2>
+              <h2 className="font-serif text-2xl text-white font-medium">8. Your Legal Rights</h2>
               <p>
-                All data transfers occur over TLS 1.3 encrypted connections. During the prototype stage, data is maintained on hardware-encrypted disks with per-partner isolated environments.
+                Depending on your location, you may have rights under the GDPR, UK Data Protection Act, or California Consumer Privacy Act (CCPA), including the right to access, rectify, port, or erase your personal information. Because we collect minimal personal data and maintain direct founder contact, any request can be addressed directly by emailing our data controller at <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-brand-champagne underline">{SITE_CONFIG.contactEmail}</a>.
               </p>
             </section>
           </div>
